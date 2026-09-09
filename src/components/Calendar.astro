@@ -96,15 +96,15 @@ const events = [
     </div>
 
     <!-- Monthly Tabs Navigation -->
-    <div class="flex overflow-x-auto pb-2 mb-8 border-b-2 border-epic-blue/10 gap-2 sm:gap-4 scrollbar-none">
+    <div class="flex overflow-x-auto pb-2 mb-8 border-b-2 border-epic-blue/10 gap-1.5 sm:gap-3 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
       {events.map((ev, index) => (
         <button 
           type="button"
-          class={`calendar-tab flex-1 min-w-[80px] sm:min-w-[100px] md:min-w-0 py-3 sm:py-4 px-2 text-center font-extrabold text-sm sm:text-base tracking-wider transition-all duration-200 border-0 border-b-4 -mb-[2px] cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 active:outline-none select-none ${index === 0 ? 'border-b-epic-gold text-epic-blue bg-white/70 rounded-t-xl' : 'border-b-transparent text-epic-text-muted hover:text-epic-blue'}`}
+          class={`calendar-tab shrink-0 md:flex-1 py-2.5 sm:py-4 px-4 sm:px-2 text-center font-extrabold text-xs sm:text-base tracking-wider transition-all duration-200 border-0 border-b-4 -mb-[2px] cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 active:outline-none select-none whitespace-nowrap ${index === 0 ? 'border-b-epic-gold text-epic-blue bg-white/70 rounded-t-xl' : 'border-b-transparent text-epic-text-muted hover:text-epic-blue'}`}
           data-tab={index}
         >
-          <span class="block font-mono text-xs opacity-60 uppercase">{ev.monthKey}</span>
-          <span>{ev.label}</span>
+          <span class="block font-mono text-[10px] sm:text-xs opacity-60 uppercase">{ev.monthKey}</span>
+          <span class="font-bold text-xs sm:text-sm">{ev.label}</span>
         </button>
       ))}
     </div>
@@ -117,7 +117,7 @@ const events = [
           data-event-index={index}
         >
           <!-- Event Image Column (Left 6/12) -->
-          <div class="lg:col-span-6 relative min-h-[300px] lg:min-h-[460px] bg-epic-blue overflow-hidden">
+          <div class="lg:col-span-6 relative min-h-[260px] sm:min-h-[320px] lg:min-h-[460px] bg-epic-blue overflow-hidden">
             <img 
               src={ev.image} 
               alt={ev.name} 
@@ -125,21 +125,21 @@ const events = [
             />
             <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/80 via-transparent to-black/20"></div>
             
-            <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+            <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex items-end justify-between">
               <div>
-                <span class="inline-block bg-epic-gold text-epic-blue font-mono font-black text-xs px-3.5 py-1.5 rounded-full mb-2 uppercase">
+                <span class="inline-block bg-epic-gold text-epic-blue font-mono font-black text-xs px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full mb-2 uppercase">
                   {ev.dateBadge}
                 </span>
-                <h3 class="text-white font-black text-2xl sm:text-3xl leading-tight">{ev.name}</h3>
+                <h3 class="text-white font-black text-xl sm:text-3xl leading-tight">{ev.name}</h3>
               </div>
             </div>
           </div>
 
           <!-- Event Data Column (Right 6/12) -->
-          <div class="lg:col-span-6 p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-6">
+          <div class="lg:col-span-6 p-5 sm:p-10 lg:p-12 flex flex-col justify-between gap-6">
             
             <div>
-              <div class="flex items-center gap-3 mb-3">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
                 <span class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase bg-epic-blue px-3 py-1 rounded-md">
                   {ev.tag}
                 </span>
@@ -153,18 +153,18 @@ const events = [
               </h3>
 
               <!-- Technical Stats -->
-              <div class="grid grid-cols-3 gap-3 py-5 border-y border-epic-blue/10 my-4 bg-epic-gray-bg/50 rounded-xl px-4">
-                <div>
+              <div class="grid grid-cols-3 gap-2 sm:gap-3 py-4 sm:py-5 border-y border-epic-blue/10 my-4 bg-epic-gray-bg/50 rounded-xl px-3 sm:px-4">
+                <div class="min-w-0">
                   <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Distancia</span>
-                  <span class="font-black text-xl sm:text-2xl text-epic-blue">{ev.km}</span>
+                  <span class="font-black text-lg sm:text-2xl text-epic-blue truncate block">{ev.km}</span>
                 </div>
-                <div>
+                <div class="min-w-0">
                   <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Altimetría</span>
-                  <span class="font-black text-xl sm:text-2xl text-epic-blue">{ev.alt}</span>
+                  <span class="font-black text-lg sm:text-2xl text-epic-blue truncate block">{ev.alt}</span>
                 </div>
-                <div>
+                <div class="min-w-0">
                   <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Nivel</span>
-                  <span class="font-black text-xl sm:text-2xl text-epic-gold">{ev.level}</span>
+                  <span class="font-black text-sm sm:text-2xl text-epic-gold leading-tight break-words block">{ev.level}</span>
                 </div>
               </div>
 
@@ -204,6 +204,7 @@ const events = [
         if (i === targetIndex) {
           t.classList.remove('border-b-transparent', 'text-epic-text-muted');
           t.classList.add('border-b-epic-gold', 'text-epic-blue', 'bg-white/70', 'rounded-t-xl');
+          t.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         } else {
           t.classList.remove('border-b-epic-gold', 'text-epic-blue', 'bg-white/70', 'rounded-t-xl');
           t.classList.add('border-b-transparent', 'text-epic-text-muted');
