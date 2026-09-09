@@ -1,0 +1,118 @@
+---
+// FeaturedPackages.astro
+---
+
+<section id="sec-paquetes" class="py-20 lg:py-28 bg-epic-gold text-epic-blue scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    
+    <div class="mb-12">
+      <div class="inline-flex items-center gap-2 font-mono text-xs font-black tracking-[0.3em] text-epic-blue/70 uppercase mb-2">
+        Experiencias Exclusivas
+      </div>
+      <h2 class="font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight text-epic-blue">
+        PAQUETES DESTACADOS
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      
+      <!-- Card 1: Ecuador Epic Tour (White Background) -->
+      <div class="bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between border border-black/5 group">
+        <div class="relative h-64 sm:h-72 overflow-hidden bg-epic-blue">
+          <img 
+            src="/images/andes_costa_beach.jpg" 
+            alt="Ecuador Epic Tour" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute top-4 left-4 font-mono text-xs font-black tracking-wider bg-epic-gold text-epic-blue px-3.5 py-1.5 rounded-full uppercase">
+            3, 5 Y 7 DÍAS
+          </div>
+          <div class="absolute bottom-4 left-6 right-6 text-white">
+            <span class="font-mono text-xs text-epic-gold tracking-widest uppercase block">Experiencia Andina y Costera</span>
+            <h3 class="font-black text-2xl sm:text-3xl leading-tight">ECUADOR EPIC TOUR</h3>
+          </div>
+        </div>
+
+        <div class="p-8 sm:p-10 flex flex-col justify-between flex-1 gap-6">
+          <p class="text-epic-text-muted text-base leading-relaxed">
+            Pedalea por las rutas más emblemáticas de Ecuador en paquetes de 3, 5 o 7 días. Diseñado para ciclistas nacionales e internacionales con todo incluido: logística integral, furgoneta de abasto, hospedajes seleccionados, gastronomía y traslado de bicicletas sin desarmar.
+          </p>
+
+          <div class="grid grid-cols-2 gap-3 py-4 border-y border-epic-blue/10 font-mono text-xs text-epic-blue font-bold">
+            <div class="flex items-center gap-2">
+              <span class="text-epic-gold text-lg">✓</span> Todo Incluido
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-epic-gold text-lg">✓</span> Guías Bilingües
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-epic-gold text-lg">✓</span> Soporte Mecánico
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-epic-gold text-lg">✓</span> Hoteles de Montaña
+            </div>
+          </div>
+
+          <button 
+            type="button"
+            onclick="window.openBookingModal('Ecuador Epic Tour (Internacional)', '3, 5 o 7 Días')"
+            class="self-start bg-epic-blue hover:bg-epic-blue-light text-epic-gold font-extrabold text-xs tracking-wider px-8 py-4 rounded-full transition-all transform hover:scale-105 shadow-md uppercase"
+          >
+            Ver Itinerarios &amp; Fechas
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2: Paquetes Corporativos (Navy Background) -->
+      <div class="bg-epic-blue text-white rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between border border-white/10 group">
+        <div class="relative h-64 sm:h-72 overflow-hidden bg-epic-blue-dark">
+          <img 
+            src="/images/corporate_cycling.jpg" 
+            alt="Paquetes Corporativos" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-epic-blue to-transparent"></div>
+          <div class="absolute top-4 left-4 font-mono text-xs font-black tracking-wider bg-white/20 backdrop-blur-md text-white px-3.5 py-1.5 rounded-full uppercase">
+            EMPRESAS &bull; TEAMBUILDING
+          </div>
+          <div class="absolute bottom-4 left-6 right-6 text-white">
+            <span class="font-mono text-xs text-epic-gold tracking-widest uppercase block">Grupos &amp; Empresas</span>
+            <h3 class="font-black text-2xl sm:text-3xl leading-tight">PAQUETES CORPORATIVOS</h3>
+          </div>
+        </div>
+
+        <div class="p-8 sm:p-10 flex flex-col justify-between flex-1 gap-6">
+          <p class="text-white/80 text-base leading-relaxed">
+            Experiencias de teambuilding, integración y retos deportivos a la medida de tu empresa. Fomenta el bienestar, la motivación y la resiliencia de tu equipo de trabajo en la naturaleza, con la logística y seguridad que merecen.
+          </p>
+
+          <div class="grid grid-cols-2 gap-3 py-4 border-y border-white/10 font-mono text-xs text-white/90 font-bold">
+            <div class="flex items-center gap-2">
+              <span class="text-epic-gold text-lg">✓</span> Rutas Personalizadas
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-epic-gold text-lg">✓</span> Logística de Van &amp; Bicis
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-epic-gold text-lg">✓</span> Almuerzo Campestre
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-epic-gold text-lg">✓</span> Registro Audiovisual
+            </div>
+          </div>
+
+          <button 
+            type="button"
+            onclick="window.openCorporateModal('Evento Corporativo de Teambuilding')"
+            class="self-start border-2 border-epic-gold hover:bg-epic-gold hover:text-epic-blue text-epic-gold font-extrabold text-xs tracking-wider px-8 py-4 rounded-full transition-all transform hover:scale-105 uppercase"
+          >
+            Cotizar Evento Privado
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

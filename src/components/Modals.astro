@@ -1,0 +1,595 @@
+---
+// Modals.astro
+---
+
+<!-- 1. Booking / Cupo Modal -->
+<div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
+  <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden my-8 border border-epic-blue/10 animate-in fade-in zoom-in duration-200">
+    
+    <!-- Modal Header -->
+    <div class="bg-epic-blue text-white p-6 sm:p-8 flex items-start justify-between">
+      <div>
+        <span class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase block mb-1">Inscripción Oficial</span>
+        <h3 class="font-black text-2xl tracking-tight">RESERVA TU CUPO ÉPICO</h3>
+        <p class="text-white/70 text-xs mt-1">Nuestros cupos son limitados a 14 ciclistas por rodada para garantizar máxima seguridad y atención personalizada.</p>
+      </div>
+      <button 
+        type="button" 
+        onclick="window.closeBookingModal()" 
+        class="text-white/60 hover:text-epic-gold text-2xl font-bold p-1 focus:outline-none"
+        aria-label="Cerrar modal"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- Booking Form -->
+    <form id="booking-form" class="p-6 sm:p-8 space-y-4 text-left" onsubmit="window.handleBookingSubmit(event)">
+      <div>
+        <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nombre y Apellido *</label>
+        <input 
+          type="text" 
+          id="booking-name"
+          required 
+          placeholder="Ej. Mateo Rodríguez"
+          class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">WhatsApp / Celular *</label>
+          <input 
+            type="tel" 
+            id="booking-phone"
+            required 
+            placeholder="+593 99 999 9999"
+            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+          />
+        </div>
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Correo Electrónico *</label>
+          <input 
+            type="email" 
+            id="booking-email"
+            required 
+            placeholder="mateo@ejemplo.com"
+            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Ruta o Experiencia de Interés *</label>
+        <select 
+          id="booking-route" 
+          required
+          class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm bg-white"
+        >
+          <option value="Sigchos – Quilotoa (78km)">Sigchos – Quilotoa (78 km · SÁB 11 JUL 2026)</option>
+          <option value="Reto 0 – 5.000m Chimborazo (142km)">Reto 0 – 5.000m Chimborazo (142 km · SÁB 15 AGO 2026)</option>
+          <option value="Alto de Apagua (96km)">Alto de Apagua (96 km · DOM 13 SEP 2026)</option>
+          <option value="Tigua Ride MTB (54km)">Tigua Ride MTB (54 km · SÁB 17 OCT 2026)</option>
+          <option value="A la Playa en Bici (3 Días)">A la Playa en Bici (265 km · VIE 20 - DOM 22 NOV 2026)</option>
+          <option value="Ecuador Epic Tour (Internacional)">Ecuador Epic Tour (3, 5 o 7 Días)</option>
+          <option value="Transporte Exclusivo de Bicicletas">Servicio Exclusivo de Furgoneta &amp; Transporte</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Tipo de Bicicleta *</label>
+          <select 
+            id="booking-bike"
+            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm bg-white"
+          >
+            <option value="Ruta / Asfalto">Bici de Ruta (Carbono / Aluminio)</option>
+            <option value="Mountain Bike (MTB)">Mountain Bike (MTB)</option>
+            <option value="Gravel">Gravel Bike</option>
+            <option value="E-Bike">Bicicleta Eléctrica (E-Bike)</option>
+            <option value="Necesito Alquilar">Deseo alquilar una bicicleta</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nivel de Condición</label>
+          <select 
+            id="booking-level"
+            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm bg-white"
+          >
+            <option value="Intermedio">Intermedio (ruedo 1-2 veces/semana)</option>
+            <option value="Avanzado">Avanzado (ruedo fondos largos)</option>
+            <option value="Élite">Élite / Competitivo</option>
+            <option value="Principiante activo">Principiante activo con ganas de superación</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <button 
+          type="submit" 
+          class="w-full bg-epic-gold hover:bg-epic-gold-light text-epic-blue font-black text-sm tracking-wider py-4 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] uppercase"
+        >
+          Confirmar y Contactar por WhatsApp
+        </button>
+        <p class="text-[11px] text-epic-text-muted text-center mt-2">
+          Te contactaremos inmediatamente para confirmar tu cupo y enviarte la ficha técnica.
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 2. Corporate / Private Quote Modal -->
+<div id="corporate-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
+  <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden my-8 border border-epic-blue/10 animate-in fade-in zoom-in duration-200">
+    
+    <div class="bg-epic-blue text-white p-6 sm:p-8 flex items-start justify-between">
+      <div>
+        <span class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase block mb-1">Empresas &amp; Grupos</span>
+        <h3 class="font-black text-2xl tracking-tight">COTIZAR EVENTO PRIVADO</h3>
+        <p class="text-white/70 text-xs mt-1">Diseñamos rodadas y retos corporativos personalizados con soporte integral.</p>
+      </div>
+      <button 
+        type="button" 
+        onclick="window.closeCorporateModal()" 
+        class="text-white/60 hover:text-epic-gold text-2xl font-bold p-1 focus:outline-none"
+        aria-label="Cerrar modal"
+      >
+        ✕
+      </button>
+    </div>
+
+    <form id="corporate-form" class="p-6 sm:p-8 space-y-4 text-left" onsubmit="window.handleCorporateSubmit(event)">
+      <div>
+        <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Empresa / Organización *</label>
+        <input 
+          type="text" 
+          id="corp-company"
+          required 
+          placeholder="Ej. Corporación Banco / Empresa XYZ"
+          class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Persona de Contacto *</label>
+          <input 
+            type="text" 
+            id="corp-name"
+            required 
+            placeholder="Nombre y cargo"
+            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+          />
+        </div>
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Teléfono / WhatsApp *</label>
+          <input 
+            type="tel" 
+            id="corp-phone"
+            required 
+            placeholder="+593 99 999 9999"
+            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nº Estimado de Ciclistas</label>
+          <input 
+            type="number" 
+            id="corp-riders"
+            min="5" 
+            max="100" 
+            value="15"
+            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+          />
+        </div>
+        <div>
+          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Fecha Tentativa</label>
+          <input 
+            type="date" 
+            id="corp-date"
+            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Detalles del Evento o Requerimientos</label>
+        <textarea 
+          id="corp-notes"
+          rows="3" 
+          placeholder="Ej. Deseamos una ruta de nivel intermedio en el Valle de los Chillos con almuerzo campestre y transporte de bicis desde nuestras oficinas."
+          class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
+        ></textarea>
+      </div>
+
+      <div class="pt-2">
+        <button 
+          type="submit" 
+          class="w-full bg-epic-blue hover:bg-epic-blue-light text-epic-gold font-black text-sm tracking-wider py-4 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] uppercase"
+        >
+          Enviar Solicitud de Propuesta
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 3. Video Modal -->
+<div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+  <div class="relative w-full max-w-4xl bg-epic-blue rounded-3xl overflow-hidden shadow-2xl border border-white/20">
+    <div class="p-4 sm:p-6 flex items-center justify-between border-b border-white/10">
+      <h4 id="video-modal-title" class="font-bold text-white text-base sm:text-lg">Experiencia EPIC Rides Ecuador</h4>
+      <button 
+        type="button" 
+        onclick="window.closeVideoModal()" 
+        class="text-white/60 hover:text-epic-gold text-2xl font-bold p-1 focus:outline-none"
+        aria-label="Cerrar video"
+      >
+        ✕
+      </button>
+    </div>
+    <div class="relative aspect-video bg-black flex items-center justify-center">
+      <!-- Simulated High-Impact Video Player -->
+      <div id="video-player-content" class="w-full h-full relative">
+        <img 
+          src="/images/hero_andes_ride.jpg" 
+          alt="Video Preview" 
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center gap-4 text-center p-6">
+          <div class="w-20 h-20 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center text-3xl font-bold animate-pulse shadow-2xl">
+            ▶
+          </div>
+          <div class="text-white">
+            <h5 class="font-black text-2xl">EPIC RIDES &bull; LA AVENTURA ANDINA</h5>
+            <p class="text-white/70 text-sm font-mono mt-1">Producción oficial &bull; Grabado en 4K en Cotopaxi y Chimborazo</p>
+          </div>
+       
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. Community Gallery Image Lightbox Modal -->
+<div 
+  id="image-modal" 
+  class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-black/95 backdrop-blur-md select-none transition-all duration-300 overflow-y-auto"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Vista ampliada de fotografía de la comunidad"
+>
+  <!-- Modal Inner Container Card -->
+  <div class="relative max-w-5xl w-full flex flex-col items-center my-auto">
+    
+    <!-- Top Header Bar: Title, Counter, and Close Button (ALWAYS 100% VISIBLE AT THE TOP) -->
+    <div class="w-full flex items-center justify-between gap-4 mb-3 px-2">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span class="text-epic-gold text-base sm:text-lg flex-shrink-0">●</span>
+        <h4 id="image-modal-title" class="font-black text-base sm:text-xl md:text-2xl tracking-tight text-white truncate">
+          Pelotón en los Andes
+        </h4>
+      </div>
+
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <span id="image-modal-counter" class="font-mono text-xs font-bold text-white/90 bg-epic-blue/90 px-3.5 py-1.5 rounded-full border border-white/20 shadow-md whitespace-nowrap">
+          1 / 7
+        </span>
+        <button 
+          type="button" 
+          onclick="window.closeImageModal()" 
+          class="text-white/80 hover:text-epic-gold bg-epic-blue/80 hover:bg-epic-blue rounded-full w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-xl font-bold transition-all border border-white/20 focus:outline-none shadow-lg cursor-pointer"
+          aria-label="Cerrar imagen"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- Image Container with Left / Right Arrows -->
+    <div class="relative w-full max-h-[58vh] sm:max-h-[66vh] flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-black/70 shadow-2xl">
+      <!-- Prev Button -->
+      <button 
+        id="image-modal-prev" 
+        type="button" 
+        onclick="window.prevGalleryImage()" 
+        class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-30 text-white/90 hover:text-epic-gold bg-epic-blue/80 hover:bg-epic-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-xl font-bold transition-all border border-white/20 shadow-2xl focus:outline-none cursor-pointer"
+        aria-label="Imagen anterior"
+      >
+        ←
+      </button>
+
+      <!-- Next Button -->
+      <button 
+        id="image-modal-next" 
+        type="button" 
+        onclick="window.nextGalleryImage()" 
+        class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-30 text-white/90 hover:text-epic-gold bg-epic-blue/80 hover:bg-epic-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-xl font-bold transition-all border border-white/20 shadow-2xl focus:outline-none cursor-pointer"
+        aria-label="Siguiente imagen"
+      >
+        →
+      </button>
+
+      <img 
+        id="image-modal-img" 
+        src="" 
+        alt="" 
+        class="max-w-full max-h-[58vh] sm:max-h-[66vh] object-contain transition-opacity duration-200 opacity-100"
+      />
+    </div>
+
+    <!-- Bottom Description Bar (ALWAYS VISIBLE, CLEAN AND READABLE) -->
+    <div class="w-full flex items-center justify-center mt-3 px-2 text-center">
+      <p id="image-modal-desc" class="text-xs sm:text-sm text-white/90 leading-relaxed max-w-3xl bg-epic-blue/80 backdrop-blur-md px-5 sm:px-6 py-2 rounded-2xl border border-white/10 shadow-lg">
+        Rodadas reales, paisajes imponentes y camaradería única en las alturas ecuatorianas.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script is:inline>
+  // Global Modal Control Functions
+  window.openBookingModal = function(routeName, dateBadge) {
+    const modal = document.getElementById('booking-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+
+      if (routeName) {
+        const routeSelect = document.getElementById('booking-route');
+        if (routeSelect) {
+          // Check if option exists, otherwise set first
+          for (let opt of routeSelect.options) {
+            if (opt.text.toLowerCase().includes(routeName.toLowerCase())) {
+              opt.selected = true;
+              break;
+            }
+          }
+        }
+      }
+    }
+  };
+
+  window.closeBookingModal = function() {
+    const modal = document.getElementById('booking-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  };
+
+  window.openCorporateModal = function(eventName) {
+    const modal = document.getElementById('corporate-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      if (eventName) {
+        const notes = document.getElementById('corp-notes');
+        if (notes && !notes.value) {
+          notes.value = `Interés específico en: ${eventName}`;
+        }
+      }
+    }
+  };
+
+  window.closeCorporateModal = function() {
+    const modal = document.getElementById('corporate-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  };
+
+  window.openVideoModal = function(url, title) {
+    const modal = document.getElementById('video-modal');
+    const titleEl = document.getElementById('video-modal-title');
+    if (modal) {
+      if (titleEl && title) titleEl.textContent = title;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closeVideoModal = function() {
+    const modal = document.getElementById('video-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  };
+
+  // 4. Community Gallery Lightbox Controller
+  window.communityGalleryData = [
+    {
+      src: "/images/hero_andes_ride.jpg",
+      title: "Pelotón en los Andes",
+      desc: "Rodadas reales, paisajes imponentes y camaradería única en las alturas ecuatorianas."
+    },
+    {
+      src: "/images/quilotoa_adventure.jpg",
+      title: "Cráter del Quilotoa",
+      desc: "Ascenso épico y vistas majestuosas al filo de la laguna turquesa del Quilotoa."
+    },
+    {
+      src: "/images/luxury_van_transport.jpg",
+      title: "Transporte de Bicis de Lujo",
+      desc: "Furgoneta adaptada con racks acolchados y máxima seguridad para bicis de alta gama."
+    },
+    {
+      src: "/images/challenge_0_5000.jpg",
+      title: "Paso de Alta Montaña — Chimborazo",
+      desc: "Reto 0 - 5.000m coronando las faldas y glaciares del coloso ecuatoriano."
+    },
+    {
+      src: "/images/andes_costa_beach.jpg",
+      title: "Llegada al Océano Pacífico",
+      desc: "Travesía multi-etapa descendiendo desde los páramos andinos hasta el calor de la playa."
+    },
+    {
+      src: "/images/feed_zone_support.jpg",
+      title: "Feed Zone & Asistencia Mecánica",
+      desc: "Puntos de abasto con hidratación isotónica, frutas frescas y escolta permanente."
+    },
+    {
+      src: "/images/corporate_cycling.jpg",
+      title: "Comunidad y Rodadas Grupales",
+      desc: "Camaradería, amistad y pura pasión ciclista en cada kilómetro compartido."
+    }
+  ];
+
+  let currentGalleryIndex = 0;
+
+  window.openImageModal = function(index) {
+    if (typeof index === 'number' && index >= 0 && index < window.communityGalleryData.length) {
+      currentGalleryIndex = index;
+    } else if (typeof index === 'string') {
+      const foundIdx = window.communityGalleryData.findIndex(item => item.src === index);
+      if (foundIdx !== -1) currentGalleryIndex = foundIdx;
+    }
+
+    updateImageModalContent();
+
+    const modal = document.getElementById('image-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closeImageModal = function() {
+    const modal = document.getElementById('image-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  };
+
+  window.nextGalleryImage = function() {
+    currentGalleryIndex = (currentGalleryIndex + 1) % window.communityGalleryData.length;
+    updateImageModalContent();
+  };
+
+  window.prevGalleryImage = function() {
+    currentGalleryIndex = (currentGalleryIndex - 1 + window.communityGalleryData.length) % window.communityGalleryData.length;
+    updateImageModalContent();
+  };
+
+  function updateImageModalContent() {
+    const item = window.communityGalleryData[currentGalleryIndex];
+    if (!item) return;
+
+    const imgEl = document.getElementById('image-modal-img');
+    const titleEl = document.getElementById('image-modal-title');
+    const descEl = document.getElementById('image-modal-desc');
+    const counterEl = document.getElementById('image-modal-counter');
+
+    if (imgEl) {
+      imgEl.style.opacity = '0.3';
+      imgEl.src = item.src;
+      imgEl.alt = item.title;
+      setTimeout(() => {
+        imgEl.style.opacity = '1';
+      }, 70);
+    }
+    if (titleEl) {
+      titleEl.textContent = item.title;
+    }
+    if (descEl) {
+      descEl.textContent = item.desc;
+    }
+    if (counterEl) {
+      counterEl.textContent = `${currentGalleryIndex + 1} / ${window.communityGalleryData.length}`;
+    }
+  }
+
+  // Keyboard navigation
+  window.addEventListener('keydown', function(e) {
+    const imgModal = document.getElementById('image-modal');
+    if (imgModal && !imgModal.classList.contains('hidden')) {
+      if (e.key === 'Escape') {
+        window.closeImageModal();
+      } else if (e.key === 'ArrowRight') {
+        window.nextGalleryImage();
+      } else if (e.key === 'ArrowLeft') {
+        window.prevGalleryImage();
+      }
+    }
+  });
+
+  // Touch swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const imageModalEl = document.getElementById('image-modal');
+  if (imageModalEl) {
+    imageModalEl.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    imageModalEl.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        window.nextGalleryImage();
+      } else if (touchEndX - touchStartX > 50) {
+        window.prevGalleryImage();
+      }
+    }, { passive: true });
+  }
+
+  // Close modals when clicking outside
+  window.addEventListener('click', function(e) {
+    const booking = document.getElementById('booking-modal');
+    const corp = document.getElementById('corporate-modal');
+    const video = document.getElementById('video-modal');
+    const image = document.getElementById('image-modal');
+    if (e.target === booking) window.closeBookingModal();
+    if (e.target === corp) window.closeCorporateModal();
+    if (e.target === video) window.closeVideoModal();
+    if (e.target === image) window.closeImageModal();
+  });
+
+  // Handle Form Submissions via WhatsApp Direct Integration
+  window.handleBookingSubmit = function(e) {
+    e.preventDefault();
+    const name = document.getElementById('booking-name').value;
+    const phone = document.getElementById('booking-phone').value;
+    const email = document.getElementById('booking-email').value;
+    const route = document.getElementById('booking-route').value;
+    const bike = document.getElementById('booking-bike').value;
+    const level = document.getElementById('booking-level').value;
+
+    const message = `¡Hola EPIC Rides Ecuador! Quisiera reservar un cupo:\n\n• Nombre: ${name}\n• Teléfono: ${phone}\n• Email: ${email}\n• Ruta: ${route}\n• Bicicleta: ${bike}\n• Nivel: ${level}`;
+    const url = `https://wa.me/593999999999?text=${encodeURIComponent(message)}`;
+    
+    window.open(url, '_blank');
+    window.closeBookingModal();
+  };
+
+  window.handleCorporateSubmit = function(e) {
+    e.preventDefault();
+    const company = document.getElementById('corp-company').value;
+    const name = document.getElementById('corp-name').value;
+    const phone = document.getElementById('corp-phone').value;
+    const riders = document.getElementById('corp-riders').value;
+    const date = document.getElementById('corp-date').value;
+    const notes = document.getElementById('corp-notes').value;
+
+    const message = `¡Hola EPIC Rides Ecuador! Solicitud de cotización corporativa / privada:\n\n• Empresa: ${company}\n• Contacto: ${name}\n• Teléfono: ${phone}\n• Nº Ciclistas: ${riders}\n• Fecha tentativa: ${date || 'Por definir'}\n• Notas: ${notes}`;
+    const url = `https://wa.me/593999999999?text=${encodeURIComponent(message)}`;
+
+    window.open(url, '_blank');
+    window.closeCorporateModal();
+  };
+</script>

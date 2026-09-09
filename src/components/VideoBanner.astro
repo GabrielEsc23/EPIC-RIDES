@@ -1,0 +1,43 @@
+---
+// VideoBanner.astro
+---
+
+<section class="relative py-24 sm:py-32 overflow-hidden bg-epic-blue">
+  <!-- Parallax-like Background -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="/images/hero_andes_ride.jpg" 
+      alt="Rodada en grupo por los Andes" 
+      class="w-full h-full object-cover object-center filter brightness-50 contrast-110"
+    />
+    <div class="absolute inset-0 bg-epic-blue/70 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-epic-blue via-transparent to-epic-blue"></div>
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center gap-6">
+    
+    <!-- Play Button -->
+    <button 
+      type="button"
+      onclick="window.openVideoModal('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ', 'Video Cinematográfico — Rodada en Grupo EPIC Rides')"
+      class="group relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-epic-gold bg-epic-gold/20 hover:bg-epic-gold backdrop-blur-md flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-2xl focus:outline-none"
+      aria-label="Reproducir video de rodadas grupales"
+    >
+      <span class="text-epic-gold group-hover:text-epic-blue text-3xl sm:text-4xl ml-1 transition-colors">▶</span>
+      <span class="absolute -inset-2 rounded-full border border-epic-gold/40 animate-ping pointer-events-none"></span>
+    </button>
+
+    <div class="space-y-3">
+      <div class="font-mono text-xs sm:text-sm tracking-[0.35em] text-epic-gold font-bold uppercase">
+        Experiencia Audiovisual &bull; Rodada en Grupo
+      </div>
+      <h2 class="font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white max-w-3xl mx-auto leading-tight">
+        SIENTE EL RITMO DEL PELOTÓN EN LOS ANDES
+      </h2>
+      <p class="text-white/80 text-sm sm:text-base max-w-xl mx-auto font-medium">
+        Desde el frío del páramo hasta el calor de la costa, revive cada kilómetro con nuestra cobertura audiovisual y logística completa.
+      </p>
+    </div>
+
+  </div>
+</section>

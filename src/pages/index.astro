@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import AboutUs from '../components/AboutUs.astro';
+import Services from '../components/Services.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Calendar from '../components/Calendar.astro';
+import CommunityGallery from '../components/CommunityGallery.astro';
+import Sponsors from '../components/Sponsors.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import Modals from '../components/Modals.astro';
+---
+
+<Layout 
+  title="EPIC RIDES Ecuador | Logística Premium, Paseos y Transporte de Bicicletas"
+  description="Paseos en bicicleta por los Andes, transporte seguro para bicicletas de alta gama en furgoneta adaptada y comunidad ciclista en Ecuador. Creemos que pedalear puede transformar tu vida."
+>
+  <!-- Navigation Sticky Header -->
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <Hero />
+
+    <!-- Quienes Somos (Caro & Daniel) -->
+    <AboutUs />
+
+    <!-- Servicios (Paquetes, Transporte Van, Coaching) -->
+    <Services />
+
+    <!-- Testimoniales de la Comunidad (con background-attachment fixed) -->
+    <Testimonials />
+
+    <!-- Calendario Interactivo 2026 -->
+    <Calendar />
+
+    <!-- Galería Multimedia y Estadísticas de la Comunidad -->
+    <CommunityGallery />
+
+    <!-- Redes Sociales y Patrocinadores -->
+    <Sponsors />
+  </main>
+
+  <!-- Complete Footer -->
+  <Footer />
+
+  <!-- Floating Sticky WhatsApp Button -->
+  <WhatsAppButton />
+
+  <!-- Interactive Modals (Booking, Corporate Quote, Video Player) -->
+  <Modals />
+</Layout>

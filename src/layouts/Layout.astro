@@ -1,0 +1,55 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "EPIC RIDES Ecuador | Logística Premium · Ruta & MTB",
+  description = "Transporte de bicicletas de alta gama, paseos épicos y logística integral de ciclismo en Ecuador. Creemos que pedalear puede transformar tu vida."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/hero_andes_ride.jpg" />
+
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-white text-epic-blue font-sans antialiased selection:bg-epic-gold selection:text-epic-blue">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A192F;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #F5B335;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFC555;
+  }
+</style>

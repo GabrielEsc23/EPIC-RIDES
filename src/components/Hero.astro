@@ -1,0 +1,78 @@
+---
+// Hero.astro
+---
+
+<section class="relative min-h-[620px] lg:min-h-[720px] flex items-end justify-start overflow-hidden bg-epic-blue">
+  <!-- Background Image with Ambient Zoom Effect -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="/images/hero_andes_ride.jpg" 
+      alt="Ciclistas y furgoneta EPIC Rides en los Andes ecuatorianos" 
+      class="w-full h-full object-cover object-center transform scale-105 hover:scale-100 transition-transform duration-1000 ease-out"
+    />
+    <!-- Gradient Overlays for readable text and cinematic atmosphere -->
+    <div class="absolute inset-0 bg-gradient-to-r from-epic-blue/95 via-epic-blue/70 to-epic-blue/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-epic-blue via-transparent to-black/30"></div>
+  </div>
+
+  
+
+  <!-- Center Interactive Play Button -->
+  <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+    <button 
+      type="button"
+      onclick="window.openVideoModal('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ', 'Rodada Épica en los Andes — Experiencia EPIC Rides')"
+      class="pointer-events-auto group relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-white/60 bg-white/10 backdrop-blur-md hover:bg-epic-gold hover:border-epic-gold transition-all duration-300 transform hover:scale-110 shadow-2xl focus:outline-none"
+      aria-label="Reproducir video de la experiencia"
+    >
+      <span class="text-white group-hover:text-epic-blue text-3xl sm:text-4xl ml-1 transition-colors">▶</span>
+      <span class="absolute -bottom-8 whitespace-nowrap text-[10px] font-mono tracking-widest text-white/80 group-hover:text-epic-gold uppercase transition-colors">
+        Ver Experiencia
+      </span>
+    </button>
+  </div>
+
+  <!-- Hero Content Bottom Left -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pb-14 sm:pb-20 pt-32 w-full flex flex-col gap-5">
+    <h1 class="font-black text-5xl sm:text-7xl lg:text-8xl tracking-tight text-white leading-[0.92]">
+      EPIC <span class="text-epic-gold">Rides</span>
+    </h1>
+
+    <p class="font-medium text-lg sm:text-2xl text-white/90 max-w-xl leading-snug">
+      Creemos que pedalear puede transformar tu vida.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+      <a 
+        href="#sec-calendario" 
+        role = "button"
+        class="bg-epic-gold hover:bg-epic-gold-light text-epic-blue font-extrabold text-xs tracking-wider px-8 py-4 rounded-full text-center transition-all transform hover:-translate-y-0.5 shadow-lg shadow-epic-gold/20 uppercase"
+      >
+        Explora las Rutas
+      </a>
+   
+    </div>
+
+    <!-- Micro Highlights -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/15 max-w-3xl">
+      <div class="flex items-center gap-2.5 text-white/80 text-xs">
+        <span class="text-epic-gold font-bold text-base">✓</span>
+        <span>Van de abasto e hidratación</span>
+      </div>
+      <div class="flex items-center gap-2.5 text-white/80 text-xs">
+        <span class="text-epic-gold font-bold text-base">✓</span>
+        <span>Mecánico y repuestos en ruta</span>
+      </div>
+      <div class="flex items-center gap-2.5 text-white/80 text-xs">
+        <span class="text-epic-gold font-bold text-base">✓</span>
+        <span>Transporte de bicis de alta gama</span>
+      </div>
+      <div class="flex items-center gap-2.5 text-white/80 text-xs">
+        <span class="text-epic-gold font-bold text-base">✓</span>
+        <span>Comunidad &amp; seguridad 100%</span>
+      </div>
+    </div>
+
+  </div>
+</section>

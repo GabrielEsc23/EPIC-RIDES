@@ -1,0 +1,177 @@
+---
+// AboutUs.astro
+const bannerSlides = [
+  {
+    num: "01",
+    label: "Caro & Daniel con la furgoneta EPIC",
+    img: "/images/caro_daniel_founders.jpg"
+  },
+  {
+    num: "02",
+    label: "Pelotón en ruta por los Andes",
+    img: "/images/hero_andes_ride.jpg"
+  },
+  {
+    num: "03",
+    label: "Van equipada con racks para bicis de alta gama",
+    img: "/images/luxury_van_transport.jpg"
+  },
+  {
+    num: "04",
+    label: "Zona de abasto, hidratación y soporte en ruta",
+    img: "/images/feed_zone_support.jpg"
+  },
+  {
+    num: "05",
+    label: "Retos de alta montaña y altimetría",
+    img: "/images/challenge_0_5000.jpg"
+  }
+];
+---
+
+<section id="sec-nosotros" class="py-20 lg:py-28 bg-white border-b border-epic-blue/10 scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      
+      <!-- Interactive Carousel (Left) -->
+      <div class="relative h-[380px] sm:h-[480px] rounded-2xl overflow-hidden shadow-2xl bg-epic-blue-card group">
+        
+        <!-- Slides -->
+        <div id="about-slides-container" class="relative w-full h-full">
+          {bannerSlides.map((slide, index) => (
+            <div 
+              class={`about-slide absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              data-index={index}
+            >
+              <img 
+                src={slide.img} 
+                alt={slide.label} 
+                class="w-full h-full object-cover object-center"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-transparent to-black/20"></div>
+              
+              <!-- Slide Label Overlay -->
+              <div class="absolute bottom-12 left-6 right-6 flex items-end justify-between">
+                <div>
+                  <span class="font-mono text-3xl sm:text-4xl font-black text-epic-gold block">{slide.num}</span>
+                  <p class="text-white text-sm sm:text-base font-bold drop-shadow-md">{slide.label}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        
+       
+
+        <!-- Indicator Bars (Bottom) -->
+        <div class="absolute bottom-5 left-6 right-6 z-20 flex gap-2">
+          {bannerSlides.map((_, index) => (
+            <button 
+              class={`slide-indicator-dot flex-1 h-1.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-epic-gold' : 'bg-white/30'}`}
+              data-target={index}
+              aria-label={`Ir a foto ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Story Text (Right) -->
+      <div class="flex flex-col gap-6 justify-center">
+        <h2 class="font-black text-3xl sm:text-5xl lg:text-[46px] tracking-tight text-epic-blue leading-[1.05]">
+          BIENVENIDOS.<br />
+          <span class="text-epic-blue">SOMOS </span><span class="text-epic-gold">CARO Y DANIEL</span>
+        </h2>
+
+        <p class="text-epic-text-muted text-base sm:text-lg leading-relaxed">
+          "Para nosotros, cada pedalada cuenta una historia. Creamos <strong class="text-epic-blue">EPIC Rides</strong> porque queríamos viajar seguros, compartir la ruta con amigos y transformar la pasión por la bici en experiencias inolvidables.
+        </p>
+
+        <p class="text-epic-text-muted text-base leading-relaxed">
+          Al igual que tú, si estás aquí es porque la bicicleta es un estilo de vida. Llevamos pedaleando más de 15 años y nuestro servicio nació de una necesidad real: <strong class="text-epic-blue">transportar nuestras bicis de alta gama de forma 100% segura y mimada</strong>. Hoy, nuestra furgoneta se llena de sueños, paisajes y la comunidad ciclista más apasionada del país. ¿Te sumas al próximo viaje?"
+        </p>
+
+        <!-- CTA Button -->
+        <div class="pt-2">
+          <a 
+            href="#sec-nosotros" 
+            class="inline-block border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider px-8 py-4 rounded-full transition-all uppercase"
+          >
+            Sobre Nosotros
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.about-slide');
+  const dots = document.querySelectorAll('.slide-indicator-dot');
+  const totalSlides = slides.length;
+  let autoplayTimer: any;
+
+  function showSlide(index: number) {
+    slides.forEach((s, i) => {
+      if (i === index) {
+        s.classList.remove('opacity-0', 'z-0');
+        s.classList.add('opacity-100', 'z-10');
+      } else {
+        s.classList.remove('opacity-100', 'z-10');
+        s.classList.add('opacity-0', 'z-0');
+      }
+    });
+
+    dots.forEach((d, i) => {
+      if (i === index) {
+        d.classList.remove('bg-white/30');
+        d.classList.add('bg-epic-gold');
+      } else {
+        d.classList.remove('bg-epic-gold');
+        d.classList.add('bg-white/30');
+      }
+    });
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    showSlide((currentSlide + 1) % totalSlides);
+  }
+
+  function prevSlide() {
+    showSlide((currentSlide - 1 + totalSlides) % totalSlides);
+  }
+
+  document.getElementById('next-slide-btn')?.addEventListener('click', () => {
+    nextSlide();
+    resetAutoplay();
+  });
+
+  document.getElementById('prev-slide-btn')?.addEventListener('click', () => {
+    prevSlide();
+    resetAutoplay();
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      const targetIndex = Number((e.target as HTMLElement).getAttribute('data-target'));
+      showSlide(targetIndex);
+      resetAutoplay();
+    });
+  });
+
+  function startAutoplay() {
+    autoplayTimer = setInterval(nextSlide, 3500);
+  }
+
+  function resetAutoplay() {
+    clearInterval(autoplayTimer);
+    startAutoplay();
+  }
+
+  startAutoplay();
+</script>

@@ -1,0 +1,134 @@
+---
+// Services.astro
+const services = [
+  {
+    id: "paquetes-epicos",
+    title: "PAQUETES ÉPICOS",
+    subtitle: "Multi-etapa Andes & Costa",
+    desc: "Experiencias de varios días explorando lo mejor de los Andes hasta el Océano Pacífico con logística integral, hospedaje y alimentación de primer nivel.",
+    image: "/images/andes_costa_beach.jpg",
+    action: "window.openBookingModal('Paquetes Épicos')",
+    anchorId: "sec-paquetes"
+  },
+  {
+    id: "transporte-bicicletas",
+    title: "TRANSPORTE DE BICIS",
+    subtitle: "Van adaptada de lujo",
+    desc: "Tu bicicleta de alta gama viaja tan protegida y mimada como tú en nuestra furgoneta adaptada con racks acolchados, sin necesidad de desmontar ruedas.",
+    image: "/images/luxury_van_transport.jpg",
+    action: "window.openBookingModal('Transporte de Bicicletas')",
+    anchorId: "sec-transporte"
+  },
+  {
+    id: "coaching-training",
+    title: "COACHING & TRAINING",
+    subtitle: "Planes a tu medida",
+    desc: "Planes de entrenamiento y preparación física para ciclistas que buscan conquistar sus próximos fondos, retos de altimetría y metas personales.",
+    image: "/images/challenge_0_5000.jpg",
+    action: "window.openCorporateModal('Coaching y Preparación Física')",
+    anchorId: "sec-coaching"
+  }
+];
+---
+
+<section id="sec-servicios" class="py-20 lg:py-28 bg-epic-gray-bg border-b border-epic-blue/10 scroll-mt-20 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    
+    <!-- Section Header (Animated on Scroll) -->
+    <div id="services-header" class="max-w-3xl mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out">
+      <h2 class="font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-epic-blue leading-tight">
+        TENEMOS ALGO ÉPICO PARA TI
+      </h2>
+      <p class="text-epic-text-muted text-base sm:text-lg mt-3">
+        Soluciones integrales de logística, viajes y rendimiento pensadas exclusivamente por y para ciclistas apasionados.
+      </p>
+    </div>
+
+    <!-- 3 Wide Cards in a Row Display (Desktop: 3 cols, Tablet/Mobile: stacked wide cards) -->
+    <div id="services-cards-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {services.map((item, index) => (
+        <div 
+          id={item.anchorId}
+          class="service-card group bg-white rounded-3xl overflow-hidden border border-epic-blue/10 shadow-md flex flex-col justify-between transition-all duration-700 ease-out transform opacity-0 -translate-y-12 scale-[0.96] blur-[2px] hover:-translate-y-3 hover:shadow-2xl hover:border-epic-gold/40 scroll-mt-24"
+          data-index={index}
+        >
+
+          <!-- Card Image Header -->
+          <div class="relative h-60 sm:h-64 overflow-hidden bg-epic-blue">
+            <img 
+              src={item.image} 
+              alt={item.title} 
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-transparent to-black/20"></div>
+            
+            <div class="absolute top-4 right-4 font-mono text-[10px] font-extrabold tracking-widest px-3 py-1 rounded-full bg-epic-blue/90 text-epic-gold border border-white/10 shadow-sm">
+              
+            </div>
+
+            <div class="absolute bottom-4 left-6 right-6">
+              <span class="text-white/70 font-mono text-xs uppercase tracking-wider block mb-1">{item.subtitle}</span>
+              <h3 class="text-white font-black text-2xl tracking-tight leading-tight">{item.title}</h3>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-7 sm:p-8 flex flex-col justify-between flex-1 gap-6">
+            <p class="text-epic-text-muted text-sm sm:text-base leading-relaxed">
+              {item.desc}
+            </p>
+
+            <!-- Action Button with animated shifting arrow -->
+            <button 
+              type="button"
+              onclick={item.action}
+              class="inline-flex items-center justify-between w-full font-mono text-xs font-bold tracking-wider text-epic-blue group-hover:text-epic-gold transition-colors pt-4 border-t border-epic-blue/10"
+            >
+              <span class="tracking-widest uppercase">MÁS INFORMACIÓN</span>
+              <span class="transform group-hover:translate-x-3 transition-transform duration-300 text-lg font-black text-epic-gold">→</span>
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Cascade (Waterfall) presentation observer for Services section
+  const servicesHeader = document.getElementById('services-header');
+  const serviceCards = document.querySelectorAll('.service-card');
+
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const servicesObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 1. Reveal Header
+        if (servicesHeader) {
+          servicesHeader.classList.remove('opacity-0', 'translate-y-8');
+          servicesHeader.classList.add('opacity-100', 'translate-y-0');
+        }
+
+        // 2. Cascade (waterfall) reveal: sequentially drop each card with distinct rhythmic intervals
+        serviceCards.forEach((card, idx) => {
+          setTimeout(() => {
+            card.classList.remove('opacity-0', '-translate-y-12', 'scale-[0.96]', 'blur-[2px]');
+            card.classList.add('opacity-100', 'translate-y-0', 'scale-100', 'blur-0');
+          }, 160 + idx * 220);
+        });
+
+        servicesObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const servicesSection = document.getElementById('sec-servicios');
+  if (servicesSection) {
+    servicesObserver.observe(servicesSection);
+  }
+</script>

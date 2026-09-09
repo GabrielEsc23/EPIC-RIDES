@@ -1,0 +1,272 @@
+---
+// Testimonials.astro
+const testimonials = [
+  {
+    id: 1,
+    quote: "“Yo ya hice mi segundo 0 - 5.000m y fue sencillamente ÉPICO. La seguridad de la van no tiene precio.”",
+    author: "MATEO R.",
+    city: "Quito, Ecuador",
+    
+    image: "/images/video_reel_poster.jpg"
+  },
+  {
+    id: 2,
+    quote: "“Traje mi bici de carbono sin un solo rasguño desde Quito a la Costa. Logística 10/10.”",
+    author: "SOFÍA T.",
+    city: "Guayaquil, Ecuador",
+    image: "/images/andes_costa_beach.jpg"
+  },
+  {
+    id: 3,
+    quote: "“La atención de Caro y Daniel te hace sentir en familia en cada pedalada. Todo milimétricamente planeado.”",
+    author: "CARLOS M.",
+    city: "Cuenca, Ecuador",
+    image: "/images/caro_daniel_founders.jpg"
+  },
+  {
+    id: 4,
+    quote: "“Los puntos de hidratación, frutas frescas y el apoyo mecánico en Apagua salvaron mi jornada.”",
+    author: "ANDREA P.",
+    city: "Bogotá, Colombia",
+    image: "/images/feed_zone_support.jpg"
+  },
+  {
+    id: 5,
+    quote: "“Rodar en carretera con la van escoltándote te da una paz mental invaluable. 100% recomendado.”",
+    author: "DIEGO V.",
+    city: "Quito, Ecuador",
+    image: "/images/hero_andes_ride.jpg"
+  },
+  {
+    id: 6,
+    quote: "“Organizamos la rodada corporativa con EPIC Rides y fue el mejor teambuilding del año para la empresa.”",
+    author: "VALENTINA C.",
+    city: "Empresarial / CEO",
+    image: "/images/corporate_cycling.jpg"
+  }
+];
+
+// 3 copies to create an ultra-smooth, seamless infinite circular loop
+const loopTestimonials = [...testimonials, ...testimonials, ...testimonials];
+---
+
+<section 
+  id="sec-testimoniales" 
+  class="relative py-24 lg:py-32 text-white overflow-hidden border-b border-white/10 bg-fixed bg-cover bg-center bg-no-repeat"
+  style="background-image: url('/images/hero_andes_ride.jpg');"
+>
+  <!-- Parallax Darkened Overlay with subtle backdrop blur -->
+  <div class="absolute inset-0 bg-epic-blue/85 backdrop-blur-[1px]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-epic-blue via-transparent to-epic-blue pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    
+    <!-- Header -->
+    <div class="mb-12">
+      <h2 class="font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">
+        LA COMUNIDAD LO CUENTA MEJOR
+      </h2>
+    </div>
+
+    <!-- Infinite Carousel Track Container -->
+    <div 
+      id="testimonials-strip"
+      class="flex gap-6 overflow-x-auto pb-8 select-none cursor-grab active:cursor-grabbing scrollbar-none"
+      style="-webkit-overflow-scrolling: touch;"
+    >
+      {loopTestimonials.map((t, idx) => (
+        <div 
+          class="testimonial-card flex-none w-[280px] sm:w-[320px] rounded-3xl overflow-hidden border border-white/20 bg-epic-blue-card/90 backdrop-blur-md flex flex-col justify-between group transition-all duration-300 hover:border-epic-gold hover:shadow-2xl hover:-translate-y-1.5"
+          data-index={idx}
+        >
+          
+          <!-- Reel Video Preview Header (3:4 / 9:16) -->
+          <div class="relative aspect-[4/5] overflow-hidden bg-black/40">
+            <img 
+              src={t.image} 
+              alt={`Testimonio de ${t.author}`} 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-epic-blue-card via-transparent to-black/40"></div>
+            
+           
+
+            <!-- Reel Play Button -->
+            <button 
+              type="button"
+              onclick={`window.openVideoModal('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ', 'Testimonio de ${t.author}`}
+              class="absolute inset-0 m-auto w-14 h-14 rounded-full bg-epic-gold/90 hover:bg-epic-gold-light text-epic-blue flex items-center justify-center text-xl transition-transform transform group-hover:scale-110 shadow-lg focus:outline-none"
+              aria-label={`Ver video de ${t.author}`}
+            >
+              <span class="ml-0.5">▶</span>
+            </button>
+          </div>
+
+          <!-- Quote and Author -->
+          <div class="p-6 flex flex-col justify-between flex-1 gap-4">
+            <p class="text-white/90 text-sm sm:text-base font-medium leading-relaxed italic">
+              {t.quote}
+            </p>
+
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+              <div>
+                <span class="font-mono text-xs font-black tracking-wider text-epic-gold uppercase block">
+                  {t.author}
+                </span>
+                <span class="text-[11px] text-white/50">{t.city}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    
+
+  </div>
+</section>
+
+<style>
+  #testimonials-strip {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  #testimonials-strip::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+</style>
+
+<script>
+  const tStrip = document.getElementById('testimonials-strip') as HTMLElement | null;
+
+  if (tStrip) {
+    // 3 identical sets of 6 cards = 18 cards
+    const getSingleSetWidth = () => tStrip.scrollWidth / 3;
+
+    // Center on Set 2 immediately
+    const initPosition = () => {
+      const setWidth = getSingleSetWidth();
+      if (setWidth > 0) {
+        tStrip.scrollLeft = setWidth;
+      }
+    };
+
+    // Ensure initial scroll is set after layout settles
+    if (document.readyState === 'complete') {
+      initPosition();
+    } else {
+      window.addEventListener('load', initPosition);
+    }
+    setTimeout(initPosition, 100);
+
+    let isPaused = false;
+    let isInteracting = false;
+    let interactionTimeout: ReturnType<typeof setTimeout> | undefined;
+    const speed = 0.75; // px per frame continuous gentle drift
+
+    const pauseTemporarily = (ms = 3500) => {
+      isInteracting = true;
+      if (interactionTimeout) clearTimeout(interactionTimeout);
+      interactionTimeout = setTimeout(() => {
+        isInteracting = false;
+      }, ms);
+    };
+
+    const normalizeInfiniteScroll = () => {
+      const setWidth = getSingleSetWidth();
+      if (!setWidth) return;
+
+      // If drifted past Set 2 into Set 3, wrap back into Set 2 seamlessly
+      if (tStrip.scrollLeft >= 2 * setWidth) {
+        tStrip.scrollLeft -= setWidth;
+      }
+      // If dragged backwards before Set 2 into Set 1, wrap forward into Set 2 seamlessly
+      else if (tStrip.scrollLeft <= setWidth * 0.25) {
+        tStrip.scrollLeft += setWidth;
+      }
+    };
+
+    // Continuous requestAnimationFrame loop
+    const autoScroll = () => {
+      if (!isPaused && !isInteracting && tStrip) {
+        tStrip.scrollLeft += speed;
+        normalizeInfiniteScroll();
+      }
+      requestAnimationFrame(autoScroll);
+    };
+
+    requestAnimationFrame(autoScroll);
+
+    // Hover to pause
+    tStrip.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+
+    tStrip.addEventListener('mouseleave', () => {
+      isPaused = false;
+    });
+
+    // Touch events for mobile
+    tStrip.addEventListener('touchstart', () => {
+      isPaused = true;
+      isInteracting = true;
+    }, { passive: true });
+
+    tStrip.addEventListener('touchend', () => {
+      isPaused = false;
+      normalizeInfiniteScroll();
+      pauseTemporarily(2500);
+    }, { passive: true });
+
+    tStrip.addEventListener('scroll', () => {
+      if (isInteracting) {
+        normalizeInfiniteScroll();
+      }
+    }, { passive: true });
+
+    // Mouse Drag to Scroll
+    let isDown = false;
+    let startX = 0;
+    let scrollLeftStart = 0;
+
+    tStrip.addEventListener('mousedown', (e) => {
+      isDown = true;
+      isInteracting = true;
+      startX = e.pageX - tStrip.offsetLeft;
+      scrollLeftStart = tStrip.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDown) {
+        isDown = false;
+        pauseTemporarily(2500);
+      }
+    });
+
+    tStrip.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - tStrip.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      tStrip.scrollLeft = scrollLeftStart - walk;
+
+      const setWidth = getSingleSetWidth();
+      if (setWidth) {
+        if (tStrip.scrollLeft >= 2 * setWidth) {
+          tStrip.scrollLeft -= setWidth;
+          scrollLeftStart -= setWidth;
+        } else if (tStrip.scrollLeft <= 0.25 * setWidth) {
+          tStrip.scrollLeft += setWidth;
+          scrollLeftStart += setWidth;
+        }
+      }
+    });
+
+    // Handle Window Resize
+    window.addEventListener('resize', () => {
+      normalizeInfiniteScroll();
+    });
+  }
+</script>

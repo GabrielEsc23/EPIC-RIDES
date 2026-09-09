@@ -1,0 +1,238 @@
+---
+// Calendar.astro
+const events = [
+  {
+    monthKey: "JUL",
+    label: "JULIO",
+    dateBadge: "SÁB 11 JUL 2026",
+    tag: "RUTA + MTB",
+    name: "Sigchos – Quilotoa",
+    km: "78 km",
+    alt: "+1.850 m",
+    level: "Avanzado",
+    blurb: "Descenso técnico al valle de Sigchos y ascenso épico al filo del cráter del Quilotoa. Furgoneta de soporte en 3 puntos de hidratación, asistencia mecánica permanente y comida típica en la meta.",
+    image: "/images/quilotoa_adventure.jpg",
+    gpx: "/routes/sigchos-quilotoa.gpx"
+  },
+  {
+    monthKey: "AGO",
+    label: "AGOSTO",
+    dateBadge: "SÁB 15 AGO 2026",
+    tag: "RETO INSIGNIA",
+    name: "Reto 0 – 5.000m",
+    km: "142 km",
+    alt: "+5.000 m",
+    level: "Élite",
+    blurb: "Desde el nivel del mar hasta los 5.000 metros en los glaciares del majestuoso volcán Chimborazo. Soporte total de la furgoneta EPIC, abastecimiento isotónico de alta gama y escolta de seguridad.",
+    image: "/images/challenge_0_5000.jpg",
+    gpx: "/routes/sigchos-quilotoa.gpx"
+  },
+  {
+    monthKey: "SEP",
+    label: "SEPTIEMBRE",
+    dateBadge: "DOM 13 SEP 2026",
+    tag: "RUTA ASFALTO",
+    name: "Alto de Apagua",
+    km: "96 km",
+    alt: "+2.400 m",
+    level: "Avanzado",
+    blurb: "El paso mítico de Apagua combinando asfalto de alta montaña y curvas panorámicas sobre el callejón interandino, coronando con avituallamiento completo en la cima.",
+    image: "/images/hero_andes_ride.jpg",
+    gpx: "/routes/sigchos-quilotoa.gpx"
+  },
+  {
+    monthKey: "OCT",
+    label: "OCTUBRE",
+    dateBadge: "SÁB 17 OCT 2026",
+    tag: "MTB & GRAVEL",
+    name: "Tigua Ride",
+    km: "54 km",
+    alt: "+1.100 m",
+    level: "Intermedio",
+    blurb: "Senderos rurales de Tigua entre haciendas, comunidades autóctonas y galerías de arte andino. Ruta ideal para ciclistas que buscan iniciarse con la logística EPIC.",
+    image: "/images/corporate_cycling.jpg",
+    gpx: "/routes/sigchos-quilotoa.gpx"
+  },
+  {
+    monthKey: "NOV",
+    label: "NOVIEMBRE",
+    dateBadge: "VIE 20 – DOM 22 NOV 2026",
+    tag: "3 DÍAS · ANDES A LA COSTA",
+    name: "A la Playa en Bici",
+    km: "265 km",
+    alt: "+2.900 m",
+    level: "Avanzado",
+    blurb: "Tres etapas inolvidables partiendo de la sierra andina y descendiendo hasta el calor de las playas del Pacífico. Incluye hoteles boutique, gastronomía del mar y retorno en van.",
+    image: "/images/andes_costa_beach.jpg",
+    gpx: "/routes/sigchos-quilotoa.gpx"
+  },
+  {
+    monthKey: "DIC",
+    label: "DICIEMBRE",
+    dateBadge: "FECHA POR CONFIRMAR",
+    tag: "EDICIÓN DE CIERRE 2026",
+    name: "Cierre Épico de Temporada",
+    km: "85 km",
+    alt: "+2.100 m",
+    level: "Todos los niveles",
+    blurb: "Gran fiesta ciclista de fin de año con ruta festiva, brindis en la cima, entrega de reconocimientos del club y sorteos de nuestros auspiciantes oficiales.",
+    image: "/images/feed_zone_support.jpg",
+    gpx: "/routes/sigchos-quilotoa.gpx"
+  }
+];
+---
+
+<section id="sec-calendario" class="py-20 lg:py-28 bg-epic-gray-bg border-b border-epic-blue/10 scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    
+    <!-- Section Title -->
+    <div class="max-w-3xl mb-12">
+      <h2 class="font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-epic-blue leading-tight">
+        PRÓXIMAS RODADAS 2026
+      </h2>
+      <p class="text-epic-text-muted text-base mt-2">
+        Elige tu próximo desafío. Cada evento incluye traslado de bicicleta en furgoneta adaptada, hidratación, carro escoba y fotos oficiales.
+      </p>
+    </div>
+
+    <!-- Monthly Tabs Navigation -->
+    <div class="flex overflow-x-auto pb-2 mb-8 border-b-2 border-epic-blue/10 gap-2 sm:gap-4 scrollbar-none">
+      {events.map((ev, index) => (
+        <button 
+          type="button"
+          class={`calendar-tab flex-1 min-w-[80px] sm:min-w-[100px] md:min-w-0 py-3 sm:py-4 px-2 text-center font-extrabold text-sm sm:text-base tracking-wider transition-all duration-200 border-0 border-b-4 -mb-[2px] cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 active:outline-none select-none ${index === 0 ? 'border-b-epic-gold text-epic-blue bg-white/70 rounded-t-xl' : 'border-b-transparent text-epic-text-muted hover:text-epic-blue'}`}
+          data-tab={index}
+        >
+          <span class="block font-mono text-xs opacity-60 uppercase">{ev.monthKey}</span>
+          <span>{ev.label}</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Event Detail Cards -->
+    <div class="relative bg-white rounded-3xl overflow-hidden border border-epic-blue/10 shadow-xl">
+      {events.map((ev, index) => (
+        <div 
+          class={`calendar-event-card grid grid-cols-1 lg:grid-cols-12 transition-all duration-500 ease-in-out ${index === 0 ? 'block' : 'hidden'}`}
+          data-event-index={index}
+        >
+          <!-- Event Image Column (Left 6/12) -->
+          <div class="lg:col-span-6 relative min-h-[300px] lg:min-h-[460px] bg-epic-blue overflow-hidden">
+            <img 
+              src={ev.image} 
+              alt={ev.name} 
+              class="w-full h-full object-cover object-center"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/80 via-transparent to-black/20"></div>
+            
+            <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+              <div>
+                <span class="inline-block bg-epic-gold text-epic-blue font-mono font-black text-xs px-3.5 py-1.5 rounded-full mb-2 uppercase">
+                  {ev.dateBadge}
+                </span>
+                <h3 class="text-white font-black text-2xl sm:text-3xl leading-tight">{ev.name}</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Event Data Column (Right 6/12) -->
+          <div class="lg:col-span-6 p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-6">
+            
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase bg-epic-blue px-3 py-1 rounded-md">
+                  {ev.tag}
+                </span>
+                <span class="text-xs font-mono text-epic-text-muted tracking-wider">
+                  CUPO LIMITADO: 14 CICLISTAS
+                </span>
+              </div>
+
+              <h3 class="font-black text-2xl sm:text-4xl text-epic-blue tracking-tight mb-4">
+                {ev.name}
+              </h3>
+
+              <!-- Technical Stats -->
+              <div class="grid grid-cols-3 gap-3 py-5 border-y border-epic-blue/10 my-4 bg-epic-gray-bg/50 rounded-xl px-4">
+                <div>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Distancia</span>
+                  <span class="font-black text-xl sm:text-2xl text-epic-blue">{ev.km}</span>
+                </div>
+                <div>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Altimetría</span>
+                  <span class="font-black text-xl sm:text-2xl text-epic-blue">{ev.alt}</span>
+                </div>
+                <div>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Nivel</span>
+                  <span class="font-black text-xl sm:text-2xl text-epic-gold">{ev.level}</span>
+                </div>
+              </div>
+
+              <p class="text-epic-text-muted text-sm sm:text-base leading-relaxed">
+                {ev.blurb}
+              </p>
+            </div>
+
+            <!-- Action Buttons (Centered Booking Button) -->
+            <div class="flex items-center justify-center pt-4">
+              <button 
+                type="button"
+                onclick={`window.openBookingModal('${ev.name}', '${ev.dateBadge}')`}
+                class="w-full sm:w-auto bg-epic-blue hover:bg-epic-blue-light text-epic-gold font-extrabold text-xs tracking-wider px-10 py-4 rounded-full text-center transition-all shadow-md uppercase transform hover:scale-105"
+              >
+                Inscribirme / Reservar Cupo
+              </button>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll('.calendar-tab');
+  const cards = document.querySelectorAll('.calendar-event-card');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetIndex = Number(tab.getAttribute('data-tab'));
+
+      tabs.forEach((t, i) => {
+        if (i === targetIndex) {
+          t.classList.remove('border-b-transparent', 'text-epic-text-muted');
+          t.classList.add('border-b-epic-gold', 'text-epic-blue', 'bg-white/70', 'rounded-t-xl');
+        } else {
+          t.classList.remove('border-b-epic-gold', 'text-epic-blue', 'bg-white/70', 'rounded-t-xl');
+          t.classList.add('border-b-transparent', 'text-epic-text-muted');
+        }
+      });
+
+      cards.forEach((c, i) => {
+        if (i === targetIndex) {
+          c.classList.remove('hidden');
+          c.classList.add('block');
+        } else {
+          c.classList.remove('block');
+          c.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .calendar-tab {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .calendar-tab:focus,
+  .calendar-tab:focus-visible,
+  .calendar-tab:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+</style>

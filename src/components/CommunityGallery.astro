@@ -1,0 +1,273 @@
+---
+// CommunityGallery.astro
+const galleryImages = [
+  { src: "/images/hero_andes_ride.jpg", title: "Pelotón en los Andes", span: "col-span-2 row-span-2" },
+  { src: "/images/quilotoa_adventure.jpg", title: "Cráter del Quilotoa", span: "col-span-1" },
+  { src: "/images/luxury_van_transport.jpg", title: "Racks especializados en la van", span: "col-span-1" },
+  { src: "/images/challenge_0_5000.jpg", title: "Subida al Chimborazo", span: "col-span-1" },
+  { src: "/images/andes_costa_beach.jpg", title: "Llegada al mar", span: "col-span-1" },
+  { src: "/images/feed_zone_support.jpg", title: "Abasto en ruta", span: "col-span-2" }
+];
+---
+
+<section class="py-20 lg:py-28 bg-white border-b border-epic-blue/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    
+    <!-- Header -->
+    <div class="max-w-3xl mb-12">
+      <h2 class="font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-epic-blue leading-tight">
+        EPIC RIDES COMMUNITY
+      </h2>
+      <p class="text-epic-text-muted text-base mt-2">
+        Momentos inolvidables sobre dos ruedas. Haz clic en cualquier fotografía para verla en pantalla completa.
+      </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[220px]">
+      
+      <!-- Feature Video / Photo Box (Index 0) -->
+      <div 
+        class="md:col-span-2 md:row-span-2 relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40"
+        onclick="if(!event.target.closest('button')) window.openImageModal(0);"
+        role="button"
+        tabindex="0"
+        onkeydown="if(event.key==='Enter'||event.key===' ') { if(!event.target.closest('button')) window.openImageModal(0); }"
+        aria-label="Ver fotografía ampliada: Pelotón en los Andes"
+      >
+        <img 
+          src="/images/hero_andes_ride.jpg" 
+          alt="Rodadas reales de EPIC Rides en los Andes" 
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/20 to-black/30"></div>
+        
+        <!-- Video Play Button -->
+        <button 
+          type="button"
+          onclick="event.stopPropagation(); window.openVideoModal('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ', 'Historias de la Comunidad EPIC Rides')"
+          class="absolute inset-0 m-auto w-20 h-20 rounded-full bg-epic-gold hover:bg-epic-gold-light text-epic-blue flex items-center justify-center text-3xl transition-transform transform group-hover:scale-110 shadow-2xl focus:outline-none z-20 cursor-pointer"
+          aria-label="Reproducir video de la comunidad"
+        >
+          <span class="ml-1">▶</span>
+        </button>
+
+        <!-- Top Right Expand Button -->
+        <button 
+          type="button"
+          onclick="event.stopPropagation(); window.openImageModal(0);"
+          class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-epic-gold hover:text-epic-blue text-white flex items-center justify-center transition-all border border-white/20 shadow-lg cursor-pointer"
+          aria-label="Ampliar fotografía"
+          title="Ampliar fotografía"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+          </svg>
+        </button>
+
+        <!-- Bottom Description Bar -->
+        <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white z-10">
+          <div>
+            <span class="font-mono text-xs text-epic-gold tracking-widest uppercase block">Video Destacado &bull; Pelotón Andes</span>
+            <h3 class="font-black text-xl sm:text-2xl">Rodadas reales, momentos inolvidables</h3>
+          </div>
+          <span class="font-mono text-xs bg-white/20 px-3 py-1 rounded-full backdrop-blur-md">02:45 min</span>
+        </div>
+      </div>
+
+      <!-- Secondary Photo 1: Quilotoa (Index 1) -->
+      <div 
+        role="button"
+        tabindex="0"
+        onclick="window.openImageModal(1);"
+        onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(1); }"
+        class="relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
+        aria-label="Ver fotografía ampliada: Cráter del Quilotoa"
+      >
+        <img 
+          src="/images/quilotoa_adventure.jpg" 
+          alt="Quilotoa Crater Ride" 
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+        
+        <!-- Hover Magnifier Indicator -->
+        <div class="absolute inset-0 bg-epic-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <div class="w-12 h-12 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
+          <span class="font-bold text-xs">Quilotoa Crater Ride</span>
+          <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
+        </div>
+      </div>
+
+      <!-- Secondary Photo 2: Transporte Van (Index 2) -->
+      <div 
+        role="button"
+        tabindex="0"
+        onclick="window.openImageModal(2);"
+        onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(2); }"
+        class="relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
+        aria-label="Ver fotografía ampliada: Transporte de Bicis de Lujo"
+      >
+        <img 
+          src="/images/luxury_van_transport.jpg" 
+          alt="Transporte Van" 
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+        
+        <!-- Hover Magnifier Indicator -->
+        <div class="absolute inset-0 bg-epic-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <div class="w-12 h-12 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
+          <span class="font-bold text-xs">Transporte de Bicis de Lujo</span>
+          <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
+        </div>
+      </div>
+
+      <!-- Secondary Photo 3: Chimborazo (Index 3) -->
+      <div 
+        role="button"
+        tabindex="0"
+        onclick="window.openImageModal(3);"
+        onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(3); }"
+        class="relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
+        aria-label="Ver fotografía ampliada: Paso de Alta Montaña"
+      >
+        <img 
+          src="/images/challenge_0_5000.jpg" 
+          alt="Reto 0-5000 Chimborazo" 
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+        
+        <!-- Hover Magnifier Indicator -->
+        <div class="absolute inset-0 bg-epic-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <div class="w-12 h-12 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
+          <span class="font-bold text-xs">Paso de Alta Montaña</span>
+          <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
+        </div>
+      </div>
+
+      <!-- Secondary Photo 4: Playa (Index 4) -->
+      <div 
+        role="button"
+        tabindex="0"
+        onclick="window.openImageModal(4);"
+        onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(4); }"
+        class="relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
+        aria-label="Ver fotografía ampliada: Llegada al Pacífico"
+      >
+        <img 
+          src="/images/andes_costa_beach.jpg" 
+          alt="Llegada a la Playa" 
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+        
+        <!-- Hover Magnifier Indicator -->
+        <div class="absolute inset-0 bg-epic-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <div class="w-12 h-12 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
+          <span class="font-bold text-xs">Llegada al Pacífico</span>
+          <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
+        </div>
+      </div>
+
+      <!-- Secondary Photo 5: Feed Zone (Index 5 - Wide) -->
+      <div 
+        role="button"
+        tabindex="0"
+        onclick="window.openImageModal(5);"
+        onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(5); }"
+        class="md:col-span-2 relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
+        aria-label="Ver fotografía ampliada: Feed Zone & Asistencia Mecánica"
+      >
+        <img 
+          src="/images/feed_zone_support.jpg" 
+          alt="Punto de Abasto y Carro Escoba" 
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+        
+        <!-- Hover Magnifier Indicator -->
+        <div class="absolute inset-0 bg-epic-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <div class="w-12 h-12 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white drop-shadow">
+          <span class="font-bold text-xs sm:text-sm">Feed Zone &amp; Asistencia Mecánica</span>
+          <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
+        </div>
+      </div>
+
+      <!-- Secondary Photo 6: Corporate / Comunidad (Index 6 - Wide) -->
+      <div 
+        role="button"
+        tabindex="0"
+        onclick="window.openImageModal(6);"
+        onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(6); }"
+        class="md:col-span-2 relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
+        aria-label="Ver fotografía ampliada: Comunidad y Rodadas Grupales"
+      >
+        <img 
+          src="/images/corporate_cycling.jpg" 
+          alt="Rodadas Grupales y Comunidad" 
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+        
+        <!-- Hover Magnifier Indicator -->
+        <div class="absolute inset-0 bg-epic-blue/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <div class="w-12 h-12 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white drop-shadow">
+          <span class="font-bold text-xs sm:text-sm">Comunidad y Rodadas Grupales</span>
+          <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

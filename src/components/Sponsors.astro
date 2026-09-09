@@ -1,0 +1,72 @@
+---
+// Sponsors.astro
+const sponsors = [
+  { name: "700 SETECIENTOS", category: "Apparel & Gear" },
+  { name: "AUDAX TRAINING GROUP", category: "High Performance" }
+];
+---
+
+<section class="py-16 sm:py-20 bg-white border-b border-epic-blue/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Social Media (Left 5/12) -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <h3 class="font-black text-2xl sm:text-3xl text-epic-blue tracking-tight">
+          ÚNETE A NUESTRA FAMILIA CICLISTA
+        </h3>
+        <p class="text-epic-text-muted text-sm sm:text-base leading-relaxed">
+          Comparte rutas, fotos y la pasión por el ciclismo cada día. Conéctate con nosotros en nuestras plataformas oficiales:
+        </p>
+
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase"
+          >
+            <span>Instagram</span>
+          </a>
+          <a 
+            href="https://facebook.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase"
+          >
+            <span>Facebook</span>
+          </a>
+          <a 
+            href="https://tiktok.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase"
+          >
+            <span>TikTok</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Strategic Sponsors (Right 7/12) -->
+      <div class="lg:col-span-7 lg:border-l lg:border-epic-blue/15 lg:pl-12 flex flex-col gap-6">
+        <h3 class="font-black text-2xl sm:text-3xl text-epic-blue tracking-tight">
+          ALIANZAS ESTRATÉGICAS PARA TU EXPERIENCIA
+        </h3>
+        <p class="text-epic-text-muted text-sm sm:text-base leading-relaxed">
+          Trabajamos junto a las marcas líderes de la industria ciclista para garantizar soporte técnico de primer nivel, nutrición deportiva e indumentaria en cada kilómetro.
+        </p>
+
+        <!-- Brand Badges Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 ">
+          {sponsors.map((s) => (
+            <div class="p-4 rounded-xl border border-epic-blue/15 bg-epic-gray-bg hover:border-epic-gold hover:bg-white transition-all text-center group cursor-default">
+              <span class="font-mono text-[9px] text-epic-text-muted tracking-widest uppercase block mb-1">{s.category}</span>
+              <span class="font-black text-xs sm:text-sm text-epic-blue group-hover:text-epic-gold transition-colors block">{s.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
