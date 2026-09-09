@@ -1,0 +1,13 @@
+# Dependencias
+node_modules/
+
+# Carpetas de construcción / temporales
+dist/
+.astro/
+
+# Logs y archivos de entorno (por seguridad)
+.env
+.env*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
