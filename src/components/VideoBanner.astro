@@ -1,14 +1,20 @@
 ---
 // VideoBanner.astro
+import { Image } from 'astro:assets';
+import bannerImg from '../assets/hero/hero-andes-peloton.jpg';
 ---
 
 <section class="relative py-24 sm:py-32 overflow-hidden bg-epic-blue">
   <!-- Parallax-like Background -->
   <div class="absolute inset-0 z-0">
-    <img 
-      src="/images/hero_andes_ride.jpg" 
+    <Image 
+      src={bannerImg} 
       alt="Rodada en grupo por los Andes" 
-      class="w-full h-full object-cover object-center filter brightness-50 contrast-110"
+      class="w-full h-full object-cover object-[center_35%] filter brightness-50 contrast-110"
+      widths={[480, 768, 1200]}
+      sizes="100vw"
+      quality={70}
+      format="webp"
     />
     <div class="absolute inset-0 bg-epic-blue/70 mix-blend-multiply"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-epic-blue via-transparent to-epic-blue"></div>
@@ -19,7 +25,7 @@
     <!-- Play Button -->
     <button 
       type="button"
-      onclick="window.openVideoModal('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ', 'Video Cinematográfico — Rodada en Grupo EPIC Rides')"
+      onclick="window.openVideoModal('/images/web/hero/epic-experience-video.mp4', 'Video Cinematográfico — Rodada en Grupo EPIC Rides')"
       class="group relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-epic-gold bg-epic-gold/20 hover:bg-epic-gold backdrop-blur-md flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-2xl focus:outline-none"
       aria-label="Reproducir video de rodadas grupales"
     >

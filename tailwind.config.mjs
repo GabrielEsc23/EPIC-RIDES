@@ -17,7 +17,7 @@ export default {
         'epic-whatsapp': '#25D366'
       },
       fontFamily: {
-        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+        sans: ["'Montserrat Variable'", 'Montserrat', 'system-ui', 'sans-serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
       }
     },

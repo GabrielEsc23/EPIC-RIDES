@@ -1,30 +1,42 @@
 ---
 // AboutUs.astro
+import { Image } from 'astro:assets';
+import slide1 from '../assets/nosotros/caro-daniel-fundadores.jpg';
+import slide2 from '../assets/nosotros/caro-epic-van.jpg';
+import slide3 from '../assets/nosotros/peloton-van-soporte.jpg';
+import slide4 from '../assets/nosotros/caro-van-guias.jpg';
+import slide5 from '../assets/nosotros/campamento-fogata.jpg';
+
 const bannerSlides = [
   {
     num: "01",
-    label: "Caro & Daniel con la furgoneta EPIC",
-    img: "/images/caro_daniel_founders.jpg"
+    label: "Caro & Daniel — Fundadores de EPIC Rides",
+    img: slide1,
+    pos: "object-[center_20%]"
   },
   {
     num: "02",
-    label: "Pelotón en ruta por los Andes",
-    img: "/images/hero_andes_ride.jpg"
+    label: "Caro y la Epic Van de soporte logístico",
+    img: slide2,
+    pos: "object-center"
   },
   {
     num: "03",
-    label: "Van equipada con racks para bicis de alta gama",
-    img: "/images/luxury_van_transport.jpg"
+    label: "Pelotón en ruta con escolta y asistencia",
+    img: slide3,
+    pos: "object-center"
   },
   {
     num: "04",
-    label: "Zona de abasto, hidratación y soporte en ruta",
-    img: "/images/feed_zone_support.jpg"
+    label: "Caro, nuestra furgoneta y equipo de guías",
+    img: slide4,
+    pos: "object-[center_30%]"
   },
   {
     num: "05",
-    label: "Retos de alta montaña y altimetría",
-    img: "/images/challenge_0_5000.jpg"
+    label: "Campamento, fogata y paisajes andinos",
+    img: slide5,
+    pos: "object-center"
   }
 ];
 ---
@@ -43,10 +55,15 @@ const bannerSlides = [
               class={`about-slide absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
               data-index={index}
             >
-              <img 
+              <Image 
                 src={slide.img} 
                 alt={slide.label} 
-                class="w-full h-full object-cover object-center"
+                class={`w-full h-full object-cover ${slide.pos || 'object-center'}`}
+                widths={[360, 480, 640]}
+                sizes="(max-width: 640px) 380px, 600px"
+                quality={72}
+                format="webp"
+                loading={index === 0 ? "eager" : "lazy"}
               />
               <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-transparent to-black/20"></div>
               
@@ -85,11 +102,15 @@ const bannerSlides = [
         </h2>
 
         <p class="text-epic-text-muted text-base sm:text-lg leading-relaxed">
-          "Para nosotros, cada pedalada cuenta una historia. Creamos <strong class="text-epic-blue">EPIC Rides</strong> porque queríamos viajar seguros, compartir la ruta con amigos y transformar la pasión por la bici en experiencias inolvidables.
+          Además de ser los fundadores, estamos detrás de cada detalle de <strong class="text-epic-blue">EPIC Rides</strong>, asegurando que cada experiencia esté cuidadosamente diseñada y ejecutada.
         </p>
 
         <p class="text-epic-text-muted text-base leading-relaxed">
-          Al igual que tú, si estás aquí es porque la bicicleta es un estilo de vida. Llevamos pedaleando más de 15 años y nuestro servicio nació de una necesidad real: <strong class="text-epic-blue">transportar nuestras bicis de alta gama de forma 100% segura y mimada</strong>. Hoy, nuestra furgoneta se llena de sueños, paisajes y la comunidad ciclista más apasionada del país. ¿Te sumas al próximo viaje?"
+          Somos ciclistas desde hace más de 10 años y convertimos nuestra pasión por la bicicleta en una forma de vida. Esa experiencia nos permite comprender lo que realmente busca un ciclista: <strong class="text-epic-blue">rutas memorables, buena organización, seguridad, confianza y el respaldo de un equipo que comparte su misma pasión</strong>.
+        </p>
+
+        <p class="text-epic-text-muted text-sm leading-relaxed italic border-l-2 border-epic-gold pl-4">
+          "Durante cada paseo podrás compartir con nosotros en algunos momentos de la experiencia, recorriendo juntos los destinos que hemos seleccionado y descubriendo Ecuador desde una perspectiva diferente: sobre dos ruedas."
         </p>
 
         <!-- CTA Button -->

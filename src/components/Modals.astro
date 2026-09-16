@@ -1,5 +1,59 @@
 ---
 // Modals.astro
+import { getImage } from 'astro:assets';
+import gal0 from '../assets/hero/hero-andes-peloton.jpg';
+import gal1 from '../assets/comunidad/galeria-quilotoa-mirador.jpg';
+import gal2 from '../assets/servicios/transporte-epic-van.jpg';
+import gal3 from '../assets/comunidad/galeria-chimbo-llegada.jpg';
+import gal4 from '../assets/paseos/a-la-playa-en-bici.jpg';
+import gal5 from '../assets/comunidad/galeria-peloton-carretera.jpg';
+import gal6 from '../assets/comunidad/galeria-playa-celebracion.jpg';
+
+const opt0 = await getImage({ src: gal0, width: 1200, format: 'webp', quality: 80 });
+const opt1 = await getImage({ src: gal1, width: 1200, format: 'webp', quality: 80 });
+const opt2 = await getImage({ src: gal2, width: 1200, format: 'webp', quality: 80 });
+const opt3 = await getImage({ src: gal3, width: 1200, format: 'webp', quality: 80 });
+const opt4 = await getImage({ src: gal4, width: 1200, format: 'webp', quality: 80 });
+const opt5 = await getImage({ src: gal5, width: 1200, format: 'webp', quality: 80 });
+const opt6 = await getImage({ src: gal6, width: 1200, format: 'webp', quality: 80 });
+
+const modalGallery = [
+  {
+    src: opt0.src,
+    title: "Pelotón en los Andes",
+    desc: "Rodadas reales, paisajes imponentes y camaradería única en las alturas ecuatorianas."
+  },
+  {
+    src: opt1.src,
+    title: "Mirador de la Laguna del Quilotoa",
+    desc: "Ascenso épico y vistas majestuosas al filo de la caldera volcánica del Quilotoa."
+  },
+  {
+    src: opt2.src,
+    title: "Transporte Especializado en la Epic Van",
+    desc: "Furgoneta adaptada con anclajes acolchados para transportar bicicletas sin desmontar ruedas."
+  },
+  {
+    src: opt3.src,
+    title: "Reto 0 - 5.000m · Volcán Chimborazo",
+    desc: "Conquistando la altura andina desde el nivel del mar hasta los glaciares del Chimborazo."
+  },
+  {
+    src: opt4.src,
+    title: "Llegada al Océano Pacífico",
+    desc: "Travesía multi-etapa descendiendo desde las cumbres andinas hasta el calor de la playa."
+  },
+  {
+    src: opt5.src,
+    title: "Pelotón en Ruta & Asistencia Mecánica",
+    desc: "Acompañamiento logístico, abastecimiento isotónico y carro escoba permanente."
+  },
+  {
+    src: opt6.src,
+    title: "Comunidad y Familia Ciclista EPIC",
+    desc: "Camaradería, amistad y pura pasión ciclista en cada kilómetro recorrido por Ecuador."
+  }
+];
 ---
 
 <!-- 1. Booking / Cupo Modal -->
@@ -233,23 +287,18 @@
       </button>
     </div>
     <div class="relative aspect-video bg-black flex items-center justify-center">
-      <!-- Simulated High-Impact Video Player -->
+      <!-- High-Impact Real Video Player -->
       <div id="video-player-content" class="w-full h-full relative">
-        <img 
-          src="/images/hero_andes_ride.jpg" 
-          alt="Video Preview" 
-          class="w-full h-full object-cover"
-        />
-        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center gap-4 text-center p-6">
-          <div class="w-20 h-20 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center text-3xl font-bold animate-pulse shadow-2xl">
-            ▶
-          </div>
-          <div class="text-white">
-            <h5 class="font-black text-2xl">EPIC RIDES &bull; LA AVENTURA ANDINA</h5>
-            <p class="text-white/70 text-sm font-mono mt-1">Producción oficial &bull; Grabado en 4K en Cotopaxi y Chimborazo</p>
-          </div>
-       
-        </div>
+        <video 
+          id="epic-video-player"
+          src="/images/web/hero/epic-experience-video.mp4" 
+          controls 
+          playsinline 
+          class="w-full h-full object-contain bg-black"
+          poster="/images/web/hero/hero-andes-panorama.jpg"
+        >
+          Tu navegador no soporta reproducción de video HTML5.
+        </video>
       </div>
     </div>
   </div>
@@ -332,7 +381,7 @@
   </div>
 </div>
 
-<script is:inline>
+<script is:inline define:vars={{ modalGallery }}>
   // Global Modal Control Functions
   window.openBookingModal = function(routeName, dateBadge) {
     const modal = document.getElementById('booking-modal');
@@ -392,8 +441,14 @@
   window.openVideoModal = function(url, title) {
     const modal = document.getElementById('video-modal');
     const titleEl = document.getElementById('video-modal-title');
+    const videoEl = document.getElementById('epic-video-player');
     if (modal) {
       if (titleEl && title) titleEl.textContent = title;
+      if (videoEl) {
+        if (url) videoEl.src = url;
+        videoEl.currentTime = 0;
+        videoEl.play().catch(() => {});
+      }
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.style.overflow = 'hidden';
@@ -402,7 +457,12 @@
 
   window.closeVideoModal = function() {
     const modal = document.getElementById('video-modal');
+    const videoEl = document.getElementById('epic-video-player');
     if (modal) {
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.currentTime = 0;
+      }
       modal.classList.add('hidden');
       modal.classList.remove('flex');
       document.body.style.overflow = '';
@@ -410,43 +470,7 @@
   };
 
   // 4. Community Gallery Lightbox Controller
-  window.communityGalleryData = [
-    {
-      src: "/images/hero_andes_ride.jpg",
-      title: "Pelotón en los Andes",
-      desc: "Rodadas reales, paisajes imponentes y camaradería única en las alturas ecuatorianas."
-    },
-    {
-      src: "/images/quilotoa_adventure.jpg",
-      title: "Cráter del Quilotoa",
-      desc: "Ascenso épico y vistas majestuosas al filo de la laguna turquesa del Quilotoa."
-    },
-    {
-      src: "/images/luxury_van_transport.jpg",
-      title: "Transporte de Bicis de Lujo",
-      desc: "Furgoneta adaptada con racks acolchados y máxima seguridad para bicis de alta gama."
-    },
-    {
-      src: "/images/challenge_0_5000.jpg",
-      title: "Paso de Alta Montaña — Chimborazo",
-      desc: "Reto 0 - 5.000m coronando las faldas y glaciares del coloso ecuatoriano."
-    },
-    {
-      src: "/images/andes_costa_beach.jpg",
-      title: "Llegada al Océano Pacífico",
-      desc: "Travesía multi-etapa descendiendo desde los páramos andinos hasta el calor de la playa."
-    },
-    {
-      src: "/images/feed_zone_support.jpg",
-      title: "Feed Zone & Asistencia Mecánica",
-      desc: "Puntos de abasto con hidratación isotónica, frutas frescas y escolta permanente."
-    },
-    {
-      src: "/images/corporate_cycling.jpg",
-      title: "Comunidad y Rodadas Grupales",
-      desc: "Camaradería, amistad y pura pasión ciclista en cada kilómetro compartido."
-    }
-  ];
+  window.communityGalleryData = modalGallery;
 
   let currentGalleryIndex = 0;
 

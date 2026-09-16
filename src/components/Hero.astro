@@ -1,14 +1,22 @@
 ---
 // Hero.astro
+import { Image } from 'astro:assets';
+import heroImg from '../assets/hero_andes_ride.jpg';
 ---
 
 <section class="relative min-h-[620px] lg:min-h-[720px] flex items-end justify-start overflow-hidden bg-epic-blue">
-  <!-- Background Image with Ambient Zoom Effect -->
+  <!-- Background Image with Ambient Zoom Effect (Optimized with astro:assets) -->
   <div class="absolute inset-0 z-0">
-    <img 
-      src="/images/hero_andes_ride.jpg" 
+    <Image 
+      src={heroImg} 
       alt="Ciclistas y furgoneta EPIC Rides en los Andes ecuatorianos" 
+      fetchpriority="high"
       class="w-full h-full object-cover object-center transform scale-105 hover:scale-100 transition-transform duration-1000 ease-out"
+      widths={[480, 768, 1200, 1600]}
+      sizes="100vw"
+      quality={72}
+      format="webp"
+      loading="eager"
     />
     <!-- Gradient Overlays for readable text and cinematic atmosphere -->
     <div class="absolute inset-0 bg-gradient-to-r from-epic-blue/95 via-epic-blue/70 to-epic-blue/20"></div>
@@ -21,7 +29,7 @@
   <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
     <button 
       type="button"
-      onclick="window.openVideoModal('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ', 'Rodada Épica en los Andes — Experiencia EPIC Rides')"
+      onclick="window.openVideoModal('/images/web/hero/epic-experience-video.mp4', 'Rodada Épica en los Andes — Experiencia EPIC Rides')"
       class="pointer-events-auto group relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-white/40 bg-white/5 backdrop-blur-[1px] opacity-35 hover:opacity-100 hover:bg-epic-gold hover:border-epic-gold transition-all duration-300 transform hover:scale-110 shadow-sm hover:shadow-2xl focus:outline-none cursor-pointer"
       aria-label="Reproducir video de la experiencia"
     >

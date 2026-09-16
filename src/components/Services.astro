@@ -1,30 +1,38 @@
 ---
 // Services.astro
+import { Image } from 'astro:assets';
+import serv1 from '../assets/servicios/paseos-guiados-experiencia.jpg';
+import serv2 from '../assets/servicios/transporte-epic-van.jpg';
+import serv3 from '../assets/servicios/coaching-audax-training.jpg';
+
 const services = [
   {
     id: "paquetes-epicos",
     title: "PAQUETES ÉPICOS",
-    subtitle: "Multi-etapa Andes & Costa",
-    desc: "Experiencias de varios días explorando lo mejor de los Andes hasta el Océano Pacífico con logística integral, hospedaje y alimentación de primer nivel.",
-    image: "/images/andes_costa_beach.jpg",
+    subtitle: "Paseos & Experiencias Guiadas",
+    desc: "Recorridos en Ruta, MTB y Gravel cuidadosamente diseñados con planificación, avituallamiento, seguridad y asistencia para que solo te concentres en pedalear.",
+    image: serv1,
+    pos: "object-[center_40%]",
     action: "window.openBookingModal('Paquetes Épicos')",
     anchorId: "sec-paquetes"
   },
   {
     id: "transporte-bicicletas",
     title: "TRANSPORTE DE BICIS",
-    subtitle: "Van adaptada de lujo",
-    desc: "Tu bicicleta de alta gama viaja tan protegida y mimada como tú en nuestra furgoneta adaptada con racks acolchados, sin necesidad de desmontar ruedas.",
-    image: "/images/luxury_van_transport.jpg",
+    subtitle: "Epic Van adaptada y especializada",
+    desc: "Transporte especializado sin necesidad de desarmar tu bicicleta, con espacio y anclajes acolchados para evitar golpes, roces o contacto entre ellas.",
+    image: serv2,
+    pos: "object-[center_20%]",
     action: "window.openBookingModal('Transporte de Bicicletas')",
     anchorId: "sec-transporte"
   },
   {
     id: "coaching-training",
     title: "COACHING & TRAINING",
-    subtitle: "Planes a tu medida",
-    desc: "Planes de entrenamiento y preparación física para ciclistas que buscan conquistar sus próximos fondos, retos de altimetría y metas personales.",
-    image: "/images/challenge_0_5000.jpg",
+    subtitle: "Alianza Audax Training",
+    desc: "Junto a Felipe Borja (Head Coach) y Daniel Redín, ofrecemos entrenamientos estructurados, Tri Camps y preparación específica para la Vuelta al Cotopaxi y grandes fondos.",
+    image: serv3,
+    pos: "object-[center_25%]",
     action: "window.openCorporateModal('Coaching y Preparación Física')",
     anchorId: "sec-coaching"
   }
@@ -55,10 +63,14 @@ const services = [
 
           <!-- Card Image Header -->
           <div class="relative h-60 sm:h-64 overflow-hidden bg-epic-blue">
-            <img 
+            <Image 
               src={item.image} 
               alt={item.title} 
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              class={`w-full h-full object-cover ${item.pos || 'object-center'} transform group-hover:scale-110 transition-transform duration-700 ease-out`}
+              widths={[360, 480, 640]}
+              sizes="(max-width: 768px) 380px, 400px"
+              quality={72}
+              format="webp"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-transparent to-black/20"></div>
             

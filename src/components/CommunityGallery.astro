@@ -1,12 +1,22 @@
 ---
 // CommunityGallery.astro
+import { Image } from 'astro:assets';
+import gal0 from '../assets/hero/hero-andes-peloton.jpg';
+import gal1 from '../assets/comunidad/galeria-quilotoa-mirador.jpg';
+import gal2 from '../assets/servicios/transporte-epic-van.jpg';
+import gal3 from '../assets/comunidad/galeria-chimbo-llegada.jpg';
+import gal4 from '../assets/paseos/a-la-playa-en-bici.jpg';
+import gal5 from '../assets/comunidad/galeria-peloton-carretera.jpg';
+import gal6 from '../assets/comunidad/galeria-playa-celebracion.jpg';
+
 const galleryImages = [
-  { src: "/images/hero_andes_ride.jpg", title: "Pelotón en los Andes", span: "col-span-2 row-span-2" },
-  { src: "/images/quilotoa_adventure.jpg", title: "Cráter del Quilotoa", span: "col-span-1" },
-  { src: "/images/luxury_van_transport.jpg", title: "Racks especializados en la van", span: "col-span-1" },
-  { src: "/images/challenge_0_5000.jpg", title: "Subida al Chimborazo", span: "col-span-1" },
-  { src: "/images/andes_costa_beach.jpg", title: "Llegada al mar", span: "col-span-1" },
-  { src: "/images/feed_zone_support.jpg", title: "Abasto en ruta", span: "col-span-2" }
+  { src: gal0, title: "Pelotón en los Andes", span: "col-span-2 row-span-2" },
+  { src: gal1, title: "Laguna del Quilotoa", span: "col-span-1" },
+  { src: gal2, title: "Racks especializados Epic Van", span: "col-span-1" },
+  { src: gal3, title: "Conquistando el Chimborazo", span: "col-span-1" },
+  { src: gal4, title: "Llegada al mar", span: "col-span-1" },
+  { src: gal5, title: "Asistencia en ruta", span: "col-span-2" },
+  { src: gal6, title: "Comunidad ciclista", span: "col-span-2" }
 ];
 ---
 
@@ -35,17 +45,21 @@ const galleryImages = [
         onkeydown="if(event.key==='Enter'||event.key===' ') { if(!event.target.closest('button')) window.openImageModal(0); }"
         aria-label="Ver fotografía ampliada: Pelotón en los Andes"
       >
-        <img 
-          src="/images/hero_andes_ride.jpg" 
+        <Image 
+          src={gal0} 
           alt="Rodadas reales de EPIC Rides en los Andes" 
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          widths={[360, 520, 720]}
+          sizes="(max-width: 768px) 380px, 600px"
+          quality={72}
+          format="webp"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/20 to-black/30"></div>
         
         <!-- Video Play Button -->
         <button 
           type="button"
-          onclick="event.stopPropagation(); window.openVideoModal('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ', 'Historias de la Comunidad EPIC Rides')"
+          onclick="event.stopPropagation(); window.openVideoModal('/images/web/hero/epic-experience-video.mp4', 'Historias de la Comunidad EPIC Rides')"
           class="absolute inset-0 m-auto w-20 h-20 rounded-full bg-epic-gold hover:bg-epic-gold-light text-epic-blue flex items-center justify-center text-3xl transition-transform transform group-hover:scale-110 shadow-2xl focus:outline-none z-20 cursor-pointer"
           aria-label="Reproducir video de la comunidad"
         >
@@ -84,11 +98,14 @@ const galleryImages = [
         class="relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
         aria-label="Ver fotografía ampliada: Cráter del Quilotoa"
       >
-        <img 
-          src="/images/quilotoa_adventure.jpg" 
-          alt="Quilotoa Crater Ride" 
+        <Image 
+          src={gal1} 
+          alt="Laguna del Quilotoa" 
           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
+          widths={[280, 420]}
+          sizes="(max-width: 768px) 180px, 300px"
+          quality={72}
+          format="webp"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
         
@@ -102,7 +119,7 @@ const galleryImages = [
         </div>
 
         <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
-          <span class="font-bold text-xs">Quilotoa Crater Ride</span>
+          <span class="font-bold text-xs">Laguna del Quilotoa</span>
           <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
         </div>
       </div>
@@ -114,13 +131,16 @@ const galleryImages = [
         onclick="window.openImageModal(2);"
         onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(2); }"
         class="relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
-        aria-label="Ver fotografía ampliada: Transporte de Bicis de Lujo"
+        aria-label="Ver fotografía ampliada: Racks especializados Epic Van"
       >
-        <img 
-          src="/images/luxury_van_transport.jpg" 
-          alt="Transporte Van" 
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
+        <Image 
+          src={gal2} 
+          alt="Racks especializados Epic Van" 
+          class="w-full h-full object-cover object-[center_20%] group-hover:scale-110 transition-transform duration-500"
+          widths={[280, 420]}
+          sizes="(max-width: 768px) 180px, 300px"
+          quality={72}
+          format="webp"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
         
@@ -134,7 +154,7 @@ const galleryImages = [
         </div>
 
         <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
-          <span class="font-bold text-xs">Transporte de Bicis de Lujo</span>
+          <span class="font-bold text-xs">Racks especializados Epic Van</span>
           <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
         </div>
       </div>
@@ -146,13 +166,16 @@ const galleryImages = [
         onclick="window.openImageModal(3);"
         onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(3); }"
         class="relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
-        aria-label="Ver fotografía ampliada: Paso de Alta Montaña"
+        aria-label="Ver fotografía ampliada: Conquistando el Chimborazo"
       >
-        <img 
-          src="/images/challenge_0_5000.jpg" 
-          alt="Reto 0-5000 Chimborazo" 
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
+        <Image 
+          src={gal3} 
+          alt="Conquistando el Chimborazo" 
+          class="w-full h-full object-cover object-[center_30%] group-hover:scale-110 transition-transform duration-500"
+          widths={[280, 420]}
+          sizes="(max-width: 768px) 180px, 300px"
+          quality={72}
+          format="webp"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
         
@@ -166,7 +189,7 @@ const galleryImages = [
         </div>
 
         <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
-          <span class="font-bold text-xs">Paso de Alta Montaña</span>
+          <span class="font-bold text-xs">Conquistando el Chimborazo</span>
           <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
         </div>
       </div>
@@ -180,11 +203,14 @@ const galleryImages = [
         class="relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
         aria-label="Ver fotografía ampliada: Llegada al Pacífico"
       >
-        <img 
-          src="/images/andes_costa_beach.jpg" 
+        <Image 
+          src={gal4} 
           alt="Llegada a la Playa" 
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
+          class="w-full h-full object-cover object-[center_25%] group-hover:scale-110 transition-transform duration-500"
+          widths={[280, 420]}
+          sizes="(max-width: 768px) 180px, 300px"
+          quality={72}
+          format="webp"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
         
@@ -210,13 +236,16 @@ const galleryImages = [
         onclick="window.openImageModal(5);"
         onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(5); }"
         class="md:col-span-2 relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
-        aria-label="Ver fotografía ampliada: Feed Zone & Asistencia Mecánica"
+        aria-label="Ver fotografía ampliada: Asistencia en ruta"
       >
-        <img 
-          src="/images/feed_zone_support.jpg" 
+        <Image 
+          src={gal5} 
           alt="Punto de Abasto y Carro Escoba" 
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
+          class="w-full h-full object-cover object-[center_40%] group-hover:scale-110 transition-transform duration-500"
+          widths={[360, 520]}
+          sizes="(max-width: 768px) 380px, 600px"
+          quality={72}
+          format="webp"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
         
@@ -230,7 +259,7 @@ const galleryImages = [
         </div>
 
         <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white drop-shadow">
-          <span class="font-bold text-xs sm:text-sm">Feed Zone &amp; Asistencia Mecánica</span>
+          <span class="font-bold text-xs sm:text-sm">Asistencia en ruta</span>
           <span class="font-mono text-[10px] text-epic-gold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-wider">Ampliar ↗</span>
         </div>
       </div>
@@ -242,13 +271,16 @@ const galleryImages = [
         onclick="window.openImageModal(6);"
         onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); window.openImageModal(6); }"
         class="md:col-span-2 relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold"
-        aria-label="Ver fotografía ampliada: Comunidad y Rodadas Grupales"
+        aria-label="Ver fotografía ampliada: Comunidad ciclista"
       >
-        <img 
-          src="/images/corporate_cycling.jpg" 
-          alt="Rodadas Grupales y Comunidad" 
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
+        <Image 
+          src={gal6} 
+          alt="Comunidad ciclista" 
+          class="w-full h-full object-cover object-[center_30%] group-hover:scale-110 transition-transform duration-500"
+          widths={[360, 520]}
+          sizes="(max-width: 768px) 380px, 600px"
+          quality={72}
+          format="webp"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
         

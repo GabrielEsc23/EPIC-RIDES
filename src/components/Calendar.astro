@@ -1,5 +1,13 @@
 ---
 // Calendar.astro
+import { Image } from 'astro:assets';
+import rutaJul from '../assets/paseos/sigchos-quilotoa.jpg';
+import rutaAgo from '../assets/paseos/reto-0-5000-chimborazo.jpg';
+import rutaSep from '../assets/paseos/alto-de-apagua.jpg';
+import rutaOct from '../assets/paseos/puertos-del-carchi.jpg';
+import rutaNov from '../assets/paseos/a-la-playa-en-bici.jpg';
+import rutaDic from '../assets/paseos/cierre-de-temporada.jpg';
+
 const events = [
   {
     monthKey: "JUL",
@@ -7,50 +15,54 @@ const events = [
     dateBadge: "SÁB 11 JUL 2026",
     tag: "RUTA + MTB",
     name: "Sigchos – Quilotoa",
-    km: "78 km",
-    alt: "+1.850 m",
+    km: "94 km",
+    alt: "+2.400 m",
     level: "Avanzado",
-    blurb: "Descenso técnico al valle de Sigchos y ascenso épico al filo del cráter del Quilotoa. Furgoneta de soporte en 3 puntos de hidratación, asistencia mecánica permanente y comida típica en la meta.",
-    image: "/images/quilotoa_adventure.jpg",
+    blurb: " Sigchos – Quilotoa es una experiencia diseñada para descubrir una cara diferente de los Andes ecuatorianos: caminos poco transitados, paisajes que parecen no tener fin y curvas que invitan a perderse para encontrarse con algo extraordinario.La aventura nos lleva por los impresionantes paisajes de Cotopaxi, atravesando Sigchos, conocido como el “Jardín Colgante de los Andes”. Un territorio de relieve quebrado y montañoso, donde los microclimas, la riqueza natural y la grandeza de la cordillera transforman cada kilómetro en una nueva postal.El camino continúa entre curvas de herradura y paisajes imponentes, hasta enfrentarnos a un puerto de montaña que pondrá a prueba nuestras piernas y nuestra determinación.La recompensa final: conquistar la altura y llegar a uno de los paisajes más extraordinarios de Ecuador, la Laguna del Quilotoa.Más que una ruta, es una forma de descubrir Ecuador desde otra perspectiva.Una experiencia para recordar.Una experiencia Epic.",
+    image: rutaJul,
+    pos: "object-[center_35%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
   {
     monthKey: "AGO",
     label: "AGOSTO",
     dateBadge: "SÁB 15 AGO 2026",
-    tag: "RETO INSIGNIA",
+    tag: "RETO INSIGNIA · 2 DÍAS",
     name: "Reto 0 – 5.000m",
-    km: "142 km",
-    alt: "+5.000 m",
+    km: "155 km",
+    alt: "+5.980 m",
     level: "Élite",
-    blurb: "Desde el nivel del mar hasta los 5.000 metros en los glaciares del majestuoso volcán Chimborazo. Soporte total de la furgoneta EPIC, abastecimiento isotónico de alta gama y escolta de seguridad.",
-    image: "/images/challenge_0_5000.jpg",
+    blurb: "Desde Babahoyo a nivel del mar, superando El Torneado hasta Guaranda (Día 1) y conquistando El Arenal hasta el Refugio del Volcán Chimborazo (Día 2).",
+    image: rutaAgo,
+    pos: "object-[center_20%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
   {
     monthKey: "SEP",
     label: "SEPTIEMBRE",
     dateBadge: "DOM 13 SEP 2026",
-    tag: "RUTA ASFALTO",
+    tag: "4TA SUBIDA MÁS DURA DEL MUNDO",
     name: "Alto de Apagua",
-    km: "96 km",
-    alt: "+2.400 m",
-    level: "Avanzado",
-    blurb: "El paso mítico de Apagua combinando asfalto de alta montaña y curvas panorámicas sobre el callejón interandino, coronando con avituallamiento completo en la cima.",
-    image: "/images/hero_andes_ride.jpg",
+    km: "68 km",
+    alt: "+3.800 m",
+    level: "Élite",
+    blurb: "55 km ininterrumpidos de escalada al 6.5% de promedio. Iniciando en La Maná a 100 msnm y coronando en Apagua a 3.900 msnm con 26.2 FIETS (PJAMM Cycling).",
+    image: rutaSep,
+    pos: "object-[center_25%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
   {
     monthKey: "OCT",
     label: "OCTUBRE",
     dateBadge: "SÁB 17 OCT 2026",
-    tag: "MTB & GRAVEL",
-    name: "Tigua Ride",
-    km: "54 km",
-    alt: "+1.100 m",
-    level: "Intermedio",
-    blurb: "Senderos rurales de Tigua entre haciendas, comunidades autóctonas y galerías de arte andino. Ruta ideal para ciclistas que buscan iniciarse con la logística EPIC.",
-    image: "/images/corporate_cycling.jpg",
+    tag: "2 DÍAS ÉPICOS",
+    name: "Los Puertos del Carchi",
+    km: "115 km",
+    alt: "+2.700 m",
+    level: "Avanzado",
+    blurb: "Tierra de campeones. Ascensos míticos por los páramos de frailejones del Carchi, puertos de montaña de alta exigencia y la calidez del ciclismo norteño.",
+    image: rutaOct,
+    pos: "object-[center_30%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
   {
@@ -62,8 +74,9 @@ const events = [
     km: "265 km",
     alt: "+2.900 m",
     level: "Avanzado",
-    blurb: "Tres etapas inolvidables partiendo de la sierra andina y descendiendo hasta el calor de las playas del Pacífico. Incluye hoteles boutique, gastronomía del mar y retorno en van.",
-    image: "/images/andes_costa_beach.jpg",
+    blurb: "Tres etapas inolvidables partiendo de la cordillera andina y descendiendo hasta las playas del Pacífico. Logística integral con furgoneta, hotelería y retorno.",
+    image: rutaNov,
+    pos: "object-[center_30%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
   {
@@ -75,8 +88,9 @@ const events = [
     km: "85 km",
     alt: "+2.100 m",
     level: "Todos los niveles",
-    blurb: "Gran fiesta ciclista de fin de año con ruta festiva, brindis en la cima, entrega de reconocimientos del club y sorteos de nuestros auspiciantes oficiales.",
-    image: "/images/feed_zone_support.jpg",
+    blurb: "Gran fiesta y rodada de fin de año con ruta festiva, brindis en la cima, entrega de reconocimientos de la comunidad EPIC Rides y sorteos oficiales.",
+    image: rutaDic,
+    pos: "object-[center_40%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   }
 ];
@@ -118,10 +132,15 @@ const events = [
         >
           <!-- Event Image Column (Left 6/12) -->
           <div class="lg:col-span-6 relative min-h-[260px] sm:min-h-[320px] lg:min-h-[460px] bg-epic-blue overflow-hidden">
-            <img 
+            <Image 
               src={ev.image} 
               alt={ev.name} 
-              class="w-full h-full object-cover object-center"
+              class={`w-full h-full object-cover ${ev.pos || 'object-center'}`}
+              widths={[360, 480, 640]}
+              sizes="(max-width: 768px) 380px, 600px"
+              quality={72}
+              format="webp"
+              loading={index === 0 ? "eager" : "lazy"}
             />
             <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/80 via-transparent to-black/20"></div>
             
