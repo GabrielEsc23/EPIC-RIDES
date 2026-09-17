@@ -339,14 +339,14 @@ const modalGallery = [
       </div>
     </div>
 
-    <!-- Image Container with Left / Right Arrows -->
-    <div class="relative w-full max-h-[58vh] sm:max-h-[66vh] flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-black/70 shadow-2xl">
+    <!-- Image Container with Left / Right Arrows (Stable Height & Double Buffering) -->
+    <div class="relative w-full h-[58vh] sm:h-[66vh] max-h-[700px] min-h-[300px] flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-black/80 shadow-2xl">
       <!-- Prev Button -->
       <button 
         id="image-modal-prev" 
         type="button" 
         onclick="window.prevGalleryImage()" 
-        class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-30 text-white/90 hover:text-epic-gold bg-epic-blue/80 hover:bg-epic-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-xl font-bold transition-all border border-white/20 shadow-2xl focus:outline-none cursor-pointer"
+        class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-30 text-white/90 hover:text-epic-gold bg-epic-blue/80 hover:bg-epic-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-xl font-bold transition-all border border-white/20 shadow-2xl focus:outline-none cursor-pointer select-none"
         aria-label="Imagen anterior"
       >
         ←
@@ -357,17 +357,24 @@ const modalGallery = [
         id="image-modal-next" 
         type="button" 
         onclick="window.nextGalleryImage()" 
-        class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-30 text-white/90 hover:text-epic-gold bg-epic-blue/80 hover:bg-epic-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-xl font-bold transition-all border border-white/20 shadow-2xl focus:outline-none cursor-pointer"
+        class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-30 text-white/90 hover:text-epic-gold bg-epic-blue/80 hover:bg-epic-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-xl font-bold transition-all border border-white/20 shadow-2xl focus:outline-none cursor-pointer select-none"
         aria-label="Siguiente imagen"
       >
         →
       </button>
 
+      <!-- Double buffered image layers for smooth cross-fade without flicker -->
       <img 
-        id="image-modal-img" 
+        id="image-modal-img-1" 
         src="" 
         alt="" 
-        class="max-w-full max-h-[58vh] sm:max-h-[66vh] object-contain transition-opacity duration-200 opacity-100"
+        class="absolute inset-0 m-auto max-w-full max-h-full object-contain transition-opacity duration-300 ease-out opacity-100 select-none pointer-events-none"
+      />
+      <img 
+        id="image-modal-img-2" 
+        src="" 
+        alt="" 
+        class="absolute inset-0 m-auto max-w-full max-h-full object-contain transition-opacity duration-300 ease-out opacity-0 select-none pointer-events-none"
       />
     </div>
 
@@ -469,26 +476,124 @@ const modalGallery = [
     }
   };
 
-  // 4. Community Gallery Lightbox Controller
+  // 4. Community Gallery & Calendar Lightbox Controller (Zero-Flicker Crossfade)
   window.communityGalleryData = modalGallery;
 
+  let activeGallery = window.communityGalleryData;
   let currentGalleryIndex = 0;
+  let activeSlot = 1;
+
+  // Preload gallery images in background memory for instant 60fps transitions
+  function preloadGalleryImages(gallery) {
+    if (!gallery || !Array.isArray(gallery)) return;
+    gallery.forEach(item => {
+      if (item && item.src) {
+        const img = new Image();
+        img.src = item.src;
+      }
+    });
+  }
+
+  function setInitialImage(item) {
+    const img1 = document.getElementById('image-modal-img-1');
+    const img2 = document.getElementById('image-modal-img-2');
+    const titleEl = document.getElementById('image-modal-title');
+    const descEl = document.getElementById('image-modal-desc');
+    const counterEl = document.getElementById('image-modal-counter');
+
+    activeSlot = 1;
+    if (img1 && img2) {
+      img1.src = item.src;
+      img1.alt = item.title;
+      img1.classList.remove('opacity-0');
+      img1.classList.add('opacity-100');
+
+      img2.classList.remove('opacity-100');
+      img2.classList.add('opacity-0');
+      img2.src = '';
+    }
+
+    if (titleEl) titleEl.textContent = item.title;
+    if (descEl) descEl.textContent = item.desc;
+    if (counterEl) counterEl.textContent = `${currentGalleryIndex + 1} / ${activeGallery.length}`;
+  }
+
+  function crossfadeToImage(item) {
+    const img1 = document.getElementById('image-modal-img-1');
+    const img2 = document.getElementById('image-modal-img-2');
+    const titleEl = document.getElementById('image-modal-title');
+    const descEl = document.getElementById('image-modal-desc');
+    const counterEl = document.getElementById('image-modal-counter');
+
+    if (!img1 || !img2) return;
+
+    const currentImg = activeSlot === 1 ? img1 : img2;
+    const nextImg = activeSlot === 1 ? img2 : img1;
+
+    nextImg.src = item.src;
+    nextImg.alt = item.title;
+
+    const performSwap = () => {
+      nextImg.classList.remove('opacity-0');
+      nextImg.classList.add('opacity-100');
+      currentImg.classList.remove('opacity-100');
+      currentImg.classList.add('opacity-0');
+      activeSlot = activeSlot === 1 ? 2 : 1;
+    };
+
+    if (nextImg.complete && nextImg.naturalWidth > 0) {
+      performSwap();
+    } else {
+      nextImg.onload = performSwap;
+    }
+
+    if (titleEl) titleEl.textContent = item.title;
+    if (descEl) descEl.textContent = item.desc;
+    if (counterEl) counterEl.textContent = `${currentGalleryIndex + 1} / ${activeGallery.length}`;
+  }
 
   window.openImageModal = function(index) {
-    if (typeof index === 'number' && index >= 0 && index < window.communityGalleryData.length) {
+    activeGallery = window.communityGalleryData;
+    preloadGalleryImages(activeGallery);
+
+    if (typeof index === 'number' && index >= 0 && index < activeGallery.length) {
       currentGalleryIndex = index;
     } else if (typeof index === 'string') {
-      const foundIdx = window.communityGalleryData.findIndex(item => item.src === index);
+      const foundIdx = activeGallery.findIndex(item => item.src === index);
       if (foundIdx !== -1) currentGalleryIndex = foundIdx;
     }
 
-    updateImageModalContent();
+    const item = activeGallery[currentGalleryIndex];
+    if (item) setInitialImage(item);
 
     const modal = document.getElementById('image-modal');
     if (modal) {
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.openCalendarImageModal = function(index) {
+    if (window.calendarRoutesGallery && window.calendarRoutesGallery.length > 0) {
+      activeGallery = window.calendarRoutesGallery;
+      preloadGalleryImages(activeGallery);
+
+      if (typeof index === 'number' && index >= 0 && index < activeGallery.length) {
+        currentGalleryIndex = index;
+      } else {
+        currentGalleryIndex = 0;
+      }
+
+      const item = activeGallery[currentGalleryIndex];
+      if (item) setInitialImage(item);
+
+      const modal = document.getElementById('image-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
     }
   };
 
@@ -502,42 +607,18 @@ const modalGallery = [
   };
 
   window.nextGalleryImage = function() {
-    currentGalleryIndex = (currentGalleryIndex + 1) % window.communityGalleryData.length;
-    updateImageModalContent();
+    if (!activeGallery || activeGallery.length === 0) return;
+    currentGalleryIndex = (currentGalleryIndex + 1) % activeGallery.length;
+    const item = activeGallery[currentGalleryIndex];
+    if (item) crossfadeToImage(item);
   };
 
   window.prevGalleryImage = function() {
-    currentGalleryIndex = (currentGalleryIndex - 1 + window.communityGalleryData.length) % window.communityGalleryData.length;
-    updateImageModalContent();
+    if (!activeGallery || activeGallery.length === 0) return;
+    currentGalleryIndex = (currentGalleryIndex - 1 + activeGallery.length) % activeGallery.length;
+    const item = activeGallery[currentGalleryIndex];
+    if (item) crossfadeToImage(item);
   };
-
-  function updateImageModalContent() {
-    const item = window.communityGalleryData[currentGalleryIndex];
-    if (!item) return;
-
-    const imgEl = document.getElementById('image-modal-img');
-    const titleEl = document.getElementById('image-modal-title');
-    const descEl = document.getElementById('image-modal-desc');
-    const counterEl = document.getElementById('image-modal-counter');
-
-    if (imgEl) {
-      imgEl.style.opacity = '0.3';
-      imgEl.src = item.src;
-      imgEl.alt = item.title;
-      setTimeout(() => {
-        imgEl.style.opacity = '1';
-      }, 70);
-    }
-    if (titleEl) {
-      titleEl.textContent = item.title;
-    }
-    if (descEl) {
-      descEl.textContent = item.desc;
-    }
-    if (counterEl) {
-      counterEl.textContent = `${currentGalleryIndex + 1} / ${window.communityGalleryData.length}`;
-    }
-  }
 
   // Keyboard navigation
   window.addEventListener('keydown', function(e) {

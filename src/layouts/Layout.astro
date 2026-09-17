@@ -4,11 +4,13 @@ import '@fontsource-variable/montserrat';
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
 }
 
 const {
   title = "EPIC RIDES Ecuador | Logística Premium · Ruta & MTB",
-  description = "Transporte de bicicletas de alta gama, paseos épicos y logística integral de ciclismo en Ecuador. Creemos que pedalear puede transformar tu vida."
+  description = "Transporte de bicicletas de alta gama, paseos épicos y logística integral de ciclismo en Ecuador. Creemos que pedalear puede transformar tu vida.",
+  keywords = "bicicletas quito, paseos en bicicleta quito, paseos en bicicleta ecuador, rutas en bicicleta quito, actividades quito, actividades ecuador, epic rides ecuador, epic rides quito, transporte de bicicletas quito, furgoneta para bicicletas ecuador, traslado de bicicletas quito, ciclismo chimborazo, reto 0 a 5000, ciclismo quilotoa, turismo de aventura ecuador, que hacer en quito fin de semana, ciclismo de ruta ecuador, mtb ecuador, gravel ecuador, coaching ciclismo quito"
 } = Astro.props;
 ---
 
@@ -21,12 +23,70 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="EPIC Rides Ecuador" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://epicrides.ec/" />
     
-    <!-- Open Graph / Social Media -->
+    <!-- Open Graph / Social Media / WhatsApp -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://epicrides.ec/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/images/hero_andes_ride.jpg" />
+    <meta property="og:locale" content="es_EC" />
+    <meta property="og:site_name" content="EPIC Rides Ecuador" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/images/hero_andes_ride.jpg" />
+
+    <!-- Local SEO & Geotagging: Quito, Ecuador -->
+    <meta name="geo.region" content="EC-P" />
+    <meta name="geo.placename" content="Quito, Pichincha, Ecuador" />
+    <meta name="geo.position" content="-0.180653;-78.467838" />
+    <meta name="ICBM" content="-0.180653, -78.467838" />
+
+    <!-- Schema.org Structured Data (JSON-LD) for Local Business & Sports Activity -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "EPIC Rides Ecuador",
+        "description": "Transporte de bicicletas de alta gama, paseos épicos y logística integral de ciclismo en Ecuador.",
+        "url": "https://epicrides.ec",
+        "image": "https://epicrides.ec/images/hero_andes_ride.jpg",
+        "telephone": "+593999999999",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Quito",
+          "addressRegion": "Pichincha",
+          "addressCountry": "EC"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -0.180653,
+          "longitude": -78.467838
+        },
+        "areaServed": [
+          "Quito",
+          "Cumbayá",
+          "Pichincha",
+          "Cotopaxi",
+          "Chimborazo",
+          "Ecuador"
+        ],
+        "knowsAbout": [
+          "Ciclismo de Ruta",
+          "Mountain Bike (MTB)",
+          "Transporte de Bicicletas",
+          "Paseos Guiados en Bicicleta",
+          "Logística Deportiva"
+        ]
+      }
+    </script>
   </head>
   <body class="bg-white text-epic-blue font-sans antialiased selection:bg-epic-gold selection:text-epic-blue">
     <slot />
