@@ -1,10 +1,11 @@
 ---
 // Testimonials.astro
-import { Image, getImage } from 'astro:assets';
-import bgImg from '../assets/hero_andes_ride.jpg';
+import { getImage } from 'astro:assets';
+import bgParallax from '../assets/testimonios/fondo-parallax-andes.jpg';
 import poster1 from '../assets/comunidad/galeria-chimbo-llegada.jpg';
 import poster2 from '../assets/hero/hero-andes-peloton.jpg';
 
+const bgParallaxOpt = await getImage({ src: bgParallax, width: 1920, format: 'webp', quality: 75 });
 const poster1Opt = await getImage({ src: poster1, width: 480, format: 'webp', quality: 70 });
 const poster2Opt = await getImage({ src: poster2, width: 480, format: 'webp', quality: 70 });
 
@@ -32,18 +33,12 @@ const testimonialVideos = [
   id="sec-testimoniales" 
   class="relative py-20 lg:py-28 text-white overflow-hidden border-b border-white/10 bg-epic-blue"
 >
-  <!-- Background Image with Ambient Effect (Optimized with Astro Assets) -->
-  <div class="absolute inset-0 z-0">
-    <Image 
-      src={bgImg} 
-      alt="Fondo Testimoniales Andes EPIC Rides" 
-      class="w-full h-full object-cover object-center filter brightness-40 contrast-110"
-      widths={[480, 768, 1200, 1600]}
-      sizes="100vw"
-      quality={70}
-      format="webp"
-    />
-    <div class="absolute inset-0 bg-epic-blue/80 backdrop-blur-[1px]"></div>
+  <!-- Background Image with Parallax Effect -->
+  <div 
+    class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat testimonials-parallax"
+    style={`background-image: url('${bgParallaxOpt.src}');`}
+  >
+    <div class="absolute inset-0 bg-epic-blue/80 backdrop-blur-[0.5px]"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-epic-blue via-transparent to-epic-blue pointer-events-none"></div>
   </div>
 
@@ -110,3 +105,20 @@ const testimonialVideos = [
 
   </div>
 </section>
+
+<style>
+  .testimonials-parallax {
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    @media (max-width: 768px) {
+      .testimonials-parallax {
+        background-attachment: scroll;
+      }
+    }
+  }
+</style>

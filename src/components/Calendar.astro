@@ -1,51 +1,81 @@
 ---
 // Calendar.astro
 import { Image, getImage } from 'astro:assets';
-import rutaJul from '../assets/paseos/sigchos-quilotoa.jpg';
-import rutaAgo from '../assets/paseos/reto-0-5000-chimborazo.jpg';
-import rutaSep from '../assets/paseos/alto-de-apagua.jpg';
-import rutaOct from '../assets/paseos/puertos-del-carchi.jpg';
-import rutaNov from '../assets/../../public/images/PAGINA WEB/PASEOS/A LA PLAYA EN BICI/playa-bici1.jpg';
-import rutaDic from '../assets/paseos/cierre-de-temporada.jpg';
+
+// Sigchos - Quilotoa
+import sigchos1 from '../assets/paseos/sigchos-1.jpg';
+import sigchos2 from '../assets/paseos/sigchos-2.jpg';
+import sigchos3 from '../assets/paseos/sigchos-3.jpg';
+import sigchos4 from '../assets/paseos/sigchos-4.jpg';
+
+// Chimborazo (0 a 5000)
+import chimborazo1 from '../assets/paseos/chimborazo-1.jpg';
+import chimborazo2 from '../assets/paseos/chimborazo-2.jpg';
+import chimborazo3 from '../assets/paseos/chimborazo-3.jpg';
+import chimborazo4 from '../assets/paseos/chimborazo-4.jpg';
+
+// Alto de Apagua
+import apagua1 from '../assets/paseos/apagua-1.jpg';
+import apagua2 from '../assets/paseos/apagua-2.jpg';
+import apagua3 from '../assets/paseos/apagua-3.jpg';
+import apagua4 from '../assets/paseos/apagua-4.jpg';
+
+// Los Puertos del Carchi
+import carchi1 from '../assets/paseos/carchi-1.jpg';
+import carchi2 from '../assets/paseos/carchi-2.jpg';
+import carchi3 from '../assets/paseos/carchi-3.jpg';
+import carchi4 from '../assets/paseos/carchi-4.jpg';
+
+// A la Playa en Bici
+import playa1 from '../assets/paseos/playa-1.jpg';
+import playa2 from '../assets/paseos/playa-2.jpg';
+import playa3 from '../assets/paseos/playa-3.jpg';
+import playa4 from '../assets/paseos/playa-4.jpg';
+import playa5 from '../assets/paseos/playa-5.jpg';
+
+// Quisapincha
+import quisapincha1 from '../assets/paseos/quisapincha-1.jpg';
+import quisapincha2 from '../assets/paseos/quisapincha-2.jpg';
+import quisapincha3 from '../assets/paseos/quisapincha-3.jpg';
 
 // Pre-optimize high-resolution images for the interactive full-screen modal
-const optJul = await getImage({ src: rutaJul, width: 1200, format: 'webp', quality: 80 });
-const optAgo = await getImage({ src: rutaAgo, width: 1200, format: 'webp', quality: 80 });
-const optSep = await getImage({ src: rutaSep, width: 1200, format: 'webp', quality: 80 });
-const optOct = await getImage({ src: rutaOct, width: 1200, format: 'webp', quality: 80 });
-const optNov = await getImage({ src: rutaNov, width: 1200, format: 'webp', quality: 80 });
-const optDic = await getImage({ src: rutaDic, width: 1200, format: 'webp', quality: 80 });
+const optJul = await getImage({ src: sigchos1, width: 1200, format: 'webp', quality: 80 });
+const optAgo = await getImage({ src: chimborazo1, width: 1200, format: 'webp', quality: 80 });
+const optSep = await getImage({ src: apagua1, width: 1200, format: 'webp', quality: 80 });
+const optOct = await getImage({ src: carchi1, width: 1200, format: 'webp', quality: 80 });
+const optNov = await getImage({ src: playa1, width: 1200, format: 'webp', quality: 80 });
+const optDic = await getImage({ src: quisapincha1, width: 1200, format: 'webp', quality: 80 });
 
 const calendarGallery = [
   {
     src: optJul.src,
-    title: "Sigchos – Quilotoa · SÁB 11 JUL 2026",
+    title: "Sigchos – Quilotoa",
     desc: "Aventura por el 'Jardín Colgante de los Andes' en Cotopaxi y llegada a la Laguna del Quilotoa. 94 km con +2.400 m de desnivel positivo."
   },
   {
     src: optAgo.src,
-    title: "Reto 0 – 5.000m Chimborazo · SÁB 15 AGO 2026",
+    title: "Reto 0 – 5.000m Chimborazo",
     desc: "Desde Babahoyo a nivel del mar hasta el Refugio del Volcán Chimborazo. 155 km y +5.980 m de ascenso acumulado en 2 días."
   },
   {
     src: optSep.src,
-    title: "Alto de Apagua · DOM 13 SEP 2026",
+    title: "Alto de Apagua",
     desc: "4ta subida más dura del mundo según PJAMM Cycling (26.2 FIETS). 55 km continuos de escalada al 6.5% promedio coronando a 3.900 msnm."
   },
   {
     src: optOct.src,
-    title: "Los Puertos del Carchi · SÁB 17 OCT 2026",
-    desc: "Tierra de campeones. Ascensos míticos por los páramos de frailejones y puertos de alta montaña en 2 días épicos."
+    title: "Los Puertos del Carchi",
+    desc: "Una tierra. Cuatro puertos: El Juncal, Guagua Negro, La Estrellita y El Troje hasta La Casa de Richard Carapaz. 160K y +3.670 m de desnivel."
   },
   {
     src: optNov.src,
-    title: "A la Playa en Bici · VIE 20 – DOM 22 NOV 2026",
-    desc: "Travesía inolvidable de 3 etapas descendiendo desde las cumbres de los Andes hasta las playas del Océano Pacífico."
+    title: "A la Playa en Bici",
+    desc: "Travesía inolvidable de 2 días desde Quito descendiendo hacia Pedernales hasta llegar al mar. 280 km y +3.300 m de desnivel."
   },
   {
     src: optDic.src,
-    title: "Cierre Épico de Temporada · DIC 2026",
-    desc: "Gran rodada y fiesta de fin de año con ruta panorámica, brindis en la cima, entrega de reconocimientos y sorteos oficiales."
+    title: "Quisapincha",
+    desc: "Desde Quito pasando por el Chasqui, Latacunga y Ambato hasta la subida emblemática a Quisapincha. 150 km y +2.400 m de desnivel."
   }
 ];
 
@@ -60,7 +90,7 @@ const events = [
     alt: "+2.400 m",
     level: "Avanzado",
     blurb: `<p class="font-semibold italic text-epic-blue/90">Hay rutas que se recorren. Y hay rutas que se sienten.</p><p><strong>Sigchos – Quilotoa</strong> es una experiencia diseñada para descubrir una cara diferente de los Andes ecuatorianos: caminos poco transitados, paisajes que parecen no tener fin y curvas que invitan a perderse para encontrarse con algo extraordinario.</p><p>La aventura nos lleva por los impresionantes paisajes de Cotopaxi, atravesando <strong>Sigchos, conocido como el “Jardín Colgante de los Andes”</strong>. Un territorio de relieve quebrado y montañoso, donde los microclimas, la riqueza natural y la grandeza de la cordillera transforman cada kilómetro en una nueva postal.</p><p>El camino continúa entre curvas de herradura y paisajes imponentes, hasta enfrentarnos a un puerto de montaña que pondrá a prueba nuestras piernas y nuestra determinación. La recompensa final: conquistar la altura y llegar a uno de los paisajes más extraordinarios de Ecuador, la <strong>Laguna del Quilotoa</strong>.</p>`,
-    image: rutaJul,
+    images: [sigchos1, sigchos2, sigchos3, sigchos4],
     pos: "object-[center_80%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
@@ -74,7 +104,7 @@ const events = [
     alt: "+5.980 m",
     level: "Élite",
     blurb: `<p><strong class="text-epic-blue block mb-1">DÍA 1 · Babahoyo → Guaranda (104 km · 3.500+ m de desnivel)</strong>Partimos desde Babahoyo, a nivel del mar, en un recorrido inicialmente plano con dirección a Balzapamba. Aquí comienza uno de los grandes protagonistas de esta aventura: <strong>El Torneado</strong>, un desafiante puerto de montaña de 20 km y 2.000+ metros de desnivel, que marca la transición de la Costa hacia la Sierra. Una ascensión espectacular que nos lleva por diferentes ecosistemas y pisos climáticos hasta llegar a Guaranda, donde finaliza la primera jornada.</p><p><strong class="text-epic-blue block mb-1">DÍA 2 · Guaranda → Refugio del Chimborazo (51 km · 2.480+ m de desnivel)</strong>La segunda jornada nos lleva desde Guaranda hacia El Arenal, atravesando los paisajes de altura de los Andes hasta alcanzar el gran objetivo de esta experiencia: el <strong>Refugio del Volcán Chimborazo</strong>. Son menos kilómetros, pero cada metro cuenta para conquistar un destino que representa mucho más que una llegada: la recompensa de haber pedaleado desde el nivel del mar hasta uno de los puntos más emblemáticos de Ecuador.</p><p class="font-semibold text-epic-blue"><strong>Dos días. 155 kilómetros. 5.980+ metros de desnivel.</strong> Una experiencia extraordinaria. Un desafío que combina esfuerzo, paisajes y aventura en una de las rutas más espectaculares que puedes vivir sobre una bicicleta.</p>`,
-    image: rutaAgo,
+    images: [chimborazo1, chimborazo2, chimborazo3, chimborazo4],
     pos: "object-[center_45%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
@@ -88,7 +118,7 @@ const events = [
     alt: "+3.800 m",
     level: "Élite",
     blurb: `<p><strong class="text-epic-blue">Considerada la cuarta subida más fuerte del mundo según PJAMM Cycling.</strong><br />Registrada en las páginas internacionales especializadas en ciclismo con <strong>26.2 FIETS</strong> (índice de dureza de una cumbre), esto convierte a Apagua en la 4ta subida más difícil del mundo, con <strong>55 kilómetros ininterrumpidos de escalada a un promedio de 6.5%</strong>. Comparada con el Alto de Letras en Colombia, que tiene 15.4 FIETS, 4% de promedio y está en el puesto 61 de dificultad a nivel mundial.</p><p>Una aventura que conecta la Costa con la Sierra y te lleva a desafiar tus propios límites. El recorrido comienza en <strong>La Maná, a 100 msnm, y asciende hasta Apagua, a 3.900 msnm</strong>. Son 68 kilómetros y más de 3.800 metros de desnivel acumulado, a través de un desafiante puerto de montaña que atraviesa distintos ecosistemas y pisos climáticos, transformando cada kilómetro en una experiencia única.</p><p class="font-semibold text-epic-blue"><strong>Alto de Apagua es mucho más que una ruta.</strong> Es un reto. Una experiencia de altura. Un recorrido que exige preparación, determinación y pasión por la bicicleta. Un desafío que todo ciclista debería vivir al menos una vez.</p>`,
-    image: rutaSep,
+    images: [apagua1, apagua2, apagua3, apagua4],
     pos: "object-[center_36%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
@@ -98,25 +128,25 @@ const events = [
     dateBadge: "SÁB 17 OCT 2026",
     tag: "2 DÍAS ÉPICOS",
     name: "Los Puertos del Carchi",
-    km: "115 km",
-    alt: "+2.700 m",
-    level: "Avanzado",
-    blurb: `<p><strong class="text-epic-blue">Tierra de campeones.</strong> Ascensos míticos por los páramos de frailejones del Carchi, puertos de montaña de alta exigencia y la calidez del ciclismo norteño.</p>`,
-    image: rutaOct,
+    km: "160 km",
+    alt: "+3.670 m",
+    level: "Medio – Avanzado",
+    blurb: `<p class="font-semibold italic text-epic-blue/90">Una tierra. Cuatro puertos. Una experiencia que queda.</p><p>Pedalea por los caminos que han visto crecer a grandes leyendas del ciclismo ecuatoriano. Durante dos días conquistaremos <strong>El Juncal, Guagua Negro, La Estrellita y El Troje</strong>, recorriendo paisajes que combinan montaña, naturaleza y la esencia más auténtica del Carchi.</p><p><strong>160K de ruta · +3.670 m de desnivel.</strong> Dos días para desafiarte, disfrutar el camino y vivir el ciclismo en su máxima expresión.</p><p>El recorrido culmina en <strong>La Casa de Richard Carapaz</strong>, cerrando una experiencia que conecta territorio, historia y pasión por la bicicleta.</p><p class="font-semibold text-epic-blue">DOS DÍAS. CUATRO PUERTOS. UNA EXPERIENCIA ÉPICA.</p>`,
+    images: [carchi1, carchi2, carchi3, carchi4],
     pos: "object-[center_65%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
   {
     monthKey: "NOV",
     label: "NOVIEMBRE",
-    dateBadge: "VIE 20 – DOM 22 NOV 2026",
-    tag: "3 DÍAS · ANDES A LA COSTA",
+    dateBadge: "SÁB 21 – DOM 22 NOV 2026",
+    tag: "2 DÍAS · EL MAR COMO DESTINO",
     name: "A la Playa en Bici",
-    km: "265 km",
-    alt: "+2.900 m",
+    km: "280 km",
+    alt: "+3.300 m",
     level: "Avanzado",
-    blurb: `<p><strong class="text-epic-blue">Tres etapas inolvidables</strong> partiendo de la cordillera andina y descendiendo hasta las playas del Pacífico. Logística integral con furgoneta, hotelería y retorno.</p>`,
-    image: rutaNov,
+    blurb: `<p class="font-semibold italic text-epic-blue/90">Dos días. Una ruta. El mar como destino.</p><p>Una experiencia que combina bicicleta, naturaleza y libertad, conectando la Sierra con la Costa a través de una ruta diseñada para disfrutar cada kilómetro.</p><p>Partimos desde <strong>Quito y descendemos hacia Pedernales</strong>, atravesando paisajes que cambian a cada pedalada. Dos días para disfrutar de la ruta, compartir con otros ciclistas y vivir esa sensación única de llegar al mar después de haberlo conquistado en bicicleta.</p><p><strong>280K · +3.300 m de desnivel.</strong> Todo está pensado para que tú solo te concentres en disfrutar: acompañamiento, abastecimiento y seguridad durante el recorrido.</p><p>Una experiencia para pedalear, desconectar y celebrar el camino.</p><p class="font-semibold text-epic-blue">DE LA SIERRA A LA COSTA. EN BICICLETA.</p>`,
+    images: [playa1, playa2, playa3, playa4, playa5],
     pos: "object-[center_30%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   },
@@ -124,13 +154,13 @@ const events = [
     monthKey: "DIC",
     label: "DICIEMBRE",
     dateBadge: "FECHA POR CONFIRMAR",
-    tag: "EDICIÓN DE CIERRE 2026",
-    name: "Cierre Épico de Temporada",
-    km: "85 km",
-    alt: "+2.100 m",
-    level: "Todos los niveles",
-    blurb: `<p><strong class="text-epic-blue">Gran fiesta y rodada de fin de año</strong> con ruta festiva, brindis en la cima, entrega de reconocimientos de la comunidad EPIC Rides y sorteos oficiales.</p>`,
-    image: rutaDic,
+    tag: "RUTA ANDINA",
+    name: "Quisapincha",
+    km: "150 km",
+    alt: "+2.400 m",
+    level: "Medio",
+    blurb: `<p class="font-semibold italic text-epic-blue/90">Una ruta que conecta la ciudad, la montaña y la esencia de los Andes.</p><p>Descubre <strong>Quisapincha</strong> sobre dos ruedas, en una experiencia que combina desafío, cultura y paisajes únicos. Partimos desde Quito y atravesamos el Chasqui, continuamos hacia Latacunga y Ambato, hasta afrontar la subida emblemática que nos llevará a la comunidad de Quisapincha.</p><p>A lo largo de <strong>150 kilómetros y +2.400 metros de desnivel positivo</strong>, esta ruta de nivel medio nos invita a disfrutar cada tramo a nuestro propio ritmo, mientras atravesamos diferentes paisajes y descubrimos la riqueza de los Andes.</p><p>Una experiencia cuidadosamente planificada, con respaldo, seguridad y logística en cada etapa, para que solo tengas que concentrarte en pedalear, disfrutar del camino y compartir la pasión por el ciclismo.</p><p class="font-semibold text-epic-blue">Porque algunas rutas no se miden solo en kilómetros, sino en todo lo que descubres mientras las recorres.</p>`,
+    images: [quisapincha1, quisapincha2, quisapincha3],
     pos: "object-[center_60%]",
     gpx: "/routes/sigchos-quilotoa.gpx"
   }
@@ -150,16 +180,15 @@ const events = [
       </p>
     </div>
 
-    <!-- Monthly Tabs Navigation -->
-    <div class="flex overflow-x-auto pb-2 mb-8 border-b-2 border-epic-blue/10 gap-1.5 sm:gap-3 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
+    <!-- Paseos Tabs Navigation -->
+    <div class="flex overflow-x-auto pb-2 mb-8 border-b-2 border-epic-blue/10 gap-1.5 sm:gap-2 lg:gap-2.5 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
       {events.map((ev, index) => (
         <button 
           type="button"
-          class={`calendar-tab shrink-0 md:flex-1 py-2.5 sm:py-4 px-4 sm:px-2 text-center font-extrabold text-xs sm:text-base tracking-wider transition-all duration-200 border-0 border-b-4 -mb-[2px] cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 active:outline-none select-none whitespace-nowrap ${index === 0 ? 'border-b-epic-gold text-epic-blue bg-white/70 rounded-t-xl' : 'border-b-transparent text-epic-text-muted hover:text-epic-blue'}`}
+          class={`calendar-tab shrink-0 lg:flex-1 py-3 sm:py-3.5 px-3.5 sm:px-4 lg:px-2 text-center font-extrabold text-xs xl:text-sm tracking-wide transition-all duration-200 border-0 border-b-4 -mb-[2px] cursor-pointer outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 active:outline-none select-none whitespace-nowrap ${index === 0 ? 'border-b-epic-gold text-epic-blue bg-white/70 rounded-t-xl' : 'border-b-transparent text-epic-text-muted hover:text-epic-blue'}`}
           data-tab={index}
         >
-          <span class="block font-mono text-[10px] sm:text-xs opacity-60 uppercase">{ev.monthKey}</span>
-          <span class="font-bold text-xs sm:text-sm">{ev.label}</span>
+          <span>{ev.name}</span>
         </button>
       ))}
     </div>
@@ -171,37 +200,89 @@ const events = [
           class={`calendar-event-card grid grid-cols-1 lg:grid-cols-12 transition-all duration-300 ${index === 0 ? 'grid' : 'hidden'}`}
           data-event-index={index}
         >
-          <!-- Full-Bleed Grand Photo Column (Left 6/12) -->
+          <!-- Full-Bleed Grand Photo Column with Crossfade Transition & Multiple Images (Left 6/12) -->
           <div 
-            role="button"
-            tabindex="0"
-            onclick={`window.openCalendarImageModal(${index})`}
-            onkeydown={`if(event.key==='Enter'||event.key===' '){event.preventDefault();window.openCalendarImageModal(${index});}`}
-            class="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] lg:min-h-[460px] bg-neutral-900 overflow-hidden group cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-epic-gold"
-            aria-label={`Ver fotografía oficial ampliada de ${ev.name}`}
+            class="calendar-slider-container lg:col-span-6 relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px] bg-epic-gray-bg overflow-hidden group select-none"
+            data-event-index={index}
           >
-            <Image 
-              src={ev.image} 
-              alt={ev.name} 
-              class={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${ev.pos || 'object-center'}`}
-              widths={[480, 640, 800]}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              quality={75}
-              format="webp"
-              loading={index === 0 ? "eager" : "lazy"}
-            />
-
-            <!-- Top Date Badge -->
-            <div class="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
-              <span class="inline-flex items-center bg-epic-gold text-epic-blue font-mono font-black text-xs sm:text-sm px-3.5 py-1.5 rounded-full uppercase shadow-lg">
-                {ev.dateBadge}
-              </span>
+            <!-- Images Slides / Crossfade Layers -->
+            <div class="absolute inset-0 w-full h-full">
+              {ev.images.map((img, imgIdx) => (
+                <div 
+                  class={`calendar-slide absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out cursor-pointer ${imgIdx === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'}`}
+                  data-slide-index={imgIdx}
+                  onclick={`window.openCalendarImageModal(${index})`}
+                  role="button"
+                  tabindex="0"
+                  aria-label={`Ver fotografía oficial ampliada de ${ev.name}`}
+                >
+                  <Image 
+                    src={img} 
+                    alt={`${ev.name} - Foto ${imgIdx + 1}`} 
+                    class={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${ev.pos || 'object-center'}`}
+                    widths={[480, 640, 800]}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    quality={75}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+              ))}
             </div>
 
-            <!-- Subtle Magnifier on Hover Only (Hidden by default, gentle opacity on hover) -->
-            <div class="absolute inset-0 flex items-center justify-center p-4 opacity-0 group-hover:opacity-75 transition-opacity duration-300 pointer-events-none z-10">
-              <div class="w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
-                <svg class="w-5 h-5 text-epic-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+
+            <!-- Photo Counter Badge (e.g. 1 / 5) -->
+            {ev.images.length > 1 && (
+              <div class="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 pointer-events-none">
+                <span class="slide-counter inline-flex items-center bg-black/60 backdrop-blur-md text-white font-mono font-bold text-[11px] sm:text-xs px-2.5 py-1 rounded-full shadow-lg border border-white/10">
+                  1 / {ev.images.length}
+                </span>
+              </div>
+            )}
+
+            <!-- Navigation Chevrons (Prev / Next) -->
+            {ev.images.length > 1 && (
+              <div class="absolute inset-x-2 sm:inset-x-3 top-1/2 -translate-y-1/2 flex items-center justify-between z-20 pointer-events-none">
+                <button 
+                  type="button"
+                  class="slide-prev-btn pointer-events-auto w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 shadow-lg opacity-0 group-hover:opacity-100 sm:opacity-60 sm:hover:opacity-100 transition-all transform hover:scale-110 cursor-pointer"
+                  aria-label="Foto anterior"
+                >
+                  <svg class="w-5 h-5 text-epic-gold" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button 
+                  type="button"
+                  class="slide-next-btn pointer-events-auto w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 shadow-lg opacity-0 group-hover:opacity-100 sm:opacity-60 sm:hover:opacity-100 transition-all transform hover:scale-110 cursor-pointer"
+                  aria-label="Siguiente foto"
+                >
+                  <svg class="w-5 h-5 text-epic-gold" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            )}
+
+            <!-- Bottom Dot Indicators -->
+            {ev.images.length > 1 && (
+              <div class="absolute bottom-4 inset-x-0 flex items-center justify-center gap-1.5 z-20">
+                {ev.images.map((_, dotIdx) => (
+                  <button 
+                    type="button"
+                    class={`slide-dot h-2 rounded-full transition-all duration-300 shadow cursor-pointer ${dotIdx === 0 ? 'bg-epic-gold w-6 sm:w-7' : 'bg-white/50 hover:bg-white/80 w-2 sm:w-2.5'}`}
+                    data-dot-index={dotIdx}
+                    aria-label={`Ir a foto ${dotIdx + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+
+            <!-- Subtle Magnifier on Hover -->
+            <div class="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-75 transition-opacity duration-300 pointer-events-none hidden sm:block">
+              <div class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center shadow-lg">
+                <svg class="w-4 h-4 text-epic-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
                 </svg>
               </div>
@@ -271,16 +352,160 @@ const events = [
 
   const tabs = document.querySelectorAll('.calendar-tab');
   const cards = document.querySelectorAll('.calendar-event-card');
+  const sliderContainers = document.querySelectorAll('.calendar-slider-container');
+  let currentActiveTab = 0;
+  let autoplayInterval = null;
+
+  function initSliders() {
+    sliderContainers.forEach((container) => {
+      const slides = container.querySelectorAll('.calendar-slide');
+      const dots = container.querySelectorAll('.slide-dot');
+      const counter = container.querySelector('.slide-counter');
+      const prevBtn = container.querySelector('.slide-prev-btn');
+      const nextBtn = container.querySelector('.slide-next-btn');
+      const total = slides.length;
+      if (total <= 1) return;
+
+      let currentSlide = 0;
+
+      function updateSlide(nextIndex) {
+        currentSlide = (nextIndex + total) % total;
+
+        slides.forEach((s, idx) => {
+          if (idx === currentSlide) {
+            s.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+            s.classList.add('opacity-100', 'z-10', 'pointer-events-auto');
+          } else {
+            s.classList.remove('opacity-100', 'z-10', 'pointer-events-auto');
+            s.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+          }
+        });
+
+        dots.forEach((d, idx) => {
+          if (idx === currentSlide) {
+            d.classList.remove('bg-white/50', 'w-2', 'sm:w-2.5');
+            d.classList.add('bg-epic-gold', 'w-6', 'sm:w-7');
+          } else {
+            d.classList.remove('bg-epic-gold', 'w-6', 'sm:w-7');
+            d.classList.add('bg-white/50', 'w-2', 'sm:w-2.5');
+          }
+        });
+
+        if (counter) {
+          counter.textContent = `${currentSlide + 1} / ${total}`;
+        }
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          updateSlide(currentSlide - 1);
+          resetAutoplay();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          updateSlide(currentSlide + 1);
+          resetAutoplay();
+        });
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const targetDot = Number(dot.getAttribute('data-dot-index'));
+          updateSlide(targetDot);
+          resetAutoplay();
+        });
+      });
+
+      // Touch swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) {
+            updateSlide(currentSlide + 1);
+          } else {
+            updateSlide(currentSlide - 1);
+          }
+          resetAutoplay();
+        }
+      }, { passive: true });
+
+      container._goToNextSlide = () => updateSlide(currentSlide + 1);
+    });
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayInterval = setInterval(() => {
+      const activeCard = cards[currentActiveTab];
+      if (activeCard) {
+        const activeSlider = activeCard.querySelector('.calendar-slider-container');
+        if (activeSlider && typeof activeSlider._goToNextSlide === 'function') {
+          activeSlider._goToNextSlide();
+        }
+      }
+    }, 3800);
+  }
+
+  function stopAutoplay() {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+  }
+
+  function resetAutoplay() {
+    startAutoplay();
+  }
+
+  sliderContainers.forEach(container => {
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+  });
+
+  initSliders();
+  startAutoplay();
+
+  // Pre-decode all calendar images so there is zero paint delay when toggling tabs
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => {
+      document.querySelectorAll('.calendar-slide img').forEach((img) => {
+        if (img instanceof HTMLImageElement && img.decode) {
+          img.decode().catch(() => {});
+        }
+      });
+    });
+  } else {
+    setTimeout(() => {
+      document.querySelectorAll('.calendar-slide img').forEach((img) => {
+        if (img instanceof HTMLImageElement && img.decode) {
+          img.decode().catch(() => {});
+        }
+      });
+    }, 100);
+  }
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const targetIndex = Number(tab.getAttribute('data-tab'));
+      currentActiveTab = targetIndex;
+      resetAutoplay();
 
       tabs.forEach((t, i) => {
         if (i === targetIndex) {
           t.classList.remove('border-b-transparent', 'text-epic-text-muted');
           t.classList.add('border-b-epic-gold', 'text-epic-blue', 'bg-white/70', 'rounded-t-xl');
-          t.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         } else {
           t.classList.remove('border-b-epic-gold', 'text-epic-blue', 'bg-white/70', 'rounded-t-xl');
           t.classList.add('border-b-transparent', 'text-epic-text-muted');
@@ -301,6 +526,17 @@ const events = [
 </script>
 
 <style>
+  /* Ocultar barra de desplazamiento / scrollbar */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none; /* IE y Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
   .calendar-tab {
     outline: none !important;
     box-shadow: none !important;
