@@ -4,8 +4,8 @@ import { Image } from 'astro:assets';
 import slide1 from '../assets/nosotros/caro-daniel-fundadores.jpg';
 import slide2 from '../assets/nosotros/caro-epic-van.jpg';
 import slide3 from '../assets/nosotros/peloton-van-soporte.jpg';
-import slide4 from '../../public/images/PAGINA WEB/DESCRIPCION GENERAL - QUIENES SOMOS/Daniel.jpg';
-import slide5 from '../../public/images/PAGINA WEB/DESCRIPCION GENERAL - QUIENES SOMOS/Caro-y-Daniel-3.jpg';
+import slide4 from '../assets/nosotros/daniel-guias.jpg';
+import slide5 from '../assets/nosotros/caro-daniel-campamento.jpg';
 
 const bannerSlides = [
   {
@@ -59,9 +59,11 @@ const bannerSlides = [
                 src={slide.img} 
                 alt={slide.label} 
                 class={`w-full h-full object-cover ${slide.pos || 'object-center'}`}
+                width={600}
+                height={480}
                 widths={[360, 480, 600]}
                 sizes="(max-width: 640px) 240px, (max-width: 1024px) 450px, 550px"
-                quality={62}
+                quality={55}
                 format="webp"
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"

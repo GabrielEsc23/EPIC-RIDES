@@ -255,8 +255,11 @@ const expandedItems = [
             <img 
               src={item.videoPoster} 
               alt={item.title} 
-              class={`w-full h-full object-cover ${item.filterClass || ''} group-hover:scale-105 transition-transform duration-500`} 
+              width="1200"
+              height="675"
               loading={item.isFeature ? "eager" : "lazy"} 
+              decoding="async"
+              class={`w-full h-full object-cover ${item.filterClass || ''} group-hover:scale-105 transition-transform duration-500`} 
             />
             <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/20 to-black/25"></div>
             
@@ -289,10 +292,12 @@ const expandedItems = [
             <Image 
               src={item.photoSrc} 
               alt={item.title} 
+              width={650}
+              height={650}
               class={`w-full h-full object-cover ${item.photoPos || 'object-center'} ${item.filterClass || ''} group-hover:scale-110 transition-transform duration-500`}
               widths={[380, 640, 960, 1200]}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
-              quality={88}
+              quality={60}
               format="webp"
               loading="lazy"
             />
@@ -333,8 +338,11 @@ const expandedItems = [
             <img 
               src={item.videoPoster} 
               alt={item.title} 
-              class={`w-full h-full object-cover ${item.filterClass || ''} group-hover:scale-105 transition-transform duration-500`} 
+              width="1200"
+              height="675"
               loading="lazy" 
+              decoding="async"
+              class={`w-full h-full object-cover ${item.filterClass || ''} group-hover:scale-105 transition-transform duration-500`} 
             />
             <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/20 to-black/25"></div>
             
@@ -365,10 +373,12 @@ const expandedItems = [
             <Image 
               src={item.photoSrc} 
               alt={item.title} 
+              width={650}
+              height={650}
               class={`w-full h-full object-cover ${item.photoPos || 'object-center'} ${item.filterClass || ''} group-hover:scale-110 transition-transform duration-500`}
               widths={[380, 640, 960, 1200]}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
-              quality={88}
+              quality={60}
               format="webp"
               loading="lazy"
             />

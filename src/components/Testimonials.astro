@@ -122,7 +122,10 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
             <img 
               src={t.poster} 
               alt={t.title}
+              width="1280"
+              height="720"
               loading="lazy"
+              decoding="async"
               class="w-full h-full object-cover transition-transform duration-700 group-hover/video:scale-105 pointer-events-none"
             />
 

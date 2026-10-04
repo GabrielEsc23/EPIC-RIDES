@@ -39,12 +39,12 @@ import quisapincha2 from '../assets/paseos/quisapincha-2.jpg';
 import quisapincha3 from '../assets/paseos/quisapincha-3.jpg';
 
 // Pre-optimize high-resolution images for the interactive full-screen modal
-const optJul = await getImage({ src: sigchos1, width: 1200, format: 'webp', quality: 80 });
-const optAgo = await getImage({ src: chimborazo1, width: 1200, format: 'webp', quality: 80 });
-const optSep = await getImage({ src: apagua1, width: 1200, format: 'webp', quality: 80 });
-const optOct = await getImage({ src: carchi1, width: 1200, format: 'webp', quality: 80 });
-const optNov = await getImage({ src: playa1, width: 1200, format: 'webp', quality: 80 });
-const optDic = await getImage({ src: quisapincha1, width: 1200, format: 'webp', quality: 80 });
+const optJul = await getImage({ src: sigchos1, width: 1200, format: 'webp', quality: 70 });
+const optAgo = await getImage({ src: chimborazo1, width: 1200, format: 'webp', quality: 70 });
+const optSep = await getImage({ src: apagua1, width: 1200, format: 'webp', quality: 70 });
+const optOct = await getImage({ src: carchi1, width: 1200, format: 'webp', quality: 70 });
+const optNov = await getImage({ src: playa1, width: 1200, format: 'webp', quality: 70 });
+const optDic = await getImage({ src: quisapincha1, width: 1200, format: 'webp', quality: 70 });
 
 const calendarGallery = [
   {
@@ -219,10 +219,12 @@ const events = [
                   <Image 
                     src={img} 
                     alt={`${ev.name} - Foto ${imgIdx + 1}`} 
+                    width={600}
+                    height={450}
                     class={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${ev.pos || 'object-center'}`}
                     widths={[360, 500, 720]}
                     sizes="(max-width: 640px) 250px, (max-width: 1024px) 500px, 600px"
-                    quality={62}
+                    quality={55}
                     format="webp"
                     loading={imgIdx === 0 ? "eager" : "lazy"}
                     decoding="async"

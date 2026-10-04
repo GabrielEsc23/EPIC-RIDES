@@ -91,9 +91,11 @@ const generalSlides = [
                 src={slide.img} 
                 alt={slide.label} 
                 class={`w-full h-full object-cover ${slide.pos || 'object-center'}`}
+                width={600}
+                height={480}
                 widths={[360, 480, 600]}
                 sizes="(max-width: 640px) 240px, (max-width: 1024px) 450px, 550px"
-                quality={62}
+                quality={55}
                 format="webp"
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"

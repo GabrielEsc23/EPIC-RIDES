@@ -66,10 +66,12 @@ const services = [
             <Image 
               src={item.image} 
               alt={item.title} 
+              width={600}
+              height={400}
               class={`w-full h-full object-cover ${item.pos || 'object-center'} transform group-hover:scale-110 transition-transform duration-700 ease-out`}
               widths={[360, 480, 600]}
               sizes="(max-width: 768px) 240px, 400px"
-              quality={62}
+              quality={55}
               format="webp"
               loading="lazy"
               decoding="async"
