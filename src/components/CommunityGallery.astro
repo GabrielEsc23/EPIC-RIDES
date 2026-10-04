@@ -22,9 +22,10 @@ const videos = [
   {
     id: "vid-3",
     url: "https://res.cloudinary.com/dlya09ut7/video/upload/q_auto:best,f_auto/v1791143323/videoGaleria_3_u4a3r3.mp4",
-    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_8,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143323/videoGaleria_3_u4a3r3.jpg",
+    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_8,w_1200,c_fill,q_auto:best,f_auto,e_improve,e_sharpen:90/v1791143323/videoGaleria_3_u4a3r3.jpg",
     title: "Ritmo y Descenso en Carretera",
-    subtitle: "Descenso y Asistencia"
+    subtitle: "Descenso y Asistencia",
+    filterClass: "contrast-[1.08] brightness-[1.04] saturate-[1.12]"
   },
   {
     id: "vid-4",
@@ -110,7 +111,8 @@ const primaryItems = [
     videoUrl: videos[2].url,
     videoPoster: videos[2].poster,
     title: videos[2].title,
-    subtitle: videos[2].subtitle
+    subtitle: videos[2].subtitle,
+    filterClass: videos[2].filterClass
   },
   {
     type: 'photo',
@@ -253,8 +255,8 @@ const expandedItems = [
             <img 
               src={item.videoPoster} 
               alt={item.title} 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-              loading="lazy" 
+              class={`w-full h-full object-cover ${item.filterClass || ''} group-hover:scale-105 transition-transform duration-500`} 
+              loading={item.isFeature ? "eager" : "lazy"} 
             />
             <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/20 to-black/25"></div>
             
@@ -331,7 +333,7 @@ const expandedItems = [
             <img 
               src={item.videoPoster} 
               alt={item.title} 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+              class={`w-full h-full object-cover ${item.filterClass || ''} group-hover:scale-105 transition-transform duration-500`} 
               loading="lazy" 
             />
             <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/20 to-black/25"></div>
