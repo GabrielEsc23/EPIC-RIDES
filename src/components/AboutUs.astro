@@ -85,10 +85,13 @@ const bannerSlides = [
         <div class="absolute bottom-5 left-6 right-6 z-20 flex gap-2">
           {bannerSlides.map((_, index) => (
             <button 
-              class={`slide-indicator-dot flex-1 h-1.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-epic-gold' : 'bg-white/30'}`}
+              type="button"
+              class="slide-indicator-dot flex-1 py-3 group cursor-pointer focus:outline-none"
               data-target={index}
               aria-label={`Ir a foto ${index + 1}`}
-            ></button>
+            >
+              <span class={`slide-bar block h-1.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-epic-gold' : 'bg-white/30 group-hover:bg-white/60'}`}></span>
+            </button>
           ))}
         </div>
 
@@ -148,12 +151,13 @@ const bannerSlides = [
     });
 
     dots.forEach((d, i) => {
+      const bar = d.querySelector('.slide-bar') || d;
       if (i === index) {
-        d.classList.remove('bg-white/30');
-        d.classList.add('bg-epic-gold');
+        bar.classList.remove('bg-white/30');
+        bar.classList.add('bg-epic-gold');
       } else {
-        d.classList.remove('bg-epic-gold');
-        d.classList.add('bg-white/30');
+        bar.classList.remove('bg-epic-gold');
+        bar.classList.add('bg-white/30');
       }
     });
     currentSlide = index;
@@ -179,9 +183,12 @@ const bannerSlides = [
 
   dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
-      const targetIndex = Number((e.target as HTMLElement).getAttribute('data-target'));
-      showSlide(targetIndex);
-      resetAutoplay();
+      const btn = (e.currentTarget as HTMLElement) || (e.target as HTMLElement);
+      const targetIndex = Number(btn.getAttribute('data-target') || btn.closest('[data-target]')?.getAttribute('data-target'));
+      if (!isNaN(targetIndex)) {
+        showSlide(targetIndex);
+        resetAutoplay();
+      }
     });
   });
 

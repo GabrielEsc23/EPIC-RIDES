@@ -119,10 +119,12 @@ const generalSlides = [
           {generalSlides.map((_, index) => (
             <button 
               type="button"
-              class={`general-indicator-dot flex-1 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${index === 0 ? 'bg-epic-gold' : 'bg-white/30'}`}
+              class="general-indicator-dot flex-1 py-3 group cursor-pointer focus:outline-none"
               data-target={index}
               aria-label={`Ir a foto ${index + 1}`}
-            ></button>
+            >
+              <span class={`general-bar block h-1.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-epic-gold' : 'bg-white/30 group-hover:bg-white/60'}`}></span>
+            </button>
           ))}
         </div>
 
@@ -151,12 +153,13 @@ const generalSlides = [
     });
 
     generalDots.forEach((d, i) => {
+      const bar = d.querySelector('.general-bar') || d;
       if (i === index) {
-        d.classList.remove('bg-white/30');
-        d.classList.add('bg-epic-gold');
+        bar.classList.remove('bg-white/30');
+        bar.classList.add('bg-epic-gold');
       } else {
-        d.classList.remove('bg-epic-gold');
-        d.classList.add('bg-white/30');
+        bar.classList.remove('bg-epic-gold');
+        bar.classList.add('bg-white/30');
       }
     });
     generalCurrentSlide = index;
@@ -168,9 +171,12 @@ const generalSlides = [
 
   generalDots.forEach(dot => {
     dot.addEventListener('click', (e) => {
-      const targetIndex = Number((e.target as HTMLElement).getAttribute('data-target'));
-      showGeneralSlide(targetIndex);
-      resetGeneralAutoplay();
+      const btn = (e.currentTarget as HTMLElement) || (e.target as HTMLElement);
+      const targetIndex = Number(btn.getAttribute('data-target') || btn.closest('[data-target]')?.getAttribute('data-target'));
+      if (!isNaN(targetIndex)) {
+        showGeneralSlide(targetIndex);
+        resetGeneralAutoplay();
+      }
     });
   });
 
