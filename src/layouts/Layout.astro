@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/montserrat';
+import montserratWoff2 from '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -20,6 +21,16 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Preload Critical Font to eliminate chained requests (Network Dependency Tree) -->
+    <link 
+      rel="preload" 
+      href={montserratWoff2} 
+      as="font" 
+      type="font/woff2" 
+      crossorigin="anonymous" 
+    />
+
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />

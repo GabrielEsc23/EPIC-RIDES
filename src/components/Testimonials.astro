@@ -203,16 +203,31 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
   const tStrip = document.getElementById('testimonials-strip') as HTMLElement | null;
   const prevBtn = document.getElementById('testimonials-prev-btn');
   const nextBtn = document.getElementById('testimonials-next-btn');
+  const secTestimonios = document.getElementById('sec-testimoniales');
 
   if (tStrip) {
-    // 3 copias idénticas para asegurar scroll continuo
-    const getSingleSetWidth = () => tStrip.scrollWidth / 3;
+    // 1. Dimensiones cacheadas en memoria para eliminar lecturas de layout forzadas (0 Forced Reflow)
+    let cachedSetWidth = 0;
+    let currentScrollX = 0;
+    let isPaused = false;
+    let isInteracting = false;
+    let isVisible = false;
+    let rafId: number | null = null;
+    let interactionTimeout: ReturnType<typeof setTimeout> | undefined;
+    const speed = 0.6; // Desplazamiento continuo suave
+
+    const updateMetrics = () => {
+      if (tStrip) {
+        cachedSetWidth = tStrip.scrollWidth / 3;
+      }
+    };
 
     // Centrar en el set 2 para permitir scroll tanto hacia adelante como hacia atrás
     const initPosition = () => {
-      const setWidth = getSingleSetWidth();
-      if (setWidth > 0) {
-        tStrip.scrollLeft = setWidth;
+      updateMetrics();
+      if (cachedSetWidth > 0 && tStrip) {
+        currentScrollX = cachedSetWidth;
+        tStrip.scrollLeft = currentScrollX;
       }
     };
 
@@ -223,41 +238,75 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
     }
     setTimeout(initPosition, 100);
 
-    let isPaused = false;
-    let isInteracting = false;
-    let interactionTimeout: ReturnType<typeof setTimeout> | undefined;
-    const speed = 0.6; // Desplazamiento continuo suave
-
     const pauseTemporarily = (ms = 3500) => {
       isInteracting = true;
       if (interactionTimeout) clearTimeout(interactionTimeout);
       interactionTimeout = setTimeout(() => {
         isInteracting = false;
+        if (tStrip) {
+          currentScrollX = tStrip.scrollLeft;
+        }
       }, ms);
     };
 
-    const normalizeInfiniteScroll = () => {
-      const setWidth = getSingleSetWidth();
-      if (!setWidth) return;
-
-      // Wrap de bucle infinito sin saltos visibles
-      if (tStrip.scrollLeft >= 2 * setWidth) {
-        tStrip.scrollLeft -= setWidth;
-      } else if (tStrip.scrollLeft <= setWidth * 0.25) {
-        tStrip.scrollLeft += setWidth;
+    // Wrap de bucle infinito controlado 100% en memoria
+    const checkInfiniteWrap = () => {
+      if (!cachedSetWidth) return;
+      if (currentScrollX >= 2 * cachedSetWidth) {
+        currentScrollX -= cachedSetWidth;
+        if (tStrip) tStrip.scrollLeft = currentScrollX;
+      } else if (currentScrollX <= cachedSetWidth * 0.25) {
+        currentScrollX += cachedSetWidth;
+        if (tStrip) tStrip.scrollLeft = currentScrollX;
       }
     };
 
-    // Animación continua con requestAnimationFrame (se detiene mientras el usuario interactúe)
+    // Animación continua con requestAnimationFrame (0 lecturas del DOM dentro del loop activo)
     const autoScroll = () => {
-      if (!isPaused && !isInteracting && tStrip) {
-        tStrip.scrollLeft += speed;
-        normalizeInfiniteScroll();
+      if (!isPaused && !isInteracting && isVisible && tStrip) {
+        currentScrollX += speed;
+        tStrip.scrollLeft = currentScrollX;
+        checkInfiniteWrap();
       }
-      requestAnimationFrame(autoScroll);
+      if (isVisible) {
+        rafId = requestAnimationFrame(autoScroll);
+      }
     };
 
-    requestAnimationFrame(autoScroll);
+    const startAnimation = () => {
+      if (!rafId && isVisible) {
+        rafId = requestAnimationFrame(autoScroll);
+      }
+    };
+
+    const stopAnimation = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    };
+
+    // IntersectionObserver: el carrusel SOLO corre si el usuario lo está viendo en pantalla
+    if (secTestimonios && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            updateMetrics();
+            if (currentScrollX === 0 && tStrip) {
+              currentScrollX = tStrip.scrollLeft;
+            }
+            startAnimation();
+          } else {
+            stopAnimation();
+          }
+        });
+      }, { rootMargin: '100px 0px' });
+      observer.observe(secTestimonios);
+    } else {
+      isVisible = true;
+      startAnimation();
+    }
 
     // Pausar al pasar el mouse por encima
     tStrip.addEventListener('mouseenter', () => {
@@ -266,19 +315,26 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
 
     tStrip.addEventListener('mouseleave', () => {
       isPaused = false;
+      if (tStrip) currentScrollX = tStrip.scrollLeft;
     });
 
     // Botones de navegación prev/next
     prevBtn?.addEventListener('click', () => {
       pauseTemporarily(4000);
       tStrip.scrollBy({ left: -420, behavior: 'smooth' });
-      setTimeout(normalizeInfiniteScroll, 400);
+      setTimeout(() => {
+        if (tStrip) currentScrollX = tStrip.scrollLeft;
+        checkInfiniteWrap();
+      }, 400);
     });
 
     nextBtn?.addEventListener('click', () => {
       pauseTemporarily(4000);
       tStrip.scrollBy({ left: 420, behavior: 'smooth' });
-      setTimeout(normalizeInfiniteScroll, 400);
+      setTimeout(() => {
+        if (tStrip) currentScrollX = tStrip.scrollLeft;
+        checkInfiniteWrap();
+      }, 400);
     });
 
     // Touch en móviles
@@ -289,13 +345,15 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
 
     tStrip.addEventListener('touchend', () => {
       isPaused = false;
-      normalizeInfiniteScroll();
+      if (tStrip) currentScrollX = tStrip.scrollLeft;
+      checkInfiniteWrap();
       pauseTemporarily(2500);
     }, { passive: true });
 
     tStrip.addEventListener('scroll', () => {
-      if (isInteracting) {
-        normalizeInfiniteScroll();
+      if (isInteracting && tStrip) {
+        currentScrollX = tStrip.scrollLeft;
+        checkInfiniteWrap();
       }
     }, { passive: true });
 
@@ -316,25 +374,32 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
     window.addEventListener('mouseup', () => {
       if (isDown) {
         isDown = false;
+        if (tStrip) currentScrollX = tStrip.scrollLeft;
         pauseTemporarily(2500);
       }
     });
 
     tStrip.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
+      if (!isDown || !tStrip) return;
       const x = e.pageX - tStrip.offsetLeft;
       const walk = (x - startX);
       draggedDistance = Math.abs(walk);
       if (draggedDistance > 5) {
         e.preventDefault();
-        tStrip.scrollLeft = scrollLeftStart - (walk * 1.3);
-        normalizeInfiniteScroll();
+        currentScrollX = scrollLeftStart - (walk * 1.3);
+        tStrip.scrollLeft = currentScrollX;
+        checkInfiniteWrap();
       }
     });
 
-    // Ajustar en redimensionamiento de pantalla
+    // Ajustar en redimensionamiento de pantalla (con debounce)
+    let resizeTimer: ReturnType<typeof setTimeout> | undefined;
     window.addEventListener('resize', () => {
-      normalizeInfiniteScroll();
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        updateMetrics();
+        checkInfiniteWrap();
+      }, 150);
     });
 
   }
