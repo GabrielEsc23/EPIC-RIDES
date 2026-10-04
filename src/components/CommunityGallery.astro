@@ -15,14 +15,14 @@ const videos = [
   {
     id: "vid-2",
     url: "https://res.cloudinary.com/dlya09ut7/video/upload/q_auto:best,f_auto/v1791143327/video_galeria_2_epcayp.mp4",
-    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143327/video_galeria_2_epcayp.jpg",
+    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_8,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143327/video_galeria_2_epcayp.jpg",
     title: "Pelotón y Vistas Andinas",
     subtitle: "Ruta de Altura"
   },
   {
     id: "vid-3",
     url: "https://res.cloudinary.com/dlya09ut7/video/upload/q_auto:best,f_auto/v1791143323/videoGaleria_3_u4a3r3.mp4",
-    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143323/videoGaleria_3_u4a3r3.jpg",
+    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_8,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143323/videoGaleria_3_u4a3r3.jpg",
     title: "Ritmo y Descenso en Carretera",
     subtitle: "Descenso y Asistencia"
   },
@@ -148,9 +148,10 @@ const expandedItems = [
     defaultSpan: 'col-span-1 md:col-span-2',
     photoSrc: gal7,
     photoIndex: 7,
-    title: 'Campamento y Fogata Bajo las Estrellas',
+    title: 'Fogata y Paisaje',
     subtitle: 'Campamento Andino',
-    photoPos: 'object-[center_35%]'
+    photoPos: 'object-[center_75%]',
+    filterClass: 'contrast-[1.08] brightness-[1.04] saturate-[1.12]'
   },
   {
     type: 'photo',
@@ -286,10 +287,10 @@ const expandedItems = [
             <Image 
               src={item.photoSrc} 
               alt={item.title} 
-              class={`w-full h-full object-cover ${item.photoPos || 'object-center'} group-hover:scale-110 transition-transform duration-500`}
-              widths={[280, 420, 640]}
-              sizes="(max-width: 768px) 180px, 400px"
-              quality={74}
+              class={`w-full h-full object-cover ${item.photoPos || 'object-center'} ${item.filterClass || ''} group-hover:scale-110 transition-transform duration-500`}
+              widths={[380, 640, 960, 1200]}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
+              quality={88}
               format="webp"
               loading="lazy"
             />
@@ -362,10 +363,10 @@ const expandedItems = [
             <Image 
               src={item.photoSrc} 
               alt={item.title} 
-              class={`w-full h-full object-cover ${item.photoPos || 'object-center'} group-hover:scale-110 transition-transform duration-500`}
-              widths={[280, 420, 640]}
-              sizes="(max-width: 768px) 180px, 400px"
-              quality={74}
+              class={`w-full h-full object-cover ${item.photoPos || 'object-center'} ${item.filterClass || ''} group-hover:scale-110 transition-transform duration-500`}
+              widths={[380, 640, 960, 1200]}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
+              quality={88}
               format="webp"
               loading="lazy"
             />
