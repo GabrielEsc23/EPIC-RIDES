@@ -92,8 +92,8 @@ const generalSlides = [
                 alt={slide.label} 
                 class={`w-full h-full object-cover ${slide.pos || 'object-center'}`}
                 widths={[360, 480, 600]}
-                sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) 50vw, 550px"
-                quality={68}
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 450px, 550px"
+                quality={62}
                 format="webp"
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
@@ -139,6 +139,16 @@ const generalSlides = [
   let generalAutoplayTimer: any;
 
   function showGeneralSlide(index: number) {
+    const activeImg = generalSlides[index]?.querySelector('img');
+    if (activeImg instanceof HTMLImageElement && activeImg.loading === 'lazy') {
+      activeImg.loading = 'eager';
+    }
+    const nextIdx = (index + 1) % totalGeneralSlides;
+    const nextImg = generalSlides[nextIdx]?.querySelector('img');
+    if (nextImg instanceof HTMLImageElement && nextImg.loading === 'lazy') {
+      nextImg.loading = 'eager';
+    }
+
     generalSlides.forEach((s, i) => {
       if (i === index) {
         s.classList.remove('opacity-0', 'z-0');
@@ -239,11 +249,5 @@ const generalSlides = [
     observer.observe(generalSection);
   } else {
     startGeneralAutoplay();
-  }
-
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(warmUpGeneralImages);
-  } else {
-    setTimeout(warmUpGeneralImages, 1800);
   }
 </script>

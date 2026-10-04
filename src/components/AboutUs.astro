@@ -60,8 +60,8 @@ const bannerSlides = [
                 alt={slide.label} 
                 class={`w-full h-full object-cover ${slide.pos || 'object-center'}`}
                 widths={[360, 480, 600]}
-                sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) 50vw, 550px"
-                quality={68}
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 450px, 550px"
+                quality={62}
                 format="webp"
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
@@ -133,6 +133,16 @@ const bannerSlides = [
   let autoplayTimer: any;
 
   function showSlide(index: number) {
+    const activeImg = slides[index]?.querySelector('img');
+    if (activeImg instanceof HTMLImageElement && activeImg.loading === 'lazy') {
+      activeImg.loading = 'eager';
+    }
+    const nextIdx = (index + 1) % totalSlides;
+    const nextImg = slides[nextIdx]?.querySelector('img');
+    if (nextImg instanceof HTMLImageElement && nextImg.loading === 'lazy') {
+      nextImg.loading = 'eager';
+    }
+
     slides.forEach((s, i) => {
       if (i === index) {
         s.classList.remove('opacity-0', 'z-0');
@@ -223,11 +233,5 @@ const bannerSlides = [
     observer.observe(aboutSection);
   } else {
     startAutoplay();
-  }
-
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(warmUpAboutImages);
-  } else {
-    setTimeout(warmUpAboutImages, 1800);
   }
 </script>

@@ -220,9 +220,9 @@ const events = [
                     src={img} 
                     alt={`${ev.name} - Foto ${imgIdx + 1}`} 
                     class={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${ev.pos || 'object-center'}`}
-                    widths={[380, 520, 720]}
-                    sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) 90vw, 600px"
-                    quality={70}
+                    widths={[360, 500, 720]}
+                    sizes="(max-width: 640px) 250px, (max-width: 1024px) 500px, 600px"
+                    quality={62}
                     format="webp"
                     loading={imgIdx === 0 ? "eager" : "lazy"}
                     decoding="async"
@@ -373,6 +373,10 @@ const events = [
 
         slides.forEach((s, idx) => {
           if (idx === currentSlide) {
+            const currentImg = s.querySelector('img');
+            if (currentImg instanceof HTMLImageElement && currentImg.loading === 'lazy') {
+              currentImg.loading = 'eager';
+            }
             s.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
             s.classList.add('opacity-100', 'z-10', 'pointer-events-auto');
           } else {
@@ -380,6 +384,12 @@ const events = [
             s.classList.add('opacity-0', 'z-0', 'pointer-events-none');
           }
         });
+
+        const nextSlideIdx = (currentSlide + 1) % total;
+        const nextImg = slides[nextSlideIdx]?.querySelector('img');
+        if (nextImg instanceof HTMLImageElement && nextImg.loading === 'lazy') {
+          nextImg.loading = 'eager';
+        }
 
         dots.forEach((d, idx) => {
           if (idx === currentSlide) {
@@ -504,13 +514,6 @@ const events = [
     observer.observe(calendarSection);
   } else {
     startAutoplay();
-  }
-
-  // Pre-decode all calendar images when idle to eliminate any paint delay
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(warmUpCalendarImages);
-  } else {
-    setTimeout(warmUpCalendarImages, 1500);
   }
 
   tabs.forEach(tab => {
