@@ -1,0 +1,211 @@
+---
+// GeneralDescription.astro
+import { Image } from 'astro:assets';
+import slide1 from '../assets/descripcion-general/desc-1.jpg';
+import slide2 from '../assets/descripcion-general/desc-2.jpg';
+import slide3 from '../assets/descripcion-general/desc-3.jpg';
+import slide4 from '../assets/descripcion-general/desc-4.jpg';
+
+const generalSlides = [
+  {
+    num: "01",
+    label: "Rutas extraordinarias y paisajes únicos del Ecuador",
+    img: slide1,
+    pos: "object-center"
+  },
+  {
+    num: "02",
+    label: "Especialistas en ciclismo de Ruta, MTB y Gravel",
+    img: slide2,
+    pos: "object-center"
+  },
+  {
+    num: "03",
+    label: "Planificación, logística y máxima seguridad en cada detalle",
+    img: slide3,
+    pos: "object-center"
+  },
+  {
+    num: "04",
+    label: "Más que una ruta: una experiencia de principio a fin",
+    img: slide4,
+    pos: "object-center"
+  }
+];
+---
+
+<section id="sec-descripcion-general" class="py-20 lg:py-28 bg-white border-b border-epic-blue/10 scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      
+      <!-- Story & Description (Left) -->
+      <div class="flex flex-col gap-6 justify-center order-2 lg:order-1">
+        <div>
+          <span class="font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase block mb-3">
+            DESCRIPCIÓN GENERAL DE LOS PASEOS
+          </span>
+          <h2 class="font-black text-3xl sm:text-5xl lg:text-[44px] tracking-tight text-epic-blue leading-[1.08]">
+            ECUADOR SE DESCUBRE DIFERENTE <span class="text-epic-gold">SOBRE DOS RUEDAS.</span>
+          </h2>
+        </div>
+
+        <p class="text-epic-text-muted text-base sm:text-lg leading-relaxed">
+          En <strong class="text-epic-blue">EPIC Rides</strong> transformamos cada recorrido en una experiencia cuidadosamente diseñada.
+        </p>
+
+        <p class="text-epic-text-muted text-base leading-relaxed">
+          Somos especialistas en ciclismo de <strong class="text-epic-blue">Ruta, MTB y Gravel</strong>, creando experiencias que combinan planificación, organización, logística y seguridad en cada detalle.
+        </p>
+
+        <p class="text-epic-text-muted text-base leading-relaxed">
+          Seleccionamos rutas extraordinarias y cuidamos cada momento para que tú solo tengas que concentrarte en lo esencial: <strong class="text-epic-blue">disfrutar el camino</strong>.
+        </p>
+
+        <p class="text-epic-blue text-sm sm:text-base leading-relaxed font-bold italic border-l-2 border-epic-gold pl-4">
+          "Más que una ruta. Una experiencia diseñada para vivirla de principio a fin."
+        </p>
+
+        <!-- CTA & Highlights -->
+        <div class="pt-2 flex flex-col sm:flex-row sm:items-center gap-4">
+          <a 
+            href="#sec-calendario" 
+            class="inline-block bg-epic-blue hover:bg-epic-blue-light text-epic-gold font-extrabold text-xs tracking-wider px-8 py-4 rounded-full transition-all uppercase shadow-md text-center transform hover:scale-105 cursor-pointer"
+          >
+            Ver Próximos Paseos
+          </a>
+          <div class="font-mono text-xs font-black text-epic-blue uppercase tracking-wider leading-snug">
+            <span>DESCUBRE ECUADOR EN BICICLETA.</span><br />
+            <span class="text-epic-gold">VIVE LA EXPERIENCIA EPIC RIDES.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Carousel (Right) -->
+      <div class="relative h-[380px] sm:h-[480px] rounded-2xl overflow-hidden shadow-2xl bg-epic-blue-card group order-1 lg:order-2 select-none">
+        
+        <!-- Slides -->
+        <div id="general-slides-container" class="relative w-full h-full">
+          {generalSlides.map((slide, index) => (
+            <div 
+              class={`general-slide absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              data-index={index}
+            >
+              <Image 
+                src={slide.img} 
+                alt={slide.label} 
+                class={`w-full h-full object-cover ${slide.pos || 'object-center'}`}
+                widths={[360, 480, 640]}
+                sizes="(max-width: 640px) 380px, 600px"
+                quality={75}
+                format="webp"
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-transparent to-black/20"></div>
+              
+              <!-- Slide Label Overlay -->
+              <div class="absolute bottom-12 left-6 right-6 flex items-end justify-between">
+                <div>
+                  <span class="font-mono text-3xl sm:text-4xl font-black text-epic-gold block">{slide.num}</span>
+                  <p class="text-white text-sm sm:text-base font-bold drop-shadow-md">{slide.label}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Indicator Bars (Bottom) -->
+        <div class="absolute bottom-5 left-6 right-6 z-20 flex gap-2">
+          {generalSlides.map((_, index) => (
+            <button 
+              type="button"
+              class={`general-indicator-dot flex-1 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${index === 0 ? 'bg-epic-gold' : 'bg-white/30'}`}
+              data-target={index}
+              aria-label={`Ir a foto ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  let generalCurrentSlide = 0;
+  const generalSlides = document.querySelectorAll('.general-slide');
+  const generalDots = document.querySelectorAll('.general-indicator-dot');
+  const totalGeneralSlides = generalSlides.length;
+  let generalAutoplayTimer: any;
+
+  function showGeneralSlide(index: number) {
+    generalSlides.forEach((s, i) => {
+      if (i === index) {
+        s.classList.remove('opacity-0', 'z-0');
+        s.classList.add('opacity-100', 'z-10');
+      } else {
+        s.classList.remove('opacity-100', 'z-10');
+        s.classList.add('opacity-0', 'z-0');
+      }
+    });
+
+    generalDots.forEach((d, i) => {
+      if (i === index) {
+        d.classList.remove('bg-white/30');
+        d.classList.add('bg-epic-gold');
+      } else {
+        d.classList.remove('bg-epic-gold');
+        d.classList.add('bg-white/30');
+      }
+    });
+    generalCurrentSlide = index;
+  }
+
+  function nextGeneralSlide() {
+    showGeneralSlide((generalCurrentSlide + 1) % totalGeneralSlides);
+  }
+
+  generalDots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      const targetIndex = Number((e.target as HTMLElement).getAttribute('data-target'));
+      showGeneralSlide(targetIndex);
+      resetGeneralAutoplay();
+    });
+  });
+
+  const carouselContainer = document.getElementById('general-slides-container')?.parentElement;
+  if (carouselContainer) {
+    carouselContainer.addEventListener('mouseenter', () => clearInterval(generalAutoplayTimer));
+    carouselContainer.addEventListener('mouseleave', () => startGeneralAutoplay());
+
+    // Mobile touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    carouselContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carouselContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 40) {
+        nextGeneralSlide();
+        resetGeneralAutoplay();
+      } else if (touchEndX - touchStartX > 40) {
+        showGeneralSlide((generalCurrentSlide - 1 + totalGeneralSlides) % totalGeneralSlides);
+        resetGeneralAutoplay();
+      }
+    }, { passive: true });
+  }
+
+  function startGeneralAutoplay() {
+    generalAutoplayTimer = setInterval(nextGeneralSlide, 3500);
+  }
+
+  function resetGeneralAutoplay() {
+    clearInterval(generalAutoplayTimer);
+    startGeneralAutoplay();
+  }
+
+  startGeneralAutoplay();
+</script>

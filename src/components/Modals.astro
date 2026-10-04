@@ -295,7 +295,6 @@ const modalGallery = [
           controls 
           playsinline 
           class="w-full h-full object-contain bg-black"
-          poster="/images/web/hero/hero-andes-panorama.jpg"
         >
           Tu navegador no soporta reproducción de video HTML5.
         </video>
@@ -446,6 +445,15 @@ const modalGallery = [
   };
 
   window.openVideoModal = function(url, title) {
+    // Pause and mute any playing inline video
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach(v => {
+      if (v.id !== 'epic-video-player') {
+        if (!v.paused) v.pause();
+        v.muted = true;
+      }
+    });
+
     const modal = document.getElementById('video-modal');
     const titleEl = document.getElementById('video-modal-title');
     const videoEl = document.getElementById('epic-video-player');

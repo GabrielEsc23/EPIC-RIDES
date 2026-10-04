@@ -11,3 +11,18 @@ dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Archivos de video (alojados en Cloudinary para optimización y no sobrecargar el repositorio)
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.webm
+*.avi
+*.mkv
+
+# Archivos temporales de pruebas y pnpm
+scratch_preview.html
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
