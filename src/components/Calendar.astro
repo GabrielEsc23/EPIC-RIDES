@@ -220,11 +220,11 @@ const events = [
                     src={img} 
                     alt={`${ev.name} - Foto ${imgIdx + 1}`} 
                     class={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${ev.pos || 'object-center'}`}
-                    widths={[480, 640, 800]}
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    quality={75}
+                    widths={[380, 520, 720]}
+                    sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) 90vw, 600px"
+                    quality={70}
                     format="webp"
-                    loading="eager"
+                    loading={imgIdx === 0 ? "eager" : "lazy"}
                     decoding="async"
                   />
                 </div>
@@ -475,25 +475,42 @@ const events = [
   });
 
   initSliders();
-  startAutoplay();
 
-  // Pre-decode all calendar images so there is zero paint delay when toggling tabs
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(() => {
-      document.querySelectorAll('.calendar-slide img').forEach((img) => {
-        if (img instanceof HTMLImageElement && img.decode) {
+  const calendarSection = document.getElementById('sec-calendario');
+  const warmUpCalendarImages = () => {
+    document.querySelectorAll('.calendar-slide img').forEach((img) => {
+      if (img instanceof HTMLImageElement) {
+        if (img.loading === 'lazy') {
+          img.loading = 'eager';
+        }
+        if (img.decode) {
           img.decode().catch(() => {});
         }
-      });
+      }
     });
-  } else {
-    setTimeout(() => {
-      document.querySelectorAll('.calendar-slide img').forEach((img) => {
-        if (img instanceof HTMLImageElement && img.decode) {
-          img.decode().catch(() => {});
+  };
+
+  if (calendarSection && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAutoplay();
+          warmUpCalendarImages();
+        } else {
+          stopAutoplay();
         }
       });
-    }, 100);
+    }, { rootMargin: '250px' });
+    observer.observe(calendarSection);
+  } else {
+    startAutoplay();
+  }
+
+  // Pre-decode all calendar images when idle to eliminate any paint delay
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(warmUpCalendarImages);
+  } else {
+    setTimeout(warmUpCalendarImages, 1500);
   }
 
   tabs.forEach(tab => {

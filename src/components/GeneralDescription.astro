@@ -91,11 +91,12 @@ const generalSlides = [
                 src={slide.img} 
                 alt={slide.label} 
                 class={`w-full h-full object-cover ${slide.pos || 'object-center'}`}
-                widths={[360, 480, 640]}
-                sizes="(max-width: 640px) 380px, 600px"
-                quality={75}
+                widths={[360, 480, 600]}
+                sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) 50vw, 550px"
+                quality={68}
                 format="webp"
-                loading="eager"
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-transparent to-black/20"></div>
               
@@ -201,6 +202,7 @@ const generalSlides = [
   }
 
   function startGeneralAutoplay() {
+    clearInterval(generalAutoplayTimer);
     generalAutoplayTimer = setInterval(nextGeneralSlide, 3500);
   }
 
@@ -209,5 +211,39 @@ const generalSlides = [
     startGeneralAutoplay();
   }
 
-  startGeneralAutoplay();
+  const generalSection = document.getElementById('sec-descripcion-general');
+  const warmUpGeneralImages = () => {
+    document.querySelectorAll('.general-slide img').forEach((img) => {
+      if (img instanceof HTMLImageElement) {
+        if (img.loading === 'lazy') {
+          img.loading = 'eager';
+        }
+        if (img.decode) {
+          img.decode().catch(() => {});
+        }
+      }
+    });
+  };
+
+  if (generalSection && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startGeneralAutoplay();
+          warmUpGeneralImages();
+        } else {
+          clearInterval(generalAutoplayTimer);
+        }
+      });
+    }, { rootMargin: '250px' });
+    observer.observe(generalSection);
+  } else {
+    startGeneralAutoplay();
+  }
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(warmUpGeneralImages);
+  } else {
+    setTimeout(warmUpGeneralImages, 1800);
+  }
 </script>
