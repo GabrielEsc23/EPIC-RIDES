@@ -2,47 +2,43 @@
 // CommunityGallery.astro
 import { Image } from 'astro:assets';
 
-// Videos reales desde Cloudinary
+// Videos reales desde Cloudinary con parámetros de máxima calidad (q_auto:best, f_auto) y enfoque de imagen (e_sharpen:80)
 const videos = [
   {
     id: "vid-1",
-    url: "https://res.cloudinary.com/dlya09ut7/video/upload/v1791133509/9f353f47-c0e6-43a8-aa26-7370bfe5b1db_xwbqjq.mp4",
-    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_800,c_fill,q_auto,f_auto/v1791133509/9f353f47-c0e6-43a8-aa26-7370bfe5b1db_xwbqjq.jpg",
+    url: "https://res.cloudinary.com/dlya09ut7/video/upload/q_auto:best,f_auto/v1791133509/9f353f47-c0e6-43a8-aa26-7370bfe5b1db_xwbqjq.mp4",
+    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791133509/9f353f47-c0e6-43a8-aa26-7370bfe5b1db_xwbqjq.jpg",
     title: "Rodadas Reales · Experiencia EPIC Rides",
-    subtitle: "Video Destacado · Pelotón en Ruta",
-    duration: "01:45 min"
+    subtitle: "Pelotón en los Andes",
+    isFeature: true
   },
   {
     id: "vid-2",
-    url: "https://res.cloudinary.com/dlya09ut7/video/upload/v1791143327/video_galeria_2_epcayp.mp4",
-    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_800,c_fill,q_auto,f_auto/v1791143327/video_galeria_2_epcayp.jpg",
+    url: "https://res.cloudinary.com/dlya09ut7/video/upload/q_auto:best,f_auto/v1791143327/video_galeria_2_epcayp.mp4",
+    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143327/video_galeria_2_epcayp.jpg",
     title: "Pelotón y Vistas Andinas",
-    subtitle: "Video en Ruta",
-    duration: "Reel"
+    subtitle: "Ruta de Altura"
   },
   {
     id: "vid-3",
-    url: "https://res.cloudinary.com/dlya09ut7/video/upload/v1791143323/videoGaleria_3_u4a3r3.mp4",
-    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_800,c_fill,q_auto,f_auto/v1791143323/videoGaleria_3_u4a3r3.jpg",
+    url: "https://res.cloudinary.com/dlya09ut7/video/upload/q_auto:best,f_auto/v1791143323/videoGaleria_3_u4a3r3.mp4",
+    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143323/videoGaleria_3_u4a3r3.jpg",
     title: "Ritmo y Descenso en Carretera",
-    subtitle: "Video en Ruta",
-    duration: "Reel"
+    subtitle: "Descenso y Asistencia"
   },
   {
     id: "vid-4",
-    url: "https://res.cloudinary.com/dlya09ut7/video/upload/v1791143377/video_galeria_4_eygtlv.mp4",
-    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_800,c_fill,q_auto,f_auto/v1791143377/video_galeria_4_eygtlv.jpg",
+    url: "https://res.cloudinary.com/dlya09ut7/video/upload/q_auto:best,f_auto/v1791143377/video_galeria_4_eygtlv.mp4",
+    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143377/video_galeria_4_eygtlv.jpg",
     title: "Travesía y Altura Andina",
-    subtitle: "Video en Ruta",
-    duration: "Reel"
+    subtitle: "Expedición Andina"
   },
   {
     id: "vid-5",
-    url: "https://res.cloudinary.com/dlya09ut7/video/upload/v1791143340/video_galeria_5_qalazt.mp4",
-    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_800,c_fill,q_auto,f_auto/v1791143340/video_galeria_5_qalazt.jpg",
+    url: "https://res.cloudinary.com/dlya09ut7/video/upload/q_auto:best,f_auto/v1791143340/video_galeria_5_qalazt.mp4",
+    poster: "https://res.cloudinary.com/dlya09ut7/video/upload/so_1,w_1200,c_fill,q_auto:best,f_auto,e_sharpen:80/v1791143340/video_galeria_5_qalazt.jpg",
     title: "Compañerismo y Pasión Ciclista",
-    subtitle: "Video en Ruta",
-    duration: "Reel"
+    subtitle: "Comunidad en Ruta"
   }
 ];
 
@@ -54,133 +50,142 @@ import gal6 from '../assets/comunidad/galeria-playa-celebracion.jpg';
 import gal7 from '../assets/nosotros/campamento-fogata.jpg';
 import gal9 from '../assets/paseos/carchi-1.jpg';
 
-// Nuevas fotos agregadas por el usuario en src/assets/comunidad/
+// Nuevas fotos agregadas en src/assets/comunidad/
 import gal14 from '../assets/comunidad/foto_galeria_1.jpg';
 import gal15 from '../assets/comunidad/de_0_500_galeria.jpg';
 import gal16 from '../assets/comunidad/de_0_500_galeria_2HEIC.jpg';
 
-// Mosaico principal (7 elementos iniciales: 3 videos + 4 fotos)
+// Mosaico Principal (7 elementos iniciales: perfectamente balanceados para 3 filas completas)
 const primaryItems = [
   {
     type: 'video',
-    span: 'col-span-1 md:col-span-2 md:row-span-2',
+    defaultSpan: 'col-span-1 md:col-span-2 md:row-span-2',
+    videoFilterSpan: 'col-span-1 md:col-span-2',
     videoUrl: videos[0].url,
     videoPoster: videos[0].poster,
     title: videos[0].title,
     subtitle: videos[0].subtitle,
-    videoDuration: videos[0].duration,
     isFeature: true
   },
   {
     type: 'photo',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
     photoSrc: gal14,
     photoIndex: 14,
     title: 'Comunidad y Familia Ciclista',
+    subtitle: 'Comunidad EPIC',
     photoPos: 'object-[center_25%]'
   },
   {
     type: 'video',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
+    videoFilterSpan: 'col-span-1',
     videoUrl: videos[1].url,
     videoPoster: videos[1].poster,
     title: videos[1].title,
-    subtitle: videos[1].subtitle,
-    videoDuration: videos[1].duration
+    subtitle: videos[1].subtitle
   },
   {
     type: 'photo',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
     photoSrc: gal15,
     photoIndex: 15,
     title: 'Reto 0 a 5.000m · Rumbo al Chimborazo',
+    subtitle: 'Reto 0 - 5.000m',
     photoPos: 'object-[center_30%]'
   },
   {
     type: 'photo',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
     photoSrc: gal16,
     photoIndex: 16,
     title: 'Conquistando la Cumbre Andina',
+    subtitle: 'Glaciar Chimborazo',
     photoPos: 'object-[center_35%]'
   },
   {
     type: 'video',
-    span: 'col-span-1 md:col-span-2',
+    defaultSpan: 'col-span-1 md:col-span-2',
+    videoFilterSpan: 'col-span-1',
     videoUrl: videos[2].url,
     videoPoster: videos[2].poster,
     title: videos[2].title,
-    subtitle: videos[2].subtitle,
-    videoDuration: videos[2].duration
+    subtitle: videos[2].subtitle
   },
   {
     type: 'photo',
-    span: 'col-span-1 md:col-span-2',
+    defaultSpan: 'col-span-1 md:col-span-2',
     photoSrc: gal6,
     photoIndex: 6,
     title: 'Llegada al Pacífico & Celebración',
+    subtitle: 'Meta Costera',
     photoPos: 'object-[center_30%]'
   }
 ];
 
-// Mosaico expandible (7 elementos adicionales: 2 videos + 5 fotos)
+// Mosaico Expandible (7 elementos adicionales: completan 2 filas completas de 4 columnas)
 const expandedItems = [
   {
     type: 'video',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
+    videoFilterSpan: 'col-span-1 md:col-span-2',
     videoUrl: videos[3].url,
     videoPoster: videos[3].poster,
     title: videos[3].title,
-    subtitle: videos[3].subtitle,
-    videoDuration: videos[3].duration
+    subtitle: videos[3].subtitle
   },
   {
     type: 'video',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
+    videoFilterSpan: 'col-span-1 md:col-span-2',
     videoUrl: videos[4].url,
     videoPoster: videos[4].poster,
     title: videos[4].title,
-    subtitle: videos[4].subtitle,
-    videoDuration: videos[4].duration
+    subtitle: videos[4].subtitle
   },
   {
     type: 'photo',
-    span: 'col-span-1 md:col-span-2',
+    defaultSpan: 'col-span-1 md:col-span-2',
     photoSrc: gal7,
     photoIndex: 7,
     title: 'Campamento y Fogata Bajo las Estrellas',
+    subtitle: 'Campamento Andino',
     photoPos: 'object-[center_35%]'
   },
   {
     type: 'photo',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
     photoSrc: gal1,
     photoIndex: 1,
     title: 'Laguna del Quilotoa',
+    subtitle: 'Cráter Volcánico',
     photoPos: 'object-center'
   },
   {
     type: 'photo',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
     photoSrc: gal2,
     photoIndex: 2,
     title: 'Racks especializados Epic Van',
+    subtitle: 'Logística de Transporte',
     photoPos: 'object-[center_20%]'
   },
   {
     type: 'photo',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
     photoSrc: gal3,
     photoIndex: 3,
     title: 'Conquistando el Chimborazo',
+    subtitle: 'Alta Montaña',
     photoPos: 'object-[center_30%]'
   },
   {
     type: 'photo',
-    span: 'col-span-1',
+    defaultSpan: 'col-span-1',
     photoSrc: gal9,
     photoIndex: 9,
     title: 'Puertos y Curvas del Carchi',
+    subtitle: 'Páramos del Carchi',
     photoPos: 'object-center'
   }
 ];
@@ -198,42 +203,46 @@ const expandedItems = [
         EPIC RIDES COMMUNITY
       </h2>
       <p class="text-epic-text-muted text-base mt-2">
-        Videos reales de nuestras expediciones y momentos inolvidables sobre dos ruedas. Haz clic en cualquier elemento para reproducir el video o ampliar la fotografía a pantalla completa.
+        Momentos inolvidables sobre dos ruedas. Haz clic en cualquier elemento para reproducir el video con audio o ampliar la fotografía a pantalla completa.
       </p>
     </div>
 
-    <!-- Filter Tabs (Todos / Videos / Fotos) -->
+    <!-- Filter Tabs (Sin emojis, limpios y elegantes) -->
     <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-8">
       <button 
         type="button" 
         class="gallery-filter-btn px-5 py-2.5 rounded-full font-extrabold text-xs tracking-wider uppercase transition-all duration-200 border cursor-pointer bg-epic-blue text-epic-gold border-epic-blue shadow-md"
         data-filter="all"
       >
-        Todos (Fotos &amp; Videos)
+        Todos
       </button>
       <button 
         type="button" 
         class="gallery-filter-btn px-5 py-2.5 rounded-full font-extrabold text-xs tracking-wider uppercase transition-all duration-200 border cursor-pointer bg-white text-epic-blue border-epic-blue/20 hover:border-epic-gold hover:text-epic-gold"
         data-filter="video"
       >
-        🎬 Videos en Ruta (5)
+        Videos en Ruta
       </button>
       <button 
         type="button" 
         class="gallery-filter-btn px-5 py-2.5 rounded-full font-extrabold text-xs tracking-wider uppercase transition-all duration-200 border cursor-pointer bg-white text-epic-blue border-epic-blue/20 hover:border-epic-gold hover:text-epic-gold"
         data-filter="photo"
       >
-        📸 Fotografías (9)
+        Fotografías
       </button>
     </div>
 
-    <!-- Primary Gallery Grid (7 curated items) -->
-    <div id="primary-gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[220px]">
+    <!-- Single Unified Gallery Grid with grid-flow-dense to eliminate any white holes -->
+    <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[240px] grid-flow-dense">
+      
+      <!-- Primary Items (Always visible) -->
       {primaryItems.map((item) => (
         item.type === 'video' ? (
           <div 
-            class={`${item.span} gallery-card relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/50 focus:outline-none focus:ring-2 focus:ring-epic-gold select-none`}
+            class={`${item.defaultSpan} gallery-card relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/50 focus:outline-none focus:ring-2 focus:ring-epic-gold select-none`}
             data-type="video"
+            data-default-span={item.defaultSpan}
+            data-video-span={item.videoFilterSpan}
             role="button"
             tabindex="0"
             onclick={`window.openVideoModal('${item.videoUrl}', '${item.title}');`}
@@ -246,27 +255,15 @@ const expandedItems = [
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
               loading="lazy" 
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/25 to-black/30"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/20 to-black/25"></div>
             
-            <!-- Play Button Overlay with Glow -->
+            <!-- Central Gold Play Button without extra labels -->
             <div class={`absolute inset-0 m-auto ${item.isFeature ? 'w-20 h-20 text-3xl' : 'w-14 h-14 sm:w-16 sm:h-16 text-2xl'} rounded-full bg-epic-gold text-epic-blue flex items-center justify-center transition-all duration-300 transform group-hover:scale-110 shadow-2xl z-20 pointer-events-none group-hover:shadow-epic-gold/40`}>
               <span class="ml-1">▶</span>
             </div>
 
-            <!-- Top Left Badge: 🎬 Video & Duration -->
-            <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
-              <span class="font-mono text-[10px] font-black tracking-wider bg-epic-blue/90 text-epic-gold px-2.5 py-1 rounded-full border border-epic-gold/40 uppercase backdrop-blur-sm shadow">
-                🎬 Video
-              </span>
-              {item.videoDuration && (
-                <span class="font-mono text-[10px] font-bold text-white/90 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-sm shadow">
-                  {item.videoDuration}
-                </span>
-              )}
-            </div>
-
             <!-- Bottom Details -->
-            <div class="absolute bottom-4 left-4 right-4 text-white z-10">
+            <div class="absolute bottom-4 left-4 right-4 text-white z-10 drop-shadow">
               {item.subtitle && (
                 <span class="font-mono text-[10px] text-epic-gold uppercase tracking-wider block">{item.subtitle}</span>
               )}
@@ -277,8 +274,9 @@ const expandedItems = [
           </div>
         ) : (
           <div 
-            class={`${item.span} gallery-card relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold select-none`}
+            class={`${item.defaultSpan} gallery-card relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold select-none`}
             data-type="photo"
+            data-default-span={item.defaultSpan}
             role="button"
             tabindex="0"
             onclick={`window.openImageModal(${item.photoIndex});`}
@@ -306,13 +304,6 @@ const expandedItems = [
               </div>
             </div>
 
-            <!-- Top Badge: 📸 Foto -->
-            <div class="absolute top-4 left-4 z-20">
-              <span class="font-mono text-[10px] font-bold tracking-wider bg-black/60 text-white/90 px-2.5 py-1 rounded-full uppercase backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                📸 Foto
-              </span>
-            </div>
-
             <!-- Bottom Details -->
             <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
               <span class="font-bold text-xs sm:text-sm truncate mr-2">{item.title}</span>
@@ -321,15 +312,15 @@ const expandedItems = [
           </div>
         )
       ))}
-    </div>
 
-    <!-- Expandable Grid Container for Additional Community Photos & Videos -->
-    <div id="more-gallery-grid" class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[220px] mt-4 animate-in fade-in duration-500">
+      <!-- Expandable Items (Initially hidden in the same grid, smoothly displayed on demand) -->
       {expandedItems.map((item) => (
         item.type === 'video' ? (
           <div 
-            class={`${item.span} gallery-card relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/50 focus:outline-none focus:ring-2 focus:ring-epic-gold select-none`}
+            class={`${item.defaultSpan} gallery-card gallery-more-item hidden relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/50 focus:outline-none focus:ring-2 focus:ring-epic-gold select-none`}
             data-type="video"
+            data-default-span={item.defaultSpan}
+            data-video-span={item.videoFilterSpan}
             role="button"
             tabindex="0"
             onclick={`window.openVideoModal('${item.videoUrl}', '${item.title}');`}
@@ -342,27 +333,15 @@ const expandedItems = [
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
               loading="lazy" 
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/25 to-black/30"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-black/20 to-black/25"></div>
             
-            <!-- Play Button Overlay -->
+            <!-- Central Gold Play Button without extra labels -->
             <div class="absolute inset-0 m-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-epic-gold text-epic-blue flex items-center justify-center text-2xl transition-all duration-300 transform group-hover:scale-110 shadow-2xl z-20 pointer-events-none group-hover:shadow-epic-gold/40">
               <span class="ml-1">▶</span>
             </div>
 
-            <!-- Top Left Badge: 🎬 Video & Duration -->
-            <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
-              <span class="font-mono text-[10px] font-black tracking-wider bg-epic-blue/90 text-epic-gold px-2.5 py-1 rounded-full border border-epic-gold/40 uppercase backdrop-blur-sm shadow">
-                🎬 Video
-              </span>
-              {item.videoDuration && (
-                <span class="font-mono text-[10px] font-bold text-white/90 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-sm shadow">
-                  {item.videoDuration}
-                </span>
-              )}
-            </div>
-
             <!-- Bottom Details -->
-            <div class="absolute bottom-4 left-4 right-4 text-white z-10">
+            <div class="absolute bottom-4 left-4 right-4 text-white z-10 drop-shadow">
               {item.subtitle && (
                 <span class="font-mono text-[10px] text-epic-gold uppercase tracking-wider block">{item.subtitle}</span>
               )}
@@ -371,8 +350,9 @@ const expandedItems = [
           </div>
         ) : (
           <div 
-            class={`${item.span} gallery-card relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold select-none`}
+            class={`${item.defaultSpan} gallery-card gallery-more-item hidden relative rounded-2xl overflow-hidden bg-epic-blue group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 border border-epic-blue/10 hover:border-epic-gold/40 focus:outline-none focus:ring-2 focus:ring-epic-gold select-none`}
             data-type="photo"
+            data-default-span={item.defaultSpan}
             role="button"
             tabindex="0"
             onclick={`window.openImageModal(${item.photoIndex});`}
@@ -400,13 +380,6 @@ const expandedItems = [
               </div>
             </div>
 
-            <!-- Top Badge: 📸 Foto -->
-            <div class="absolute top-4 left-4 z-20">
-              <span class="font-mono text-[10px] font-bold tracking-wider bg-black/60 text-white/90 px-2.5 py-1 rounded-full uppercase backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                📸 Foto
-              </span>
-            </div>
-
             <!-- Bottom Details -->
             <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white drop-shadow">
               <span class="font-bold text-xs sm:text-sm truncate mr-2">{item.title}</span>
@@ -415,6 +388,7 @@ const expandedItems = [
           </div>
         )
       ))}
+
     </div>
 
     <!-- Toggle Button to View More Content -->
@@ -425,7 +399,7 @@ const expandedItems = [
         class="group inline-flex items-center gap-3 px-8 py-4 rounded-full border-2 border-epic-blue hover:bg-epic-blue text-epic-blue hover:text-epic-gold font-extrabold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
         aria-expanded="false"
       >
-        <span id="toggle-gallery-text">Ver Más Contenido (7 elementos más)</span>
+        <span id="toggle-gallery-text">Ver Más Contenido (7 más)</span>
         <span id="toggle-gallery-icon" class="text-base transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
       </button>
     </div>
@@ -436,13 +410,39 @@ const expandedItems = [
 <script>
   const filterBtns = document.querySelectorAll('.gallery-filter-btn');
   const allCards = document.querySelectorAll('.gallery-card');
+  const moreCards = document.querySelectorAll('.gallery-more-item');
   const toggleBtn = document.getElementById('toggle-gallery-btn');
   const toggleContainer = document.getElementById('toggle-container');
-  const moreGrid = document.getElementById('more-gallery-grid');
   const toggleText = document.getElementById('toggle-gallery-text');
   const toggleIcon = document.getElementById('toggle-gallery-icon');
 
   let currentFilter = 'all';
+  let isExpanded = false;
+
+  function setCardSpans(mode: 'default' | 'video') {
+    allCards.forEach(c => {
+      const card = c as HTMLElement;
+      if (mode === 'video' && card.dataset.videoSpan) {
+        if (card.dataset.defaultSpan) {
+          card.dataset.defaultSpan.split(' ').forEach(cls => {
+            if (cls) card.classList.remove(cls);
+          });
+        }
+        card.dataset.videoSpan.split(' ').forEach(cls => {
+          if (cls) card.classList.add(cls);
+        });
+      } else if (card.dataset.defaultSpan) {
+        if (card.dataset.videoSpan) {
+          card.dataset.videoSpan.split(' ').forEach(cls => {
+            if (cls) card.classList.remove(cls);
+          });
+        }
+        card.dataset.defaultSpan.split(' ').forEach(cls => {
+          if (cls) card.classList.add(cls);
+        });
+      }
+    });
+  }
 
   function applyFilter(filter: string) {
     currentFilter = filter;
@@ -459,10 +459,7 @@ const expandedItems = [
     });
 
     if (filter === 'video') {
-      if (moreGrid) {
-        moreGrid.classList.remove('hidden');
-        moreGrid.classList.add('grid');
-      }
+      setCardSpans('video');
       if (toggleContainer) toggleContainer.classList.add('hidden');
       allCards.forEach(c => {
         const card = c as HTMLElement;
@@ -473,25 +470,41 @@ const expandedItems = [
         }
       });
     } else if (filter === 'photo') {
+      setCardSpans('default');
       if (toggleContainer) toggleContainer.classList.remove('hidden');
       allCards.forEach(c => {
         const card = c as HTMLElement;
+        const isMore = card.classList.contains('gallery-more-item');
         if (card.dataset.type === 'photo') {
-          card.classList.remove('hidden');
+          if (isMore) {
+            if (isExpanded) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          } else {
+            card.classList.remove('hidden');
+          }
         } else {
           card.classList.add('hidden');
         }
       });
     } else { // 'all'
+      setCardSpans('default');
       if (toggleContainer) toggleContainer.classList.remove('hidden');
       allCards.forEach(c => {
-        (c as HTMLElement).classList.remove('hidden');
+        const card = c as HTMLElement;
+        const isMore = card.classList.contains('gallery-more-item');
+        if (isMore) {
+          if (isExpanded) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        } else {
+          card.classList.remove('hidden');
+        }
       });
-      const isExpanded = toggleBtn?.getAttribute('aria-expanded') === 'true';
-      if (!isExpanded && moreGrid) {
-        moreGrid.classList.add('hidden');
-        moreGrid.classList.remove('grid');
-      }
     }
   }
 
@@ -502,22 +515,27 @@ const expandedItems = [
     });
   });
 
-  if (toggleBtn && moreGrid && toggleText && toggleIcon) {
+  if (toggleBtn && toggleText && toggleIcon) {
     toggleBtn.addEventListener('click', () => {
-      const isHidden = moreGrid.classList.contains('hidden');
-      if (isHidden) {
-        moreGrid.classList.remove('hidden');
-        moreGrid.classList.add('grid');
+      isExpanded = !isExpanded;
+      toggleBtn.setAttribute('aria-expanded', String(isExpanded));
+
+      if (isExpanded) {
         toggleText.textContent = 'Mostrar Menos';
         toggleIcon.textContent = '↑';
-        toggleBtn.setAttribute('aria-expanded', 'true');
+        moreCards.forEach(c => {
+          const card = c as HTMLElement;
+          if (currentFilter === 'all' || card.dataset.type === currentFilter) {
+            card.classList.remove('hidden');
+          }
+        });
       } else {
-        moreGrid.classList.add('hidden');
-        moreGrid.classList.remove('grid');
-        toggleText.textContent = 'Ver Más Contenido (7 elementos más)';
+        toggleText.textContent = 'Ver Más Contenido (7 más)';
         toggleIcon.textContent = '↓';
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        
+        moreCards.forEach(c => {
+          (c as HTMLElement).classList.add('hidden');
+        });
+
         const gallerySection = document.getElementById('sec-comunidad');
         if (gallerySection) {
           gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
