@@ -13,7 +13,7 @@ const services = [
     desc: "Recorridos en Ruta, MTB y Gravel cuidadosamente diseñados con planificación, avituallamiento, seguridad y asistencia para que solo te concentres en pedalear.",
     image: serv1,
     pos: "object-[center_40%]",
-    action: "window.openBookingModal('Paquetes Épicos')",
+    href: "#sec-calendario",
     anchorId: "sec-paquetes"
   },
   {
@@ -23,8 +23,8 @@ const services = [
     desc: "Transporte especializado sin necesidad de desarmar tu bicicleta, con espacio y anclajes acolchados para evitar golpes, roces o contacto entre ellas.",
     image: serv2,
     pos: "object-[center_20%]",
-    action: "window.openBookingModal('Transporte de Bicicletas')",
-    anchorId: "sec-transporte"
+    href: "#sec-transporte",
+    anchorId: "service-transporte"
   },
   {
     id: "coaching-training",
@@ -33,13 +33,13 @@ const services = [
     desc: "Junto a Felipe Borja (Head Coach) y Daniel Redín, ofrecemos entrenamientos estructurados, Tri Camps y preparación específica para la Vuelta al Cotopaxi y grandes fondos.",
     image: serv3,
     pos: "object-[center_25%]",
-    action: "window.openCorporateModal('Coaching y Preparación Física')",
-    anchorId: "sec-coaching"
+    href: "#sec-coaching",
+    anchorId: "service-coaching"
   }
 ];
 ---
 
-<section id="sec-servicios" class="py-20 lg:py-28 bg-epic-gray-bg border-b border-epic-blue/10 scroll-mt-20 overflow-hidden">
+<section id="sec-servicios" class="py-20 lg:py-28 bg-white border-b border-epic-blue/10 scroll-mt-20 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
     
     <!-- Section Header (Animated on Scroll) -->
@@ -57,7 +57,7 @@ const services = [
       {services.map((item, index) => (
         <div 
           id={item.anchorId}
-          class="service-card group bg-white rounded-3xl overflow-hidden border border-epic-blue/10 shadow-md flex flex-col justify-between transition-all duration-700 ease-out transform opacity-0 -translate-y-12 scale-[0.96] blur-[2px] hover:-translate-y-3 hover:shadow-2xl hover:border-epic-gold/40 scroll-mt-24"
+          class="service-card group bg-epic-gray-bg rounded-3xl overflow-hidden border border-epic-blue/10 shadow-md flex flex-col justify-between transition-all duration-700 ease-out transform opacity-0 -translate-y-12 scale-[0.96] blur-[2px] hover:-translate-y-3 hover:shadow-2xl hover:border-epic-gold/40 scroll-mt-24"
           data-index={index}
         >
 
@@ -95,14 +95,13 @@ const services = [
             </p>
 
             <!-- Action Button with animated shifting arrow -->
-            <button 
-              type="button"
-              onclick={item.action}
-              class="inline-flex items-center justify-between w-full font-mono text-xs font-bold tracking-wider text-epic-blue group-hover:text-epic-gold transition-colors pt-4 border-t border-epic-blue/10"
+            <a 
+              href={item.href}
+              class="inline-flex items-center justify-between w-full font-mono text-xs font-bold tracking-wider text-epic-blue group-hover:text-epic-gold transition-colors pt-4 border-t border-epic-blue/10 cursor-pointer"
             >
               <span class="tracking-widest uppercase">MÁS INFORMACIÓN</span>
               <span class="transform group-hover:translate-x-3 transition-transform duration-300 text-lg font-black text-epic-gold">→</span>
-            </button>
+            </a>
           </div>
         </div>
       ))}

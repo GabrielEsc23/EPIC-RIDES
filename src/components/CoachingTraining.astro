@@ -1,0 +1,360 @@
+---
+// CoachingTraining.astro
+import { Image } from 'astro:assets';
+
+// Fotos optimizadas de Coaching (Audax Training & Felipe Borja / Daniel Redín)
+import coach1 from '../assets/coaching-training/coaching-1.jpg';
+import coach2 from '../assets/coaching-training/coaching-2.jpg';
+import coach3 from '../assets/coaching-training/coaching-3.jpg';
+import coach4 from '../assets/coaching-training/coaching-4.jpg';
+
+// Fotos optimizadas de Training (Tri Camps & Salidas específicas)
+import train1 from '../assets/coaching-training/training-1.jpg';
+import train2 from '../assets/coaching-training/training-2.jpg';
+
+const coachingSlides = [
+  { img: coach1, label: "Entrenamientos estructurados y preparación técnica personalizada", num: "01" },
+  { img: coach2, label: "Acompañamiento cercano en ruta y evaluación de rendimiento", num: "02" },
+  { img: coach3, label: "Felipe Borja y Daniel Redín guiando a los atletas", num: "03" },
+  { img: coach4, label: "Metodología Audax Training aplicada al ciclismo de alta exigencia", num: "04" }
+];
+
+const trainingSlides = [
+  { img: train1, label: "Tri Camps intensivos y preparación para eventos multideporte", num: "01" },
+  { img: train2, label: "Salidas de fondo y reconocimiento para la Vuelta al Cotopaxi", num: "02" }
+];
+
+const coachingPuntos = [
+  "Planes estructurados según tu nivel y disponibilidad",
+  "Monitoreo técnico de potencia, cadencia y ritmo cardíaco",
+  "Dirección técnica de Felipe Borja (Head Coach) y Daniel Redín"
+];
+
+const trainingPuntos = [
+  "Tri Camps especializados con clínicas de transición y fondo",
+  "Reconocimiento y aclimatación para la Vuelta al Cotopaxi",
+  "Camaradería, soporte mecánico y logística en cada salida"
+];
+---
+
+<section id="sec-coaching" class="py-20 lg:py-28 bg-epic-gray-bg border-b border-epic-blue/10 scroll-mt-20 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col gap-16 lg:gap-24">
+    
+    <!-- Encabezado Principal de la Sección -->
+    <div class="max-w-3xl">
+      <span class="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase bg-epic-blue/5 border border-epic-blue/10 px-4 py-1.5 rounded-full mb-3">
+        ALTO RENDIMIENTO & PREPARACIÓN TÉCNICA
+      </span>
+      <h2 class="font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-epic-blue leading-tight">
+        COACHING & <span class="text-epic-gold">TRAINING</span>
+      </h2>
+      <p class="text-epic-text-muted text-base sm:text-lg mt-3 leading-relaxed">
+        Preparación inteligente, entrenamientos estructurados y campamentos de altura diseñados para que conquistes tus metas con confianza y propósito.
+      </p>
+    </div>
+
+    <!-- BLOQUE 1: COACHING -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <!-- Contenido Textual (Izquierda 6/12) -->
+      <div class="lg:col-span-6 flex flex-col gap-6 justify-center">
+        <div>
+          <span class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase block mb-2">
+            ALIANZA AUDAX TRAINING &bull; PLANIFICACIÓN
+          </span>
+          <h3 class="font-black text-2xl sm:text-4xl text-epic-blue tracking-tight">
+            Coaching
+          </h3>
+        </div>
+
+        <p class="text-epic-text-muted text-base sm:text-lg leading-relaxed">
+          En <strong class="text-epic-blue font-bold">Epic Rides</strong> creemos que todo gran reto comienza con una buena preparación. Por eso, tenemos una alianza estratégica con <strong class="text-epic-blue font-bold">Audax Training</strong>, un club con experiencia en entrenamientos estructurados, acompañando a deportistas en el cumplimiento de sus objetivos.
+        </p>
+
+        <p class="text-epic-text-muted text-base leading-relaxed">
+          <strong class="text-epic-blue font-bold">Felipe Borja</strong>, Head Coach de Audax Training junto con <strong class="text-epic-blue font-bold">Daniel Redín</strong>, fundador de Epic Rides, comparten su experiencia y conocimiento para ayudarte a mejorar tu rendimiento y prepararte para alcanzar tus metas deportivas.
+        </p>
+
+        <!-- Micro-puntos de valor -->
+        <div class="space-y-2.5 pt-2">
+          {coachingPuntos.map((punto) => (
+            <div class="flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold">
+              <span class="text-epic-gold font-bold text-base leading-none">✓</span>
+              <span>{punto}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Vitrina de Fotos Coaching (Derecha 6/12) -->
+      <div class="lg:col-span-6 flex flex-col justify-center">
+        <div class="coaching-carousel-container relative h-[340px] sm:h-[440px] lg:h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl bg-epic-blue-card group select-none border border-epic-blue/15">
+          
+          <div id="coaching-slides-container" class="relative w-full h-full">
+            {coachingSlides.map((slide, index) => (
+              <div 
+                class={`coaching-slide absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                data-index={index}
+              >
+                <Image 
+                  src={slide.img} 
+                  alt={slide.label} 
+                  width={640}
+                  height={500}
+                  widths={[360, 480, 640, 800]}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 640px"
+                  quality={60}
+                  format="webp"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- Contador -->
+          <div class="absolute top-4 right-4 z-20 pointer-events-none">
+            <span id="coaching-counter" class="inline-flex items-center bg-black/60 backdrop-blur-md text-white font-mono font-bold text-[11px] sm:text-xs px-3 py-1 rounded-full shadow border border-white/15">
+              1 / {coachingSlides.length}
+            </span>
+          </div>
+
+          <!-- Flechas de navegación -->
+          <div class="absolute inset-x-3 top-1/2 -translate-y-1/2 flex items-center justify-between z-20 pointer-events-none">
+            <button 
+              type="button" 
+              id="coaching-prev-btn"
+              class="pointer-events-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/50 hover:bg-epic-gold hover:text-epic-blue text-white flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-all transform hover:scale-110 cursor-pointer focus:outline-none"
+              aria-label="Foto anterior de coaching"
+            >
+              ←
+            </button>
+            <button 
+              type="button" 
+              id="coaching-next-btn"
+              class="pointer-events-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/50 hover:bg-epic-gold hover:text-epic-blue text-white flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-all transform hover:scale-110 cursor-pointer focus:outline-none"
+              aria-label="Siguiente foto de coaching"
+            >
+              →
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divisor sutil y limpio -->
+    <div class="w-full h-px bg-epic-blue/10"></div>
+
+    <!-- BLOQUE 2: TRAINING (Diseño invertido en Desktop para dinamismo) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <!-- Vitrina de Fotos Training (Izquierda 6/12 en Desktop) -->
+      <div class="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1">
+        <div class="training-carousel-container relative h-[340px] sm:h-[440px] lg:h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl bg-epic-blue-card group select-none border border-epic-blue/15">
+          
+          <div id="training-slides-container" class="relative w-full h-full">
+            {trainingSlides.map((slide, index) => (
+              <div 
+                class={`training-slide absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                data-index={index}
+              >
+                <Image 
+                  src={slide.img} 
+                  alt={slide.label} 
+                  width={640}
+                  height={500}
+                  widths={[360, 480, 640, 800]}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 640px"
+                  quality={60}
+                  format="webp"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- Contador -->
+          <div class="absolute top-4 right-4 z-20 pointer-events-none">
+            <span id="training-counter" class="inline-flex items-center bg-black/60 backdrop-blur-md text-white font-mono font-bold text-[11px] sm:text-xs px-3 py-1 rounded-full shadow border border-white/15">
+              1 / {trainingSlides.length}
+            </span>
+          </div>
+
+          <!-- Flechas de navegación -->
+          <div class="absolute inset-x-3 top-1/2 -translate-y-1/2 flex items-center justify-between z-20 pointer-events-none">
+            <button 
+              type="button" 
+              id="training-prev-btn"
+              class="pointer-events-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/50 hover:bg-epic-gold hover:text-epic-blue text-white flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-all transform hover:scale-110 cursor-pointer focus:outline-none"
+              aria-label="Foto anterior de training"
+            >
+              ←
+            </button>
+            <button 
+              type="button" 
+              id="training-next-btn"
+              class="pointer-events-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/50 hover:bg-epic-gold hover:text-epic-blue text-white flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-all transform hover:scale-110 cursor-pointer focus:outline-none"
+              aria-label="Siguiente foto de training"
+            >
+              →
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Contenido Textual Training (Derecha 6/12 en Desktop) -->
+      <div class="lg:col-span-6 flex flex-col gap-6 justify-center order-1 lg:order-2">
+        <div>
+          <span class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase block mb-2">
+            TRI CAMPS &bull; COMPETENCIAS &bull; RUTINAS
+          </span>
+          <h3 class="font-black text-2xl sm:text-4xl text-epic-blue tracking-tight">
+            Training
+          </h3>
+        </div>
+
+        <p class="text-epic-blue font-bold text-base sm:text-lg leading-relaxed">
+          La preparación también continúa fuera de la rutina.
+        </p>
+
+        <p class="text-epic-text-muted text-base leading-relaxed">
+          En <strong class="text-epic-blue font-bold">Epic Rides</strong> organizamos <strong class="text-epic-blue font-bold">Tri Camps</strong> como preparación para triatlones, además de entrenamientos y salidas específicas para eventos como la <strong class="text-epic-blue font-bold">Vuelta al Cotopaxi</strong> y otras competencias destacadas del calendario.
+        </p>
+
+        <p class="text-epic-text-muted text-base leading-relaxed">
+          Experiencias diseñadas para entrenar con propósito, compartir con otros deportistas y llegar mejor preparado a cada desafío.
+        </p>
+
+        <!-- Lema Destacado -->
+        <div class="border-l-4 border-epic-gold pl-5 py-3 bg-white rounded-r-2xl shadow-sm border border-epic-blue/5">
+          <p class="font-black text-xl sm:text-2xl text-epic-blue tracking-tight">
+            Entrena. Prepárate. <span class="text-epic-gold">Supérate.</span>
+          </p>
+        </div>
+
+        <!-- Micro-puntos de valor -->
+        <div class="space-y-2.5 pt-1">
+          {trainingPuntos.map((punto) => (
+            <div class="flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold">
+              <span class="text-epic-gold font-bold text-base leading-none">✓</span>
+              <span>{punto}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupCarousel(
+    slideClass: string, 
+    counterId: string, 
+    prevBtnId: string, 
+    nextBtnId: string, 
+    containerClass: string
+  ) {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(slideClass);
+    const counter = document.getElementById(counterId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
+    const total = slides.length;
+    let timer: any;
+
+    if (!slides.length) return;
+
+    function showSlide(index: number) {
+      if (index < 0) index = total - 1;
+      if (index >= total) index = 0;
+
+      const activeImg = slides[index]?.querySelector('img');
+      if (activeImg instanceof HTMLImageElement && activeImg.loading === 'lazy') {
+        activeImg.loading = 'eager';
+      }
+
+      slides.forEach((s, i) => {
+        if (i === index) {
+          s.classList.remove('opacity-0', 'z-0');
+          s.classList.add('opacity-100', 'z-10');
+        } else {
+          s.classList.remove('opacity-100', 'z-10');
+          s.classList.add('opacity-0', 'z-0');
+        }
+      });
+
+      if (counter) {
+        counter.textContent = `${index + 1} / ${total}`;
+      }
+
+      currentSlide = index;
+    }
+
+    function next() { showSlide((currentSlide + 1) % total); }
+    function prev() { showSlide((currentSlide - 1 + total) % total); }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(next, 5500);
+    }
+
+    function resetAuto() {
+      clearInterval(timer);
+      startAuto();
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prev();
+        resetAuto();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        next();
+        resetAuto();
+      });
+    }
+
+    const container = document.querySelector(containerClass);
+    if (container) {
+      container.addEventListener('mouseenter', () => clearInterval(timer));
+      container.addEventListener('mouseleave', () => startAuto());
+
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      container.addEventListener('touchstart', (e: TouchEvent) => {
+        touchStartX = e.changedTouches[0].screenX;
+        clearInterval(timer);
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e: TouchEvent) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) next();
+          else prev();
+        }
+        startAuto();
+      }, { passive: true });
+    }
+
+    startAuto();
+  }
+
+  // Inicializar ambos carruseles
+  setupCarousel('.coaching-slide', 'coaching-counter', 'coaching-prev-btn', 'coaching-next-btn', '.coaching-carousel-container');
+  setupCarousel('.training-slide', 'training-counter', 'training-prev-btn', 'training-next-btn', '.training-carousel-container');
+</script>

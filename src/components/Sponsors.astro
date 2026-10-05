@@ -6,7 +6,7 @@ const sponsors = [
 ];
 ---
 
-<section class="py-16 sm:py-20 bg-white border-b border-epic-blue/10">
+<section class="py-16 sm:py-20 bg-epic-gray-bg border-b border-epic-blue/10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
@@ -59,7 +59,7 @@ const sponsors = [
         <!-- Brand Badges Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 ">
           {sponsors.map((s) => (
-            <div class="p-4 rounded-xl border border-epic-blue/15 bg-epic-gray-bg hover:border-epic-gold hover:bg-white transition-all text-center group cursor-default">
+            <div class="p-4 rounded-xl border border-epic-blue/15 bg-white hover:border-epic-gold shadow-sm hover:shadow-md transition-all text-center group cursor-default">
               <span class="font-mono text-[9px] text-epic-text-muted tracking-widest uppercase block mb-1">{s.category}</span>
               <span class="font-black text-xs sm:text-sm text-epic-blue group-hover:text-epic-gold transition-colors block">{s.name}</span>
             </div>
