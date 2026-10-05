@@ -34,19 +34,20 @@ const generalSlides = [
 ];
 ---
 
-<section id="sec-descripcion-general" class="py-20 lg:py-28 bg-epic-gray-bg border-b border-epic-blue/10 scroll-mt-20">
+<section id="sec-descripcion-general" class="py-20 lg:py-28 bg-white border-b border-epic-blue/10 scroll-mt-20 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       
       <!-- Story & Description (Left) -->
-      <div class="flex flex-col gap-6 justify-center order-2 lg:order-1">
+      <div id="general-text-col" class="flex flex-col gap-6 justify-center order-2 lg:order-1 opacity-0 translate-y-6 lg:-translate-x-8 transition-all duration-700 ease-out">
         <div>
           <span class="font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase block mb-3">
             DESCRIPCIÓN GENERAL DE LOS PASEOS
           </span>
           <h2 class="font-black text-3xl sm:text-5xl lg:text-[44px] tracking-tight text-epic-blue leading-[1.08]">
-            ECUADOR SE DESCUBRE DIFERENTE <span class="text-epic-gold">SOBRE DOS RUEDAS.</span>
+            ECUADOR SE DESCUBRE DIFERENTE <span class="text-epic-gold inline-block">SOBRE DOS RUEDAS.</span>
           </h2>
+          <div id="general-accent-line" class="h-1 bg-epic-gold rounded-full mt-3 w-0 transition-all duration-700 delay-200"></div>
         </div>
 
         <p class="text-epic-text-muted text-base sm:text-lg leading-relaxed">
@@ -78,7 +79,7 @@ const generalSlides = [
       </div>
 
       <!-- Interactive Carousel (Right) -->
-      <div class="relative h-[380px] sm:h-[480px] rounded-2xl overflow-hidden shadow-2xl bg-epic-blue-card group order-1 lg:order-2 select-none">
+      <div id="general-carousel-col" class="relative h-[380px] sm:h-[480px] rounded-2xl overflow-hidden shadow-2xl bg-epic-blue-card group order-1 lg:order-2 select-none opacity-0 translate-y-6 lg:translate-x-8 transition-all duration-700 ease-out">
         
         <!-- Slides -->
         <div id="general-slides-container" class="relative w-full h-full">
@@ -237,8 +238,9 @@ const generalSlides = [
     });
   };
 
+  // Autoplay and image warmup observer
   if (generalSection && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
+    const autoObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           startGeneralAutoplay();
@@ -247,9 +249,50 @@ const generalSlides = [
           clearInterval(generalAutoplayTimer);
         }
       });
-    }, { rootMargin: '250px' });
-    observer.observe(generalSection);
+    }, { rootMargin: '50px' });
+    autoObserver.observe(generalSection);
   } else {
     startGeneralAutoplay();
+  }
+
+  // Entrance reveal observer for text column (ECUADOR SE DESCUBRE DIFERENTE SOBRE DOS RUEDAS)
+  const textCol = document.getElementById('general-text-col');
+  if (textCol && 'IntersectionObserver' in window) {
+    const textObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const accentLine = document.getElementById('general-accent-line');
+          textCol.classList.remove('opacity-0', 'translate-y-6', 'lg:-translate-x-8');
+          textCol.classList.add('opacity-100', 'translate-y-0', 'lg:translate-x-0');
+          if (accentLine) {
+            accentLine.classList.remove('w-0');
+            accentLine.classList.add('w-28');
+          }
+          textObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    textObserver.observe(textCol);
+  } else if (textCol) {
+    textCol.classList.remove('opacity-0', 'translate-y-6', 'lg:-translate-x-8');
+    const accentLine = document.getElementById('general-accent-line');
+    if (accentLine) accentLine.classList.remove('w-0');
+  }
+
+  // Entrance reveal observer for carousel column
+  const carouselCol = document.getElementById('general-carousel-col');
+  if (carouselCol && 'IntersectionObserver' in window) {
+    const carouselObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          carouselCol.classList.remove('opacity-0', 'translate-y-6', 'lg:translate-x-8');
+          carouselCol.classList.add('opacity-100', 'translate-y-0', 'lg:translate-x-0');
+          carouselObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    carouselObserver.observe(carouselCol);
+  } else if (carouselCol) {
+    carouselCol.classList.remove('opacity-0', 'translate-y-6', 'lg:translate-x-8');
   }
 </script>

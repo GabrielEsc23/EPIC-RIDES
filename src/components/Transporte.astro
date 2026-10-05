@@ -68,45 +68,49 @@ const highlights = [
       <!-- Contenido textual (Izquierda 6/12 o 7/12) -->
       <div class="lg:col-span-6 flex flex-col gap-6 justify-center">
         
-        <div>
+        <div id="transporte-title-block" class="opacity-0 translate-y-6 transition-all duration-700 ease-out">
           <span class="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase bg-epic-blue/5 border border-epic-blue/10 px-4 py-1.5 rounded-full mb-4">
             LOGÍSTICA & TRANSPORTE ESPECIALIZADO
           </span>
           <h2 class="font-black text-3xl sm:text-5xl lg:text-[44px] tracking-tight text-epic-blue leading-[1.08]">
-            TRANSPORTE ESPECIALIZADO <span class="text-epic-gold">PARA TU BICICLETA</span>
+            TRANSPORTE ESPECIALIZADO <span class="text-epic-gold inline-block">PARA TU BICICLETA</span>
           </h2>
+          <div id="transporte-accent-line" class="h-1 bg-epic-gold rounded-full mt-3 w-0 transition-all duration-700 delay-300"></div>
         </div>
 
-        <p class="text-epic-text-muted text-base sm:text-lg leading-relaxed">
-          Sabemos lo importante que es tu bicicleta y la confianza que necesitas al momento de transportarla. Por eso, en <strong class="text-epic-blue font-bold">Epic Rides</strong> contamos con un servicio especializado diseñado para llevarla de forma segura, cómoda y confiable.
-        </p>
-
-        <p class="text-epic-text-muted text-base leading-relaxed">
-          Nuestra <strong class="text-epic-blue font-bold">Epic Van</strong> además de transportar hasta <strong class="text-epic-blue font-bold">14 pasajeros cómodamente</strong>, ha sido especialmente adecuada para transportar las bicicletas <strong class="text-epic-blue font-bold">sin necesidad de desarmarlas</strong>, con el espacio necesario para evitar golpes, roces o contacto entre ellas.
-        </p>
-
-        <div class="border-l-4 border-epic-gold pl-4 py-1 bg-epic-gray-bg/60 rounded-r-xl">
-          <p class="text-epic-blue text-sm sm:text-base leading-relaxed font-bold italic">
-            "Porque tu bicicleta no es solo un medio de transporte: es parte de tu pasión. Nosotros nos encargamos de llevarla con el cuidado y la seguridad que merece."
+        <div id="transporte-body-block" class="opacity-0 translate-y-6 transition-all duration-700 delay-150 ease-out flex flex-col gap-6">
+          <p class="text-epic-text-muted text-base sm:text-lg leading-relaxed">
+            Sabemos lo importante que es tu bicicleta y la confianza que necesitas al momento de transportarla. Por eso, en <strong class="text-epic-blue font-bold">Epic Rides</strong> contamos con un servicio especializado diseñado para llevarla de forma segura, cómoda y confiable.
           </p>
-        </div>
 
-        <!-- 4 Ventajas Destacadas en Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-          {highlights.map((h) => (
-            <div class="p-3.5 rounded-2xl bg-epic-gray-bg border border-epic-blue/10 flex flex-col gap-1 transition-all hover:border-epic-gold hover:shadow-md">
-              <div class="flex items-center gap-2 text-epic-blue font-bold text-xs sm:text-sm">
-                <span class="text-epic-gold text-base">✓</span>
-                <span>{h.title}</span>
+          <p class="text-epic-text-muted text-base leading-relaxed">
+            Nuestra <strong class="text-epic-blue font-bold">Epic Van</strong> además de transportar hasta <strong class="text-epic-blue font-bold">14 pasajeros cómodamente</strong>, ha sido especialmente adecuada para transportar las bicicletas <strong class="text-epic-blue font-bold">sin necesidad de desarmarlas</strong>, con el espacio necesario para evitar golpes, roces o contacto entre ellas.
+          </p>
+
+          <div class="border-l-4 border-epic-gold pl-4 py-1 bg-epic-gray-bg/60 rounded-r-xl">
+            <p class="text-epic-blue text-sm sm:text-base leading-relaxed font-bold italic">
+              "Porque tu bicicleta no es solo un medio de transporte: es parte de tu pasión. Nosotros nos encargamos de llevarla con el cuidado y la seguridad que merece."
+            </p>
+          </div>
+
+          <!-- 4 Ventajas Destacadas en Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+            {highlights.map((h, i) => (
+              <div 
+                class="transporte-feature-card p-3.5 rounded-2xl bg-epic-gray-bg border border-epic-blue/10 flex flex-col gap-1 transition-all hover:border-epic-gold hover:shadow-md opacity-0 translate-y-4 duration-500 ease-out"
+                data-card-index={i}
+              >
+                <div class="flex items-center gap-2 text-epic-blue font-bold text-xs sm:text-sm">
+                  <span class="text-epic-gold text-base">✓</span>
+                  <span>{h.title}</span>
+                </div>
+                <p class="text-[12px] sm:text-xs text-epic-text-muted leading-snug pl-5">
+                  {h.desc}
+                </p>
               </div>
-              <p class="text-[12px] sm:text-xs text-epic-text-muted leading-snug pl-5">
-                {h.desc}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-
-
 
       </div>
 
@@ -114,7 +118,7 @@ const highlights = [
       <div class="lg:col-span-6 flex flex-col justify-center">
         
         <!-- Carrusel Principal con Contenedor Responsivo -->
-        <div class="transporte-carousel-container relative h-[360px] sm:h-[460px] lg:h-[530px] w-full rounded-3xl overflow-hidden shadow-2xl bg-epic-blue-card group select-none border border-epic-blue/15">
+        <div id="transporte-carousel-col" class="transporte-carousel-container relative h-[360px] sm:h-[460px] lg:h-[530px] w-full rounded-3xl overflow-hidden shadow-2xl bg-epic-blue-card group select-none border border-epic-blue/15 opacity-0 translate-x-8 transition-all duration-700 ease-out">
           
           <!-- Slides -->
           <div id="transporte-slides-container" class="relative w-full h-full">
@@ -272,4 +276,60 @@ const highlights = [
   }
 
   startAutoplay();
+
+  // Scroll entrance observer for Transporte section
+  const transporteSection = document.getElementById('sec-transporte');
+  if (transporteSection && 'IntersectionObserver' in window) {
+    const transporteObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const titleBlock = document.getElementById('transporte-title-block');
+          const accentLine = document.getElementById('transporte-accent-line');
+          const bodyBlock = document.getElementById('transporte-body-block');
+          const carouselCol = document.getElementById('transporte-carousel-col');
+          const featureCards = document.querySelectorAll('.transporte-feature-card');
+
+          if (titleBlock) {
+            titleBlock.classList.remove('opacity-0', 'translate-y-6');
+            titleBlock.classList.add('opacity-100', 'translate-y-0');
+          }
+          if (accentLine) {
+            accentLine.classList.remove('w-0');
+            accentLine.classList.add('w-24');
+          }
+          if (bodyBlock) {
+            bodyBlock.classList.remove('opacity-0', 'translate-y-6');
+            bodyBlock.classList.add('opacity-100', 'translate-y-0');
+          }
+          if (carouselCol) {
+            carouselCol.classList.remove('opacity-0', 'translate-x-8');
+            carouselCol.classList.add('opacity-100', 'translate-x-0');
+          }
+
+          featureCards.forEach((card, idx) => {
+            setTimeout(() => {
+              card.classList.remove('opacity-0', 'translate-y-4');
+              card.classList.add('opacity-100', 'translate-y-0');
+            }, 250 + idx * 120);
+          });
+
+          transporteObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    transporteObserver.observe(transporteSection);
+  } else {
+    // Fallback if no IntersectionObserver
+    const titleBlock = document.getElementById('transporte-title-block');
+    const accentLine = document.getElementById('transporte-accent-line');
+    const bodyBlock = document.getElementById('transporte-body-block');
+    const carouselCol = document.getElementById('transporte-carousel-col');
+    const featureCards = document.querySelectorAll('.transporte-feature-card');
+    if (titleBlock) titleBlock.classList.remove('opacity-0', 'translate-y-6');
+    if (accentLine) accentLine.classList.remove('w-0');
+    if (bodyBlock) bodyBlock.classList.remove('opacity-0', 'translate-y-6');
+    if (carouselCol) carouselCol.classList.remove('opacity-0', 'translate-x-8');
+    featureCards.forEach(c => c.classList.remove('opacity-0', 'translate-y-4'));
+  }
 </script>

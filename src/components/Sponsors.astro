@@ -6,15 +6,22 @@ const sponsors = [
 ];
 ---
 
-<section class="py-16 sm:py-20 bg-epic-gray-bg border-b border-epic-blue/10">
+<section id="sec-sponsors" class="py-16 sm:py-20 bg-epic-gray-bg border-b border-epic-blue/10 scroll-mt-20 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
       <!-- Social Media (Left 5/12) -->
-      <div class="lg:col-span-5 flex flex-col gap-6">
-        <h3 class="font-black text-2xl sm:text-3xl text-epic-blue tracking-tight">
-          ÚNETE A NUESTRA FAMILIA CICLISTA
-        </h3>
+      <div id="social-block" class="lg:col-span-5 flex flex-col gap-6 opacity-0 translate-y-6 transition-all duration-700 ease-out">
+        <div>
+          <span class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase block mb-2">
+            COMUNIDAD DIGITAL
+          </span>
+          <h3 class="font-black text-2xl sm:text-3xl text-epic-blue tracking-tight">
+            ÚNETE A NUESTRA FAMILIA CICLISTA
+          </h3>
+          <div id="social-accent-line" class="h-1 bg-epic-gold rounded-full mt-3 w-0 transition-all duration-700 delay-300"></div>
+        </div>
+
         <p class="text-epic-text-muted text-sm sm:text-base leading-relaxed">
           Comparte rutas, fotos y la pasión por el ciclismo cada día. Conéctate con nosotros en nuestras plataformas oficiales:
         </p>
@@ -24,7 +31,8 @@ const sponsors = [
             href="https://instagram.com" 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase"
+            class="social-btn inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase opacity-0 translate-y-3 duration-500 ease-out transform hover:scale-105"
+            data-btn-index="0"
           >
             <span>Instagram</span>
           </a>
@@ -32,7 +40,8 @@ const sponsors = [
             href="https://facebook.com" 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase"
+            class="social-btn inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase opacity-0 translate-y-3 duration-500 ease-out transform hover:scale-105"
+            data-btn-index="1"
           >
             <span>Facebook</span>
           </a>
@@ -40,7 +49,8 @@ const sponsors = [
             href="https://tiktok.com" 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase"
+            class="social-btn inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-epic-blue hover:bg-epic-blue hover:text-epic-gold text-epic-blue font-extrabold text-xs tracking-wider transition-all uppercase opacity-0 translate-y-3 duration-500 ease-out transform hover:scale-105"
+            data-btn-index="2"
           >
             <span>TikTok</span>
           </a>
@@ -48,18 +58,28 @@ const sponsors = [
       </div>
 
       <!-- Strategic Sponsors (Right 7/12) -->
-      <div class="lg:col-span-7 lg:border-l lg:border-epic-blue/15 lg:pl-12 flex flex-col gap-6">
-        <h3 class="font-black text-2xl sm:text-3xl text-epic-blue tracking-tight">
-          ALIANZAS ESTRATÉGICAS PARA TU EXPERIENCIA
-        </h3>
+      <div id="sponsors-block" class="lg:col-span-7 lg:border-l lg:border-epic-blue/15 lg:pl-12 flex flex-col gap-6 opacity-0 translate-y-6 transition-all duration-700 delay-150 ease-out">
+        <div>
+          <span class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase block mb-2">
+            PARTNERS DE CONFIANZA
+          </span>
+          <h3 class="font-black text-2xl sm:text-3xl text-epic-blue tracking-tight">
+            ALIANZAS ESTRATÉGICAS PARA TU EXPERIENCIA
+          </h3>
+          <div id="sponsors-accent-line" class="h-1 bg-epic-gold rounded-full mt-3 w-0 transition-all duration-700 delay-400"></div>
+        </div>
+
         <p class="text-epic-text-muted text-sm sm:text-base leading-relaxed">
           Trabajamos junto a las marcas líderes de la industria ciclista para garantizar soporte técnico de primer nivel, nutrición deportiva e indumentaria en cada kilómetro.
         </p>
 
         <!-- Brand Badges Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 ">
-          {sponsors.map((s) => (
-            <div class="p-4 rounded-xl border border-epic-blue/15 bg-white hover:border-epic-gold shadow-sm hover:shadow-md transition-all text-center group cursor-default">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+          {sponsors.map((s, idx) => (
+            <div 
+              class="sponsor-card p-4 rounded-xl border border-epic-blue/15 bg-white hover:border-epic-gold shadow-sm hover:shadow-md transition-all text-center group cursor-default opacity-0 translate-y-4 duration-500 ease-out transform hover:scale-105"
+              data-sponsor-index={idx}
+            >
               <span class="font-mono text-[9px] text-epic-text-muted tracking-widest uppercase block mb-1">{s.category}</span>
               <span class="font-black text-xs sm:text-sm text-epic-blue group-hover:text-epic-gold transition-colors block">{s.name}</span>
             </div>
@@ -70,3 +90,70 @@ const sponsors = [
     </div>
   </div>
 </section>
+
+<script>
+  const sponsorsSection = document.getElementById('sec-sponsors');
+  if (sponsorsSection && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const socialBlock = document.getElementById('social-block');
+          const socialAccentLine = document.getElementById('social-accent-line');
+          const socialButtons = document.querySelectorAll('.social-btn');
+          const sponsorsBlock = document.getElementById('sponsors-block');
+          const sponsorsAccentLine = document.getElementById('sponsors-accent-line');
+          const sponsorCards = document.querySelectorAll('.sponsor-card');
+
+          if (socialBlock) {
+            socialBlock.classList.remove('opacity-0', 'translate-y-6');
+            socialBlock.classList.add('opacity-100', 'translate-y-0');
+          }
+          if (socialAccentLine) {
+            socialAccentLine.classList.remove('w-0');
+            socialAccentLine.classList.add('w-20');
+          }
+          socialButtons.forEach((btn, idx) => {
+            setTimeout(() => {
+              btn.classList.remove('opacity-0', 'translate-y-3');
+              btn.classList.add('opacity-100', 'translate-y-0');
+            }, 300 + idx * 100);
+          });
+
+          if (sponsorsBlock) {
+            sponsorsBlock.classList.remove('opacity-0', 'translate-y-6');
+            sponsorsBlock.classList.add('opacity-100', 'translate-y-0');
+          }
+          if (sponsorsAccentLine) {
+            sponsorsAccentLine.classList.remove('w-0');
+            sponsorsAccentLine.classList.add('w-20');
+          }
+          sponsorCards.forEach((card, idx) => {
+            setTimeout(() => {
+              card.classList.remove('opacity-0', 'translate-y-4');
+              card.classList.add('opacity-100', 'translate-y-0');
+            }, 400 + idx * 120);
+          });
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    observer.observe(sponsorsSection);
+  } else {
+    // Fallback if no IntersectionObserver
+    const socialBlock = document.getElementById('social-block');
+    const socialAccentLine = document.getElementById('social-accent-line');
+    const socialButtons = document.querySelectorAll('.social-btn');
+    const sponsorsBlock = document.getElementById('sponsors-block');
+    const sponsorsAccentLine = document.getElementById('sponsors-accent-line');
+    const sponsorCards = document.querySelectorAll('.sponsor-card');
+
+    if (socialBlock) socialBlock.classList.remove('opacity-0', 'translate-y-6');
+    if (socialAccentLine) socialAccentLine.classList.remove('w-0');
+    socialButtons.forEach(btn => btn.classList.remove('opacity-0', 'translate-y-3'));
+    if (sponsorsBlock) sponsorsBlock.classList.remove('opacity-0', 'translate-y-6');
+    if (sponsorsAccentLine) sponsorsAccentLine.classList.remove('w-0');
+    sponsorCards.forEach(card => card.classList.remove('opacity-0', 'translate-y-4'));
+  }
+</script>

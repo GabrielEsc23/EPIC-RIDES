@@ -41,7 +41,7 @@ const trainingPuntos = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col gap-16 lg:gap-24">
     
     <!-- Encabezado Principal de la Sección -->
-    <div class="max-w-3xl">
+    <div id="coaching-main-header" class="max-w-3xl opacity-0 translate-y-6 transition-all duration-700 ease-out">
       <span class="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase bg-epic-blue/5 border border-epic-blue/10 px-4 py-1.5 rounded-full mb-3">
         ALTO RENDIMIENTO & PREPARACIÓN TÉCNICA
       </span>
@@ -57,7 +57,7 @@ const trainingPuntos = [
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       
       <!-- Contenido Textual (Izquierda 6/12) -->
-      <div class="lg:col-span-6 flex flex-col gap-6 justify-center">
+      <div id="coaching-content-col" class="lg:col-span-6 flex flex-col gap-6 justify-center opacity-0 -translate-x-8 transition-all duration-700 ease-out">
         <div>
           <span class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase block mb-2">
             ALIANZA AUDAX TRAINING &bull; PLANIFICACIÓN
@@ -65,6 +65,7 @@ const trainingPuntos = [
           <h3 class="font-black text-2xl sm:text-4xl text-epic-blue tracking-tight">
             Coaching
           </h3>
+          <div id="coaching-accent-line" class="h-1 bg-epic-gold rounded-full mt-3 w-0 transition-all duration-700 delay-300"></div>
         </div>
 
         <p class="text-epic-text-muted text-base sm:text-lg leading-relaxed">
@@ -78,7 +79,7 @@ const trainingPuntos = [
         <!-- Micro-puntos de valor -->
         <div class="space-y-2.5 pt-2">
           {coachingPuntos.map((punto) => (
-            <div class="flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold">
+            <div class="coaching-check-point flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold opacity-0 translate-x-3 transition-all duration-500 ease-out">
               <span class="text-epic-gold font-bold text-base leading-none">✓</span>
               <span>{punto}</span>
             </div>
@@ -87,7 +88,7 @@ const trainingPuntos = [
       </div>
 
       <!-- Vitrina de Fotos Coaching (Derecha 6/12) -->
-      <div class="lg:col-span-6 flex flex-col justify-center">
+      <div id="coaching-carousel-col" class="lg:col-span-6 flex flex-col justify-center opacity-0 translate-x-8 transition-all duration-700 ease-out">
         <div class="coaching-carousel-container relative h-[340px] sm:h-[440px] lg:h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl bg-epic-blue-card group select-none border border-epic-blue/15">
           
           <div id="coaching-slides-container" class="relative w-full h-full">
@@ -149,10 +150,10 @@ const trainingPuntos = [
     <div class="w-full h-px bg-epic-blue/10"></div>
 
     <!-- BLOQUE 2: TRAINING (Diseño invertido en Desktop para dinamismo) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+    <div id="training-block" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       
       <!-- Vitrina de Fotos Training (Izquierda 6/12 en Desktop) -->
-      <div class="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1">
+      <div id="training-carousel-col" class="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1 opacity-0 -translate-x-8 transition-all duration-700 ease-out">
         <div class="training-carousel-container relative h-[340px] sm:h-[440px] lg:h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl bg-epic-blue-card group select-none border border-epic-blue/15">
           
           <div id="training-slides-container" class="relative w-full h-full">
@@ -209,7 +210,7 @@ const trainingPuntos = [
       </div>
 
       <!-- Contenido Textual Training (Derecha 6/12 en Desktop) -->
-      <div class="lg:col-span-6 flex flex-col gap-6 justify-center order-1 lg:order-2">
+      <div id="training-content-col" class="lg:col-span-6 flex flex-col gap-6 justify-center order-1 lg:order-2 opacity-0 translate-y-6 transition-all duration-700 ease-out">
         <div>
           <span class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase block mb-2">
             TRI CAMPS &bull; COMPETENCIAS &bull; RUTINAS
@@ -217,6 +218,7 @@ const trainingPuntos = [
           <h3 class="font-black text-2xl sm:text-4xl text-epic-blue tracking-tight">
             Training
           </h3>
+          <div id="training-accent-line" class="h-1 bg-epic-gold rounded-full mt-3 w-0 transition-all duration-700 delay-300"></div>
         </div>
 
         <p class="text-epic-blue font-bold text-base sm:text-lg leading-relaxed">
@@ -232,7 +234,7 @@ const trainingPuntos = [
         </p>
 
         <!-- Lema Destacado -->
-        <div class="border-l-4 border-epic-gold pl-5 py-3 bg-white rounded-r-2xl shadow-sm border border-epic-blue/5">
+        <div class="border-l-4 border-epic-gold pl-5 py-3 bg-white rounded-r-2xl shadow-sm border border-epic-blue/5 transform hover:scale-[1.02] transition-transform duration-300">
           <p class="font-black text-xl sm:text-2xl text-epic-blue tracking-tight">
             Entrena. Prepárate. <span class="text-epic-gold">Supérate.</span>
           </p>
@@ -240,8 +242,11 @@ const trainingPuntos = [
 
         <!-- Micro-puntos de valor -->
         <div class="space-y-2.5 pt-1">
-          {trainingPuntos.map((punto) => (
-            <div class="flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold">
+          {trainingPuntos.map((punto, pIdx) => (
+            <div 
+              class="training-check-point flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold opacity-0 translate-x-3 transition-all duration-500 ease-out"
+              data-point-index={pIdx}
+            >
               <span class="text-epic-gold font-bold text-base leading-none">✓</span>
               <span>{punto}</span>
             </div>
@@ -357,4 +362,106 @@ const trainingPuntos = [
   // Inicializar ambos carruseles
   setupCarousel('.coaching-slide', 'coaching-counter', 'coaching-prev-btn', 'coaching-next-btn', '.coaching-carousel-container');
   setupCarousel('.training-slide', 'training-counter', 'training-prev-btn', 'training-next-btn', '.training-carousel-container');
+
+  // Scroll entrance observers for Coaching & Training
+  const coachingSection = document.getElementById('sec-coaching');
+  if (coachingSection && 'IntersectionObserver' in window) {
+    const coachingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const header = document.getElementById('coaching-main-header');
+          const contentCol = document.getElementById('coaching-content-col');
+          const accentLine = document.getElementById('coaching-accent-line');
+          const carouselCol = document.getElementById('coaching-carousel-col');
+          const checkPoints = document.querySelectorAll('.coaching-check-point');
+
+          if (header) {
+            header.classList.remove('opacity-0', 'translate-y-6');
+            header.classList.add('opacity-100', 'translate-y-0');
+          }
+          if (contentCol) {
+            contentCol.classList.remove('opacity-0', '-translate-x-8');
+            contentCol.classList.add('opacity-100', 'translate-x-0');
+          }
+          if (accentLine) {
+            accentLine.classList.remove('w-0');
+            accentLine.classList.add('w-24');
+          }
+          if (carouselCol) {
+            carouselCol.classList.remove('opacity-0', 'translate-x-8');
+            carouselCol.classList.add('opacity-100', 'translate-x-0');
+          }
+          checkPoints.forEach((point, idx) => {
+            setTimeout(() => {
+              point.classList.remove('opacity-0', 'translate-x-3');
+              point.classList.add('opacity-100', 'translate-x-0');
+            }, 300 + idx * 100);
+          });
+
+          coachingObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    coachingObserver.observe(coachingSection);
+  } else {
+    // Fallback if no IntersectionObserver
+    const header = document.getElementById('coaching-main-header');
+    const contentCol = document.getElementById('coaching-content-col');
+    const accentLine = document.getElementById('coaching-accent-line');
+    const carouselCol = document.getElementById('coaching-carousel-col');
+    const checkPoints = document.querySelectorAll('.coaching-check-point');
+    if (header) header.classList.remove('opacity-0', 'translate-y-6');
+    if (contentCol) contentCol.classList.remove('opacity-0', '-translate-x-8');
+    if (accentLine) accentLine.classList.remove('w-0');
+    if (carouselCol) carouselCol.classList.remove('opacity-0', 'translate-x-8');
+    checkPoints.forEach(p => p.classList.remove('opacity-0', 'translate-x-3'));
+  }
+
+  const trainingBlock = document.getElementById('training-block');
+  if (trainingBlock && 'IntersectionObserver' in window) {
+    const trainingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const carouselCol = document.getElementById('training-carousel-col');
+          const contentCol = document.getElementById('training-content-col');
+          const accentLine = document.getElementById('training-accent-line');
+          const checkPoints = document.querySelectorAll('.training-check-point');
+
+          if (carouselCol) {
+            carouselCol.classList.remove('opacity-0', '-translate-x-8');
+            carouselCol.classList.add('opacity-100', 'translate-x-0');
+          }
+          if (contentCol) {
+            contentCol.classList.remove('opacity-0', 'translate-y-6');
+            contentCol.classList.add('opacity-100', 'translate-y-0');
+          }
+          if (accentLine) {
+            accentLine.classList.remove('w-0');
+            accentLine.classList.add('w-24');
+          }
+          checkPoints.forEach((point, idx) => {
+            setTimeout(() => {
+              point.classList.remove('opacity-0', 'translate-x-3');
+              point.classList.add('opacity-100', 'translate-x-0');
+            }, 300 + idx * 100);
+          });
+
+          trainingObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    trainingObserver.observe(trainingBlock);
+  } else {
+    // Fallback if no IntersectionObserver
+    const carouselCol = document.getElementById('training-carousel-col');
+    const contentCol = document.getElementById('training-content-col');
+    const accentLine = document.getElementById('training-accent-line');
+    const checkPoints = document.querySelectorAll('.training-check-point');
+    if (carouselCol) carouselCol.classList.remove('opacity-0', '-translate-x-8');
+    if (contentCol) contentCol.classList.remove('opacity-0', 'translate-y-6');
+    if (accentLine) accentLine.classList.remove('w-0');
+    checkPoints.forEach(p => p.classList.remove('opacity-0', 'translate-x-3'));
+  }
 </script>
