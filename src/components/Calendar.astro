@@ -212,9 +212,6 @@ const events = [
                   class={`calendar-slide absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out cursor-pointer ${imgIdx === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'}`}
                   data-slide-index={imgIdx}
                   onclick={`window.openCalendarImageModal(${index})`}
-                  role="button"
-                  tabindex="0"
-                  aria-label={`Ver fotografía oficial ampliada de ${ev.name}`}
                 >
                   <Image 
                     src={img} 
@@ -267,28 +264,35 @@ const events = [
               </div>
             )}
 
-            <!-- Bottom Dot Indicators -->
+            <!-- Bottom Dot Indicators with Accessible Tap Target -->
             {ev.images.length > 1 && (
-              <div class="absolute bottom-4 inset-x-0 flex items-center justify-center gap-1.5 z-20">
+              <div class="absolute bottom-4 inset-x-0 flex items-center justify-center gap-1 z-20 pointer-events-none">
                 {ev.images.map((_, dotIdx) => (
                   <button 
                     type="button"
-                    class={`slide-dot h-2 rounded-full transition-all duration-300 shadow cursor-pointer ${dotIdx === 0 ? 'bg-epic-gold w-6 sm:w-7' : 'bg-white/50 hover:bg-white/80 w-2 sm:w-2.5'}`}
+                    class="slide-dot pointer-events-auto h-9 min-w-[36px] px-1 flex items-center justify-center cursor-pointer group focus:outline-none"
                     data-dot-index={dotIdx}
-                    aria-label={`Ir a foto ${dotIdx + 1}`}
-                  />
+                    aria-label={`Ir a foto ${dotIdx + 1} de ${ev.name}`}
+                  >
+                    <span 
+                      class={`slide-dot-pill h-2 rounded-full transition-all duration-300 shadow pointer-events-none ${dotIdx === 0 ? 'bg-epic-gold w-6 sm:w-7' : 'bg-white/50 group-hover:bg-white/80 w-2 sm:w-2.5'}`}
+                    ></span>
+                  </button>
                 ))}
               </div>
             )}
 
-            <!-- Subtle Magnifier on Hover -->
-            <div class="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-75 transition-opacity duration-300 pointer-events-none hidden sm:block">
-              <div class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center shadow-lg">
-                <svg class="w-4 h-4 text-epic-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
-                </svg>
-              </div>
-            </div>
+            <!-- Accessible Magnifier Button on Hover/Mobile -->
+            <button 
+              type="button"
+              onclick={`window.openCalendarImageModal(${index})`}
+              class="absolute bottom-4 right-4 z-20 pointer-events-auto opacity-0 group-hover:opacity-100 sm:opacity-75 sm:hover:opacity-100 transition-opacity duration-300 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center shadow-lg cursor-pointer focus:outline-none"
+              aria-label={`Ampliar fotografía oficial de ${ev.name}`}
+            >
+              <svg class="w-4 h-4 text-epic-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+              </svg>
+            </button>
           </div>
 
           <!-- Event Data Column (Right 6/12) -->
@@ -394,12 +398,13 @@ const events = [
         }
 
         dots.forEach((d, idx) => {
+          const pill = d.querySelector('.slide-dot-pill') || d;
           if (idx === currentSlide) {
-            d.classList.remove('bg-white/50', 'w-2', 'sm:w-2.5');
-            d.classList.add('bg-epic-gold', 'w-6', 'sm:w-7');
+            pill.classList.remove('bg-white/50', 'w-2', 'sm:w-2.5');
+            pill.classList.add('bg-epic-gold', 'w-6', 'sm:w-7');
           } else {
-            d.classList.remove('bg-epic-gold', 'w-6', 'sm:w-7');
-            d.classList.add('bg-white/50', 'w-2', 'sm:w-2.5');
+            pill.classList.remove('bg-epic-gold', 'w-6', 'sm:w-7');
+            pill.classList.add('bg-white/50', 'w-2', 'sm:w-2.5');
           }
         });
 
