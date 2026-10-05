@@ -361,14 +361,19 @@ const modalGallery = [
       </button>
     </div>
     <div class="relative max-h-[75vh] h-[60vh] sm:h-[72vh] bg-black flex items-center justify-center">
-      <!-- High-Impact Real Video Player (Adaptive for 16:9 widescreen and 9:16 vertical reels) -->
       <div id="video-player-content" class="w-full h-full relative flex items-center justify-center bg-black">
+        <!-- Video Buffer Spinner -->
+        <div id="video-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-20 transition-opacity duration-300">
+          <div class="w-12 h-12 border-4 border-epic-gold/30 border-t-epic-gold rounded-full animate-spin mb-3"></div>
+          <span class="text-white/80 font-mono text-xs uppercase tracking-wider">Cargando video...</span>
+        </div>
+
         <video 
           id="epic-video-player"
-          src="/images/web/hero/epic-experience-video.mp4" 
+          preload="none"
           controls 
           playsinline 
-          class="max-w-full max-h-full w-auto h-auto object-contain bg-black"
+          class="max-w-full max-h-full w-auto h-auto object-contain bg-black relative z-10"
         >
           Tu navegador no soporta reproducción de video HTML5.
         </video>
@@ -537,12 +542,50 @@ const modalGallery = [
     const modal = document.getElementById('video-modal');
     const titleEl = document.getElementById('video-modal-title');
     const videoEl = document.getElementById('epic-video-player');
+    const loader = document.getElementById('video-loader');
+
     if (modal) {
       if (titleEl && title) titleEl.textContent = title;
       if (videoEl) {
-        if (url) videoEl.src = url;
-        videoEl.currentTime = 0;
-        videoEl.play().catch(() => {});
+        if (loader) {
+          loader.classList.remove('hidden', 'opacity-0');
+          loader.classList.add('flex', 'opacity-100');
+        }
+
+        // Adaptive mobile video optimization for Cloudinary streams
+        let finalUrl = url;
+        if (finalUrl && finalUrl.includes('res.cloudinary.com')) {
+          const isMobile = window.innerWidth < 768;
+          const targetParams = isMobile ? 'f_auto,q_auto,w_720,c_limit' : 'f_auto,q_auto,w_1080,c_limit';
+          if (!finalUrl.includes('w_')) {
+            finalUrl = finalUrl.replace('/video/upload/', `/video/upload/${targetParams}/`);
+          }
+        }
+
+        videoEl.src = finalUrl;
+        videoEl.load(); // Forces mobile pipeline to fetch stream chunks immediately
+
+        const hideLoader = () => {
+          if (loader) {
+            loader.classList.add('opacity-0');
+            setTimeout(() => loader.classList.add('hidden'), 250);
+          }
+        };
+
+        const showLoader = () => {
+          if (loader) {
+            loader.classList.remove('hidden', 'opacity-0');
+            loader.classList.add('flex', 'opacity-100');
+          }
+        };
+
+        videoEl.oncanplay = hideLoader;
+        videoEl.onplaying = hideLoader;
+        videoEl.onwaiting = showLoader;
+
+        videoEl.play().catch(() => {
+          hideLoader();
+        });
       }
       modal.classList.remove('hidden');
       modal.classList.add('flex');
@@ -553,11 +596,19 @@ const modalGallery = [
   window.closeVideoModal = function() {
     const modal = document.getElementById('video-modal');
     const videoEl = document.getElementById('epic-video-player');
+    const loader = document.getElementById('video-loader');
     if (modal) {
       if (videoEl) {
         videoEl.pause();
+        videoEl.oncanplay = null;
+        videoEl.onplaying = null;
+        videoEl.onwaiting = null;
         videoEl.currentTime = 0;
         videoEl.src = '';
+        videoEl.load();
+      }
+      if (loader) {
+        loader.classList.add('hidden');
       }
       modal.classList.add('hidden');
       modal.classList.remove('flex');
