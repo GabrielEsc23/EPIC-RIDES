@@ -211,7 +211,11 @@ const events = [
                 <div 
                   class={`calendar-slide absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out cursor-pointer ${imgIdx === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'}`}
                   data-slide-index={imgIdx}
+                  role="button"
+                  tabindex={imgIdx === 0 ? "0" : "-1"}
+                  aria-label={`Ampliar fotografía de ${ev.name}`}
                   onclick={`window.openCalendarImageModal(${index})`}
+                  onkeydown={`if(event.key==='Enter'||event.key===' '){event.preventDefault();window.openCalendarImageModal(${index});}`}
                 >
                   <Image 
                     src={img} 
@@ -312,20 +316,20 @@ const events = [
               </h3>
 
               <!-- Technical Stats -->
-              <div class="grid grid-cols-3 gap-2 sm:gap-3 py-4 border-y border-epic-blue/10 my-4 bg-epic-gray-bg/50 rounded-xl px-3 sm:px-4">
+              <dl class="grid grid-cols-3 gap-2 sm:gap-3 py-4 border-y border-epic-blue/10 my-4 bg-epic-gray-bg/50 rounded-xl px-3 sm:px-4 m-0">
                 <div class="min-w-0">
-                  <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Distancia</span>
-                  <span class="font-black text-lg sm:text-2xl text-epic-blue truncate block">{ev.km}</span>
+                  <dt class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Distancia</dt>
+                  <dd class="font-black text-lg sm:text-2xl text-epic-blue truncate block m-0">{ev.km}</dd>
                 </div>
                 <div class="min-w-0">
-                  <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Altimetría</span>
-                  <span class="font-black text-lg sm:text-2xl text-epic-blue truncate block">{ev.alt}</span>
+                  <dt class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Altimetría</dt>
+                  <dd class="font-black text-lg sm:text-2xl text-epic-blue truncate block m-0">{ev.alt}</dd>
                 </div>
                 <div class="min-w-0">
-                  <span class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Nivel</span>
-                  <span class="font-black text-sm sm:text-xl text-epic-gold leading-tight break-words block">{ev.level}</span>
+                  <dt class="font-mono text-[10px] uppercase tracking-wider text-epic-text-muted block">Nivel</dt>
+                  <dd class="font-black text-sm sm:text-xl text-epic-gold leading-tight break-words block m-0">{ev.level}</dd>
                 </div>
-              </div>
+              </dl>
 
               <!-- Scannable and Accessible Route Description (WCAG & UX Typography Rules) -->
               <div class="text-epic-text-muted text-sm sm:text-[15px] leading-relaxed max-w-[65ch] space-y-2.5 text-left font-normal">

@@ -137,7 +137,7 @@ const modalGallery = [
     <!-- Modal Header -->
     <div class="bg-epic-blue text-white p-6 sm:p-8 flex items-start justify-between">
       <div>
-        <span class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase block mb-1">Inscripción Oficial</span>
+        <p class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase mb-1">Inscripción Oficial</p>
         <h3 class="font-black text-2xl tracking-tight">RESERVA TU CUPO ÉPICO</h3>
         <p class="text-white/70 text-xs mt-1">Nuestros cupos son limitados a 14 ciclistas por rodada para garantizar máxima seguridad y atención personalizada.</p>
       </div>
@@ -154,7 +154,7 @@ const modalGallery = [
     <!-- Booking Form -->
     <form id="booking-form" class="p-6 sm:p-8 space-y-4 text-left" onsubmit="window.handleBookingSubmit(event)">
       <div>
-        <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nombre y Apellido *</label>
+        <label for="booking-name" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nombre y Apellido *</label>
         <input 
           type="text" 
           id="booking-name"
@@ -166,7 +166,7 @@ const modalGallery = [
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">WhatsApp / Celular *</label>
+          <label for="booking-phone" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">WhatsApp / Celular *</label>
           <input 
             type="tel" 
             id="booking-phone"
@@ -176,7 +176,7 @@ const modalGallery = [
           />
         </div>
         <div>
-          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Correo Electrónico *</label>
+          <label for="booking-email" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Correo Electrónico *</label>
           <input 
             type="email" 
             id="booking-email"
@@ -188,7 +188,7 @@ const modalGallery = [
       </div>
 
       <div>
-        <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Ruta o Experiencia de Interés *</label>
+        <label for="booking-route" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Ruta o Experiencia de Interés *</label>
         <select 
           id="booking-route" 
           required
@@ -206,7 +206,7 @@ const modalGallery = [
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Tipo de Bicicleta *</label>
+          <label for="booking-bike" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Tipo de Bicicleta *</label>
           <select 
             id="booking-bike"
             class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm bg-white"
@@ -219,7 +219,7 @@ const modalGallery = [
           </select>
         </div>
         <div>
-          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nivel de Condición</label>
+          <label for="booking-level" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nivel de Condición</label>
           <select 
             id="booking-level"
             class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm bg-white"
@@ -253,7 +253,7 @@ const modalGallery = [
     
     <div class="bg-epic-blue text-white p-6 sm:p-8 flex items-start justify-between">
       <div>
-        <span class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase block mb-1">Empresas &amp; Grupos</span>
+        <p class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase mb-1">Empresas &amp; Grupos</p>
         <h3 class="font-black text-2xl tracking-tight">COTIZAR EVENTO PRIVADO</h3>
         <p class="text-white/70 text-xs mt-1">Diseñamos rodadas y retos corporativos personalizados con soporte integral.</p>
       </div>
@@ -269,7 +269,7 @@ const modalGallery = [
 
     <form id="corporate-form" class="p-6 sm:p-8 space-y-4 text-left" onsubmit="window.handleCorporateSubmit(event)">
       <div>
-        <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Empresa / Organización *</label>
+        <label for="corp-company" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Empresa / Organización *</label>
         <input 
           type="text" 
           id="corp-company"
@@ -281,7 +281,7 @@ const modalGallery = [
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Persona de Contacto *</label>
+          <label for="corp-name" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Persona de Contacto *</label>
           <input 
             type="text" 
             id="corp-name"
@@ -291,7 +291,7 @@ const modalGallery = [
           />
         </div>
         <div>
-          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Teléfono / WhatsApp *</label>
+          <label for="corp-phone" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Teléfono / WhatsApp *</label>
           <input 
             type="tel" 
             id="corp-phone"
@@ -304,7 +304,7 @@ const modalGallery = [
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nº Estimado de Ciclistas</label>
+          <label for="corp-riders" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nº Estimado de Ciclistas</label>
           <input 
             type="number" 
             id="corp-riders"
@@ -315,7 +315,7 @@ const modalGallery = [
           />
         </div>
         <div>
-          <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Fecha Tentativa</label>
+          <label for="corp-date" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Fecha Tentativa</label>
           <input 
             type="date" 
             id="corp-date"
@@ -325,7 +325,7 @@ const modalGallery = [
       </div>
 
       <div>
-        <label class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Detalles del Evento o Requerimientos</label>
+        <label for="corp-notes" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Detalles del Evento o Requerimientos</label>
         <textarea 
           id="corp-notes"
           rows="3" 

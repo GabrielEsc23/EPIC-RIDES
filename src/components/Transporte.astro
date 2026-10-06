@@ -69,9 +69,9 @@ const highlights = [
       <div class="lg:col-span-6 flex flex-col gap-6 justify-center">
         
         <div id="transporte-title-block" class="opacity-0 translate-y-6 transition-all duration-700 ease-out">
-          <span class="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase bg-epic-blue/5 border border-epic-blue/10 px-4 py-1.5 rounded-full mb-4">
+          <p class="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase bg-epic-blue/5 border border-epic-blue/10 px-4 py-1.5 rounded-full mb-4">
             LOGÍSTICA & TRANSPORTE ESPECIALIZADO
-          </span>
+          </p>
           <h2 class="font-black text-3xl sm:text-5xl lg:text-[44px] tracking-tight text-epic-blue leading-[1.08]">
             TRANSPORTE ESPECIALIZADO <span class="text-epic-gold inline-block">PARA TU BICICLETA</span>
           </h2>
@@ -94,22 +94,22 @@ const highlights = [
           </div>
 
           <!-- 4 Ventajas Destacadas en Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2 list-none p-0 m-0">
             {highlights.map((h, i) => (
-              <div 
+              <li 
                 class="transporte-feature-card p-3.5 rounded-2xl bg-epic-gray-bg border border-epic-blue/10 flex flex-col gap-1 transition-all hover:border-epic-gold hover:shadow-md opacity-0 translate-y-4 duration-500 ease-out"
                 data-card-index={i}
               >
                 <div class="flex items-center gap-2 text-epic-blue font-bold text-xs sm:text-sm">
-                  <span class="text-epic-gold text-base">✓</span>
+                  <span aria-hidden="true" class="text-epic-gold text-base">✓</span>
                   <span>{h.title}</span>
                 </div>
                 <p class="text-[12px] sm:text-xs text-epic-text-muted leading-snug pl-5">
                   {h.desc}
                 </p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
       </div>

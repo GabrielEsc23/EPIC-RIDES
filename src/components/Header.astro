@@ -14,7 +14,7 @@
     </a>
 
     <!-- Desktop Navigation Links -->
-    <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-xs font-bold tracking-wider text-white/80">
+    <nav aria-label="Navegación principal" class="hidden lg:flex items-center gap-6 xl:gap-8 text-xs font-bold tracking-wider text-white/80">
       <a href="#sec-nosotros" class="hover:text-epic-gold transition-colors py-2 uppercase">Sobre Nosotros</a>
       <a href="#sec-calendario" class="hover:text-epic-gold transition-colors py-2 uppercase">Paseos Épicos</a>
       <a href="#sec-transporte" class="hover:text-epic-gold transition-colors py-2 uppercase">Transporte</a>
@@ -48,30 +48,30 @@
   </div>
 
   <!-- Mobile & Tablet Drawer Menu (< 1024px) -->
-  <div id="mobile-menu" class="hidden lg:hidden bg-epic-blue/98 backdrop-blur-xl border-b border-white/10 px-6 py-6 sm:px-12 sm:py-8 shadow-2xl transition-all duration-300">
+  <nav id="mobile-menu" aria-label="Menú de navegación móvil" class="hidden lg:hidden bg-epic-blue/98 backdrop-blur-xl border-b border-white/10 px-6 py-6 sm:px-12 sm:py-8 shadow-2xl transition-all duration-300">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pb-4">
       <a href="#sec-nosotros" class="mobile-nav-link flex items-center justify-between text-sm sm:text-base font-bold text-white/90 hover:text-epic-gold hover:bg-white/5 px-4 py-3 rounded-xl transition-all uppercase">
         <span>Sobre Nosotros</span>
-        <span class="text-epic-gold/60 text-xs">→</span>
+        <span aria-hidden="true" class="text-epic-gold/60 text-xs">→</span>
       </a>
       <a href="#sec-calendario" class="mobile-nav-link flex items-center justify-between text-sm sm:text-base font-bold text-white/90 hover:text-epic-gold hover:bg-white/5 px-4 py-3 rounded-xl transition-all uppercase">
         <span>Paseos Épicos</span>
-        <span class="text-epic-gold/60 text-xs">→</span>
+        <span aria-hidden="true" class="text-epic-gold/60 text-xs">→</span>
       </a>
       <a href="#sec-transporte" class="mobile-nav-link flex items-center justify-between text-sm sm:text-base font-bold text-white/90 hover:text-epic-gold hover:bg-white/5 px-4 py-3 rounded-xl transition-all uppercase">
         <span>Transporte</span>
-        <span class="text-epic-gold/60 text-xs">→</span>
+        <span aria-hidden="true" class="text-epic-gold/60 text-xs">→</span>
       </a>
       <a href="#sec-coaching" class="mobile-nav-link flex items-center justify-between text-sm sm:text-base font-bold text-white/90 hover:text-epic-gold hover:bg-white/5 px-4 py-3 rounded-xl transition-all uppercase">
         <span>Training &amp; Coaching</span>
-        <span class="text-epic-gold/60 text-xs">→</span>
+        <span aria-hidden="true" class="text-epic-gold/60 text-xs">→</span>
       </a>
     </div>
 
     <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row gap-3 items-center justify-between">
-      <span class="text-white/50 text-xs font-mono tracking-wider uppercase text-center sm:text-left">
+      <p class="text-white/50 text-xs font-mono tracking-wider uppercase text-center sm:text-left m-0">
         EPIC RIDES ECUADOR &bull; LOGÍSTICA &amp; AVENTURA
-      </span>
+      </p>
       <a 
         href="#sec-footer"
         onclick="document.getElementById('mobile-menu')?.classList.add('hidden');" 
@@ -80,7 +80,7 @@
         Contacto Inmediato
       </a>
     </div>
-  </div>
+  </nav>
 </header>
 
 <script>

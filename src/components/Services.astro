@@ -78,12 +78,8 @@ const services = [
             />
             <div class="absolute inset-0 bg-gradient-to-t from-epic-blue/90 via-transparent to-black/20"></div>
             
-            <div class="absolute top-4 right-4 font-mono text-[10px] font-extrabold tracking-widest px-3 py-1 rounded-full bg-epic-blue/90 text-epic-gold border border-white/10 shadow-sm">
-              
-            </div>
-
             <div class="absolute bottom-4 left-6 right-6">
-              <span class="text-white/70 font-mono text-xs uppercase tracking-wider block mb-1">{item.subtitle}</span>
+              <p class="text-white/70 font-mono text-xs uppercase tracking-wider mb-1">{item.subtitle}</p>
               <h3 class="text-white font-black text-2xl tracking-tight leading-tight">{item.title}</h3>
             </div>
           </div>
@@ -100,7 +96,7 @@ const services = [
               class="inline-flex items-center justify-between w-full font-mono text-xs font-bold tracking-wider text-epic-blue group-hover:text-epic-gold transition-colors pt-4 border-t border-epic-blue/10 cursor-pointer"
             >
               <span class="tracking-widest uppercase">MÁS INFORMACIÓN</span>
-              <span class="transform group-hover:translate-x-3 transition-transform duration-300 text-lg font-black text-epic-gold">→</span>
+              <span aria-hidden="true" class="transform group-hover:translate-x-3 transition-transform duration-300 text-lg font-black text-epic-gold">→</span>
             </a>
           </div>
         </div>

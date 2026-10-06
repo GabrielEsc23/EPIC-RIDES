@@ -69,9 +69,9 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
     <!-- Header with Prev/Next Controls -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
       <div class="max-w-3xl">
-        <span class="font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase block mb-3">
+        <p class="font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase mb-3">
           TESTIMONIOS EN PRIMERA PERSONA
-        </span>
+        </p>
         <h2 class="font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">
           LA COMUNIDAD LO CUENTA MEJOR
         </h2>
@@ -116,7 +116,11 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
           <!-- Video Poster Container (Frame 0.01 como poster estático sin previsualización en movimiento) -->
           <div 
             class="testimonial-video-box relative aspect-video overflow-hidden bg-black cursor-pointer group/video select-none"
+            role="button"
+            tabindex="0"
+            aria-label={`Reproducir video testimonial: ${t.title}`}
             onclick={`window.openVideoModal('${t.videoSrc}', '${t.title} — EPIC Rides')`}
+            onkeydown={`if(event.key==='Enter'||event.key===' '){event.preventDefault();window.openVideoModal('${t.videoSrc}', '${t.title} — EPIC Rides');}`}
             title="Haz clic para reproducir este testimonio con audio"
           >
             <img 
@@ -134,16 +138,16 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
 
             <!-- Central Play Button Badge -->
             <div class="absolute inset-0 m-auto w-14 h-14 rounded-full bg-epic-blue/90 border border-white/30 text-white flex items-center justify-center text-xl transition-all duration-300 shadow-2xl group-hover/video:bg-epic-gold group-hover/video:text-epic-blue group-hover/video:scale-110 group-hover/video:border-epic-gold pointer-events-none">
-              <span class="ml-0.5 text-lg">▶</span>
+              <span aria-hidden="true" class="ml-0.5 text-lg">▶</span>
             </div>
           </div>
 
           <!-- Video Details & Action Button -->
           <div class="p-6 sm:p-7 flex flex-col justify-between flex-1 gap-5">
             <div class="flex flex-col gap-2">
-              <span class="font-mono text-[11px] font-bold tracking-wider text-epic-gold uppercase bg-white/10 px-3 py-1 rounded-md inline-block self-start">
+              <p class="font-mono text-[11px] font-bold tracking-wider text-epic-gold uppercase bg-white/10 px-3 py-1 rounded-md inline-block self-start m-0">
                 {t.tag}
-              </span>
+              </p>
               <h3 class="font-black text-lg sm:text-xl text-white leading-snug">
                 {t.title}
               </h3>
@@ -154,12 +158,12 @@ const loopTestimonials = [...testimonialVideos, ...testimonialVideos, ...testimo
 
             <div class="pt-4 border-t border-white/10 flex items-center justify-between">
               <button 
-                type="button"
+                type="button" 
                 onclick={`window.openVideoModal('${t.videoSrc.split('#')[0]}', '${t.title} — EPIC Rides')`}
                 class="inline-flex items-center gap-2 text-xs font-mono font-bold text-epic-gold hover:text-white uppercase tracking-wider transition-colors cursor-pointer"
               >
                 <span>Ver testimonio</span>
-                <span>▶</span>
+                <span aria-hidden="true">▶</span>
               </button>
             </div>
           </div>

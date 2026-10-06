@@ -42,9 +42,9 @@ const trainingPuntos = [
     
     <!-- Encabezado Principal de la Sección -->
     <div id="coaching-main-header" class="max-w-3xl opacity-0 translate-y-6 transition-all duration-700 ease-out">
-      <span class="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase bg-epic-blue/5 border border-epic-blue/10 px-4 py-1.5 rounded-full mb-3">
+      <p class="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-bold tracking-[0.25em] text-epic-gold uppercase bg-epic-blue/5 border border-epic-blue/10 px-4 py-1.5 rounded-full mb-3">
         ALTO RENDIMIENTO & PREPARACIÓN TÉCNICA
-      </span>
+      </p>
       <h2 class="font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight text-epic-blue leading-tight">
         COACHING & <span class="text-epic-gold">TRAINING</span>
       </h2>
@@ -59,9 +59,9 @@ const trainingPuntos = [
       <!-- Contenido Textual (Izquierda 6/12) -->
       <div id="coaching-content-col" class="lg:col-span-6 flex flex-col gap-6 justify-center opacity-0 -translate-x-8 transition-all duration-700 ease-out">
         <div>
-          <span class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase block mb-2">
+          <p class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase mb-2">
             ALIANZA AUDAX TRAINING &bull; PLANIFICACIÓN
-          </span>
+          </p>
           <h3 class="font-black text-2xl sm:text-4xl text-epic-blue tracking-tight">
             Coaching
           </h3>
@@ -77,14 +77,14 @@ const trainingPuntos = [
         </p>
 
         <!-- Micro-puntos de valor -->
-        <div class="space-y-2.5 pt-2">
+        <ul class="space-y-2.5 pt-2 list-none p-0 m-0">
           {coachingPuntos.map((punto) => (
-            <div class="coaching-check-point flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold opacity-0 translate-x-3 transition-all duration-500 ease-out">
-              <span class="text-epic-gold font-bold text-base leading-none">✓</span>
+            <li class="coaching-check-point flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold opacity-0 translate-x-3 transition-all duration-500 ease-out">
+              <span aria-hidden="true" class="text-epic-gold font-bold text-base leading-none">✓</span>
               <span>{punto}</span>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       <!-- Vitrina de Fotos Coaching (Derecha 6/12) -->
@@ -212,9 +212,9 @@ const trainingPuntos = [
       <!-- Contenido Textual Training (Derecha 6/12 en Desktop) -->
       <div id="training-content-col" class="lg:col-span-6 flex flex-col gap-6 justify-center order-1 lg:order-2 opacity-0 translate-y-6 transition-all duration-700 ease-out">
         <div>
-          <span class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase block mb-2">
+          <p class="font-mono text-xs font-bold tracking-[0.2em] text-epic-gold uppercase mb-2">
             TRI CAMPS &bull; COMPETENCIAS &bull; RUTINAS
-          </span>
+          </p>
           <h3 class="font-black text-2xl sm:text-4xl text-epic-blue tracking-tight">
             Training
           </h3>
@@ -241,17 +241,17 @@ const trainingPuntos = [
         </div>
 
         <!-- Micro-puntos de valor -->
-        <div class="space-y-2.5 pt-1">
+        <ul class="space-y-2.5 pt-1 list-none p-0 m-0">
           {trainingPuntos.map((punto, pIdx) => (
-            <div 
+            <li 
               class="training-check-point flex items-start gap-3 text-epic-blue text-xs sm:text-sm font-semibold opacity-0 translate-x-3 transition-all duration-500 ease-out"
               data-point-index={pIdx}
             >
-              <span class="text-epic-gold font-bold text-base leading-none">✓</span>
+              <span aria-hidden="true" class="text-epic-gold font-bold text-base leading-none">✓</span>
               <span>{punto}</span>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
     </div>
