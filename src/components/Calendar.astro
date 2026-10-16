@@ -337,15 +337,17 @@ const events = [
               </div>
             </div>
 
-            <!-- Action Buttons (Clean Centered Booking CTA) -->
+            <!-- Action Buttons (Direct WhatsApp Booking CTA) -->
             <div class="flex items-center justify-center pt-2">
-              <button 
-                type="button"
-                onclick={`window.openBookingModal('${ev.name}', '${ev.dateBadge}')`}
-                class="w-full sm:w-auto bg-epic-blue hover:bg-epic-blue-light text-epic-gold font-extrabold text-xs tracking-wider px-10 py-4 rounded-full text-center transition-all shadow-md uppercase transform hover:scale-105 cursor-pointer"
+              <a 
+                href={`https://wa.me/593999999999?text=${encodeURIComponent(`¡Hola EPIC Rides! Quisiera inscribirme y reservar un cupo para la ruta "${ev.name}" (${ev.dateBadge}).`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full sm:w-auto bg-epic-blue hover:bg-epic-blue-light text-epic-gold font-extrabold text-xs tracking-wider px-10 py-4 rounded-full text-center transition-all shadow-md uppercase transform hover:scale-105 cursor-pointer inline-flex items-center justify-center gap-2"
+                aria-label={`Reservar cupo para ${ev.name} por WhatsApp`}
               >
                 Inscribirme / Reservar Cupo
-              </button>
+              </a>
             </div>
 
           </div>

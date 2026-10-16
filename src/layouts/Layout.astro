@@ -1,6 +1,16 @@
 ---
 import '@fontsource-variable/montserrat';
 import montserratWoff2 from '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url';
+import { getImage } from 'astro:assets';
+import heroImg from '../assets/hero_andes_ride.jpg';
+
+const heroOptimized = await getImage({
+  src: heroImg,
+  widths: [480, 768, 1200, 1600],
+  sizes: '100vw',
+  quality: 50,
+  format: 'webp'
+});
 
 interface Props {
   title?: string;
@@ -29,6 +39,16 @@ const {
       as="font" 
       type="font/woff2" 
       crossorigin="anonymous" 
+    />
+
+    <!-- Preload Critical LCP Hero Image for Maximum Speed -->
+    <link 
+      rel="preload" 
+      as="image" 
+      href={heroOptimized.src} 
+      imagesrcset={heroOptimized.srcSet.attribute} 
+      imagesizes="100vw" 
+      fetchpriority="high" 
     />
 
     <!-- Preconnect to Cloudinary for media assets -->

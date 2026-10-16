@@ -130,122 +130,7 @@ const modalGallery = [
 ];
 ---
 
-<!-- 1. Booking / Cupo Modal -->
-<div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
-  <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden my-8 border border-epic-blue/10 animate-in fade-in zoom-in duration-200">
-    
-    <!-- Modal Header -->
-    <div class="bg-epic-blue text-white p-6 sm:p-8 flex items-start justify-between">
-      <div>
-        <p class="font-mono text-xs font-bold tracking-widest text-epic-gold uppercase mb-1">Inscripción Oficial</p>
-        <h3 class="font-black text-2xl tracking-tight">RESERVA TU CUPO ÉPICO</h3>
-        <p class="text-white/70 text-xs mt-1">Nuestros cupos son limitados a 14 ciclistas por rodada para garantizar máxima seguridad y atención personalizada.</p>
-      </div>
-      <button 
-        type="button" 
-        onclick="window.closeBookingModal()" 
-        class="text-white/70 hover:text-white hover:bg-white/10 w-11 h-11 flex items-center justify-center rounded-full text-2xl font-bold transition-all focus:outline-none cursor-pointer"
-        aria-label="Cerrar modal"
-      >
-        ✕
-      </button>
-    </div>
 
-    <!-- Booking Form -->
-    <form id="booking-form" class="p-6 sm:p-8 space-y-4 text-left" onsubmit="window.handleBookingSubmit(event)">
-      <div>
-        <label for="booking-name" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nombre y Apellido *</label>
-        <input 
-          type="text" 
-          id="booking-name"
-          required 
-          placeholder="Ej. Mateo Rodríguez"
-          class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
-        />
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label for="booking-phone" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">WhatsApp / Celular *</label>
-          <input 
-            type="tel" 
-            id="booking-phone"
-            required 
-            placeholder="+593 99 999 9999"
-            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
-          />
-        </div>
-        <div>
-          <label for="booking-email" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Correo Electrónico *</label>
-          <input 
-            type="email" 
-            id="booking-email"
-            required 
-            placeholder="mateo@ejemplo.com"
-            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label for="booking-route" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Ruta o Experiencia de Interés *</label>
-        <select 
-          id="booking-route" 
-          required
-          class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm bg-white"
-        >
-          <option value="Sigchos – Quilotoa (78km)">Sigchos – Quilotoa (78 km · SÁB 11 JUL 2026)</option>
-          <option value="Reto 0 – 5.000m Chimborazo (142km)">Reto 0 – 5.000m Chimborazo (142 km · SÁB 15 AGO 2026)</option>
-          <option value="Alto de Apagua (96km)">Alto de Apagua (96 km · DOM 13 SEP 2026)</option>
-          <option value="Tigua Ride MTB (54km)">Tigua Ride MTB (54 km · SÁB 17 OCT 2026)</option>
-          <option value="A la Playa en Bici (3 Días)">A la Playa en Bici (265 km · VIE 20 - DOM 22 NOV 2026)</option>
-          <option value="Ecuador Epic Tour (Internacional)">Ecuador Epic Tour (3, 5 o 7 Días)</option>
-          <option value="Transporte Exclusivo de Bicicletas">Servicio Exclusivo de Furgoneta &amp; Transporte</option>
-        </select>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label for="booking-bike" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Tipo de Bicicleta *</label>
-          <select 
-            id="booking-bike"
-            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm bg-white"
-          >
-            <option value="Ruta / Asfalto">Bici de Ruta (Carbono / Aluminio)</option>
-            <option value="Mountain Bike (MTB)">Mountain Bike (MTB)</option>
-            <option value="Gravel">Gravel Bike</option>
-            <option value="E-Bike">Bicicleta Eléctrica (E-Bike)</option>
-            <option value="Necesito Alquilar">Deseo alquilar una bicicleta</option>
-          </select>
-        </div>
-        <div>
-          <label for="booking-level" class="block font-mono text-xs font-bold uppercase text-epic-blue mb-1">Nivel de Condición</label>
-          <select 
-            id="booking-level"
-            class="w-full px-4 py-3 rounded-xl border border-epic-blue/20 focus:border-epic-gold focus:ring-2 focus:ring-epic-gold/20 outline-none text-sm bg-white"
-          >
-            <option value="Intermedio">Intermedio (ruedo 1-2 veces/semana)</option>
-            <option value="Avanzado">Avanzado (ruedo fondos largos)</option>
-            <option value="Élite">Élite / Competitivo</option>
-            <option value="Principiante activo">Principiante activo con ganas de superación</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="pt-2">
-        <button 
-          type="submit" 
-          class="w-full bg-epic-gold hover:bg-epic-gold-light text-epic-blue font-black text-sm tracking-wider py-4 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] uppercase"
-        >
-          Confirmar y Contactar por WhatsApp
-        </button>
-        <p class="text-[11px] text-epic-text-muted text-center mt-2">
-          Te contactaremos inmediatamente para confirmar tu cupo y enviarte la ficha técnica.
-        </p>
-      </div>
-    </form>
-  </div>
-</div>
 
 <!-- 2. Corporate / Private Quote Modal -->
 <div id="corporate-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
@@ -475,34 +360,8 @@ const modalGallery = [
 <script is:inline define:vars={{ modalGallery }}>
   // Global Modal Control Functions
   window.openBookingModal = function(routeName, dateBadge) {
-    const modal = document.getElementById('booking-modal');
-    if (modal) {
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-
-      if (routeName) {
-        const routeSelect = document.getElementById('booking-route');
-        if (routeSelect) {
-          // Check if option exists, otherwise set first
-          for (let opt of routeSelect.options) {
-            if (opt.text.toLowerCase().includes(routeName.toLowerCase())) {
-              opt.selected = true;
-              break;
-            }
-          }
-        }
-      }
-    }
-  };
-
-  window.closeBookingModal = function() {
-    const modal = document.getElementById('booking-modal');
-    if (modal) {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
+    const text = `¡Hola EPIC Rides! Quisiera inscribirme y reservar un cupo${routeName ? ` para la ruta "${routeName}"` : ''}${dateBadge ? ` (${dateBadge})` : ''}.`;
+    window.open(`https://wa.me/593999999999?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   window.openCorporateModal = function(eventName) {
@@ -795,32 +654,13 @@ const modalGallery = [
 
   // Close modals when clicking outside
   window.addEventListener('click', function(e) {
-    const booking = document.getElementById('booking-modal');
     const corp = document.getElementById('corporate-modal');
     const video = document.getElementById('video-modal');
     const image = document.getElementById('image-modal');
-    if (e.target === booking) window.closeBookingModal();
     if (e.target === corp) window.closeCorporateModal();
     if (e.target === video) window.closeVideoModal();
     if (e.target === image) window.closeImageModal();
   });
-
-  // Handle Form Submissions via WhatsApp Direct Integration
-  window.handleBookingSubmit = function(e) {
-    e.preventDefault();
-    const name = document.getElementById('booking-name').value;
-    const phone = document.getElementById('booking-phone').value;
-    const email = document.getElementById('booking-email').value;
-    const route = document.getElementById('booking-route').value;
-    const bike = document.getElementById('booking-bike').value;
-    const level = document.getElementById('booking-level').value;
-
-    const message = `¡Hola EPIC Rides Ecuador! Quisiera reservar un cupo:\n\n• Nombre: ${name}\n• Teléfono: ${phone}\n• Email: ${email}\n• Ruta: ${route}\n• Bicicleta: ${bike}\n• Nivel: ${level}`;
-    const url = `https://wa.me/593999999999?text=${encodeURIComponent(message)}`;
-    
-    window.open(url, '_blank');
-    window.closeBookingModal();
-  };
 
   window.handleCorporateSubmit = function(e) {
     e.preventDefault();
